@@ -1,0 +1,67 @@
+@import "../../functions/placeholder"
+.main
+  padding-top: 115px
+  &__block
+    padding: 52px 95px 85px
+    min-height: 636px
+  &__item
+    z-index: 2
+    max-width: 660px
+    &_2
+      .main
+        &__subtitle
+          max-width: 477px
+    &_3
+      .main
+        &__list
+          max-width: 529px
+  &__form
+    z-index: 2
+  &__title
+    font-size: 45px
+    line-height: 1.31111
+    margin-bottom: 25px
+  &__subtitle
+    margin-bottom: 39px
+  &__list
+    gap: 21px
+    &-svg
+      transform: translateY(3px)
+    &-item
+      gap: 15px
+  &__form
+    width: 477px
+    border: 1px solid rgba(255, 255, 255, 0.3)
+    border-radius: 13px
+    backdrop-filter: blur(128.87600708007812px)
+    box-shadow: inset -32px 32px 32px 0 rgba(255, 255, 255, 0.01), inset 32px -32px 32px 0 rgba(13, 13, 13, 0.01)
+    background: rgba(17, 17, 17, 0.01)
+    top: 52px
+    right: 95px
+    padding: 38px 24px 37px 34px
+    &-title
+      margin-bottom: 25px
+  &__swiper
+    &-pagination
+      left: 95px
+      bottom: 55px
+      gap: 7px
+      z-index: 1
+      .swiper-pagination
+        display: flex
+        align-items: center
+        width: 558px
+        position: relative
+        inset: auto
+        --swiper-pagination-bullet-inactive-opacity: 1
+        --gap: 3px
+        --swiper-pagination-color: var(--red)
+        --swiper-pagination-bullet-inactive-color: var(--white)
+        &-bullets
+          top: auto
+          gap: var(--gap)
+        &-bullet
+          height: 3px
+          width: calc(100% / var(--count) - var(--gap) / var(--count))
+          margin: 0!important
+          border-radius: 100px

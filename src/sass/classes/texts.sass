@@ -1,0 +1,61 @@
+.uppercase
+  text-transform: uppercase
+
+.text
+  &-400
+    font-weight: normal
+  &-600
+    font-weight: 600
+  &-700
+    font-weight: 700
+  &-14
+    font-size: 14px
+  &-16
+    font-size: 16px
+  &-18
+    font-size: 18px
+  &-20
+    font-size: 20px
+  &-24
+    font-size: 24px
+  &-28
+    font-size: 28px
+  &-30
+    font-size: 30px
+  &-35
+    font-size: 35px
+  &-underline
+    text-decoration: underline
+    text-decoration-skip-ink: none
+    text-decoration-thickness: 1px
+    &:hover
+      text-decoration: none
+.lh
+  &-normal
+    line-height: normal
+  &-1
+    line-height: 1
+
+
+
+$colors: black, red, white, gray
+
+@each $state in $colors
+  .bg-#{""+$state}
+    background: var(--#{$state})
+  .text-#{""+$state}
+    color: var(--#{$state})
+
+
+.w-max
+  width: max-content
+
+.border
+  &-full
+    border-radius: 100%
+  &-14
+    border-radius: 14px
+  &-15
+    border-radius: 15px
+  &-16
+    border-radius: 16px

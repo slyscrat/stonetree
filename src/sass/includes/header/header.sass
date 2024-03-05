@@ -1,0 +1,50 @@
+.header
+  padding-top: 24px
+  transition: .3s
+  z-index: 50
+  &__block
+    padding: 20px 95px
+  &__nav
+    a
+      &:hover
+        color: var(--red)
+  &__list
+    ul
+      display: flex
+      align-items: center
+      gap: 61px
+    &-add
+      &:hover
+        .header
+          &__list
+            &-show
+              color: var(--red)
+              path
+                fill: var(--red)
+            &-abs
+              display: block
+    &-show
+      gap: 9px
+    &-abs
+      padding: 12px 22px 18px
+      border-radius: 0 0 15px 15px
+      min-width: 233px
+      margin-left: -22px
+      display: none
+      ul
+        display: flex
+        flex-direction: column
+        gap: 10px
+  &__nav
+    gap: 58px
+  &__langs
+    padding: 2px 4px
+    gap: 4px
+    border-radius: 45px
+  &__lang
+    width: 29px
+    height: 29px
+    &.active
+      background: var(--black)
+      color: var(--white)
+      border-radius: 100%

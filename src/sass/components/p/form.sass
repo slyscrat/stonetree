@@ -1,0 +1,40 @@
+@import "../../functions/placeholder"
+.p-form
+  &__inputs
+    gap: 15px
+    :is(input[type="text"], input[type="tel"])
+      outline: none
+      border: 1px solid var(--white)
+      border-radius: 8px
+      width: 100%
+      padding: 19px 23px 17px
+      background: transparent
+      color: var(--white)
+      font-size: 16px
+      +placeholder()
+        color: var(--gray)
+  &__btn
+    width: 229px
+    height: 57px
+  &__check
+    gap: 12px
+    margin-top: -4px
+    margin-bottom: 5px
+    input
+      &:checked
+        + .p-form__check-square::after
+          opacity: 1
+    &-square
+      width: 18px
+      height: 18px
+      border: 1px solid #bcbcbc
+      border-radius: 2px
+      background: transparent
+      &::after
+        opacity: 0
+        content: '\2713'
+        position: absolute
+        left: 50%
+        top: 50%
+        transform: translateY(-50%) translateX(-50%)
+        font-size: 14px
