@@ -30,6 +30,35 @@ document.addEventListener("DOMContentLoaded", () => {
         })
     }
 
+    function mask(event, _mask) {
+        event.keyCode && (keyCode = event.keyCode);
+        var pos = this.selectionStart;
+        if (pos < 3) event.preventDefault();
+        var matrix = _mask,
+            i = 0,
+            def = matrix.replace(/\D/g, ""),
+            val = this.value.replace(/\D/g, ""),
+            new_value = matrix.replace(/[_\d]/g, function(a) {
+                return i < val.length ? val.charAt(i++) : a
+            });
+        i = new_value.indexOf("_");
+        if (i != -1) {
+            i < 5 && (i = 3);
+            new_value = new_value.slice(0, i)
+        }
+        var reg = matrix.substr(0, this.value.length).replace(/_+/g,
+            function(a) {
+                return "\\d{1," + a.length + "}"
+            }).replace(/[+()]/g, "\\$&");
+        reg = new RegExp("^" + reg + "$");
+        if (!reg.test(this.value) || this.value.length < 5 || keyCode > 47 && keyCode < 58) {
+            this.value = new_value;
+        }
+        if (event.type == "blur" && this.value.length < 5) {
+            this.value = "";
+        }
+    }
+
     const interTels = document.querySelectorAll('.p-inter-tel');
     if (interTels[0]){
         interTels.forEach((interTel)=>{
@@ -39,6 +68,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
             const prefix = interTel.querySelector('.p-inter-tel__input-item span');
             const input = interTel.querySelector('.p-inter-tel__input-item input');
+
 
             const button = interTel.querySelector('.p-inter-tel__select-block');
             const buttonFlag = button.querySelector('.fi');
@@ -85,6 +115,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     input.placeholder = mask;
                     option.classList.add('active');
                     interTel.classList.remove('active');
+                    console.log(mask.length);
                 })
             })
         })

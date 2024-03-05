@@ -27,6 +27,7 @@
     "gulp-imagemin": "7.1.0",
     "gulp-rename": "^2.0.0",
     "gulp-webp": "^4.0.1",
+    "imask": "^7.5.0",
     "intl-tel-input": "^19.5.5",
     "normalize.css": "^8.0.1",
     "swiffy-slider": "^1.6.0",
