@@ -45,6 +45,8 @@
     gap: 10px
     cursor: pointer
     border-bottom: 1px solid var(--gray)
+    &.hidden
+      display: none
     &.active
       background: var(--gray)
     &:last-child
@@ -54,5 +56,6 @@
     &-num
       margin-left: auto
       font-weight: 700
+      flex-shrink: 0
     &-name, &-num
       font-size: 14px

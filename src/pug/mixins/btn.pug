@@ -2,3 +2,5 @@ mixin btn(text, classes='')
 	a(href="#!" class="p-btn flex flex-ai-center flex-j-center"+classes)=text
 mixin btnSubmit(text, classes='')
 	button(type="submit" class="p-btn flex flex-ai-center flex-j-center"+classes)=text
+mixin btnTransparent(text, id, classes='')
+	a(href=id class="p-btn p-btn_transparent flex flex-ai-center flex-j-center"+classes)=text

@@ -1,4 +1,5 @@
 include ../mixins
+include ../../mixins/main/cards
 main
     .main
         .container.margin-center
@@ -112,8 +113,8 @@ main
                                         .p-inter-tel__input.flex.flex-ai-center
                                             .p-inter-tel__select
                                                 button(type="button").p-inter-tel__select-block.flex.flex-ai-center.cursor-pointer
-                                                    .fi.fi-ru
-                                                    .p-inter-tel__select-svg
+                                                    span.fi.fi-ru
+                                                    span.p-inter-tel__select-svg
                                                         <svg width="10" height="6" viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                         <path d="M5 6L9.33013 0H0.669873L5 6Z" fill="#AEAEAE"/>
                                                         </svg>
@@ -122,13 +123,13 @@ main
                                                     ul.overflow-hidden
                                             .p-inter-tel__input-item.flex.flex-ai-center
                                                 .p-inter-tel__input-prefix <span>+7</span>&nbsp;
-                                                input(type="tel" name="tel" placeholder="(999) 999-99-99" autocomplete="off")
+                                                input(type="tel" name="tel" placeholder="(000) 000-00-00" autocomplete="off")
                                 .p-form__input.w-full
                                     .p-select.relative.text-16
                                         input(type="hidden" name="list" value="Услуга")
                                         button(type="button").p-select__btn.flex.flex-ai-center
-                                            .p-select__current.text-gray Услуга
-                                            .p-select__svg
+                                            span.p-select__current.text-gray Услуга
+                                            span.p-select__svg
                                                 <svg width="10" height="6" viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                 <path d="M5 6L9.33013 0H0.669873L5 6Z" fill="#AEAEAE"/>
                                                 </svg>
@@ -154,15 +155,23 @@ main
     .cards
         .container.margin-center
             .cards__swiper
-                .swiper
-                    .swiper-slide
+                .swiper(data-speed="1000")
+                    .swiper-wrapper
+                        .swiper-slide
+                            +mainCard(1, 'Аренда квартиры', ' text-white')
+                        .swiper-slide
+                            +mainCard(2, 'Покупка и&nbsp;продажа', ' ')
+                        .swiper-slide
+                            +mainCard(3, 'Отдать в&nbsp;управление', ' text-white')
+                        .swiper-slide
+                            +mainCard(4, 'Интерьер Дизайн', ' ')
+                        .swiper-slide
+                            +mainCard(5, 'Юридические услуги', ' text-white')
             .cards__bottom.flex.flex-ai-center.relative
                 .swiper-scrollbar
-                .cards__nums.flex
-                    .cards__nums-start 01
-                    .cards__nums-separator /
-                    .cards__nums-end 03
-                .swiper-button-prev
-                    +picture('img/cards/left.png', 'img/cards/left', true, '', 31, 30, '', '', '')
-                .swiper-button-next
-                    +picture('img/cards/right.png', 'img/cards/right', true, '', 31, 30, '', '', '')
+                .swiper-pagination.text-20.font-inter
+                .cards__arrows.flex.flex-ai-center
+                    .swiper-button-prev.swiper-button.border-full.flex.flex-ai-center.flex-j-center
+                        +picture('img/cards/left.png', 'img/cards/left', true, '', 31, 30, '', '', '')
+                    .swiper-button-next.swiper-button.border-full.flex.flex-ai-center.flex-j-center
+                        +picture('img/cards/right.png', 'img/cards/right', true, '', 31, 30, '', '', '')

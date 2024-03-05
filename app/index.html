@@ -6,7 +6,7 @@
     <title>Главная</title>
     <script src="js/lazyload.min.js"></script>
     <script>var lazyContent="",lazyBackground="";window.addEventListener("DOMContentLoaded",(function(){lazyContent=new LazyLoad({use_native:!0}),lazyBackground=new LazyLoad({})}));</script>
-    <link rel="stylesheet" href="css/style.min.css?v=6">
+    <link rel="stylesheet" href="css/style.min.css?v=9">
   </head>
   <body class="relative lh-normal text-400 text-black font-nunitosans text-18 bg-white">
     <header class="header absolute w-full left-0">
@@ -28,8 +28,7 @@
                 </ul>
               </div>
               <div class="header__list-add relative">
-                <button class="header__list-show flex flex-ai-center" type="submit">
-                  <div class="header__list-span">Еще</div><svg width="10" height="8" viewBox="0 0 10 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <button class="header__list-show flex flex-ai-center" type="submit"><span class="header__list-span">Еще</span><svg width="10" height="8" viewBox="0 0 10 8" fill="none" xmlns="http://www.w3.org/2000/svg">
 <path d="M5 8L0.669872 0.5H9.33013L5 8Z" fill="white"/>
 </svg>
                 </button>
@@ -198,13 +197,9 @@
                       <div class="p-inter-tel relative" data-slug="ru" data-lang="ru">
                         <div class="p-inter-tel__input flex flex-ai-center">
                           <div class="p-inter-tel__select">
-                            <button class="p-inter-tel__select-block flex flex-ai-center cursor-pointer" type="button">
-                              <div class="fi fi-ru"></div>
-                              <div class="p-inter-tel__select-svg"><svg width="10" height="6" viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <button class="p-inter-tel__select-block flex flex-ai-center cursor-pointer" type="button"><span class="fi fi-ru"></span><span class="p-inter-tel__select-svg"><svg width="10" height="6" viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg">
 <path d="M5 6L9.33013 0H0.669873L5 6Z" fill="#AEAEAE"/>
-</svg>
-                              </div>
-                            </button>
+</svg></span></button>
                             <div class="p-inter-tel__options absolute left-0 w-full text-black">
                               <input type="text" placeholder="Поиск названия страны">
                               <ul class="overflow-hidden"></ul>
@@ -212,7 +207,7 @@
                           </div>
                           <div class="p-inter-tel__input-item flex flex-ai-center">
                             <div class="p-inter-tel__input-prefix"><span>+7</span>&nbsp;</div>
-                            <input type="tel" name="tel" placeholder="(999) 999-99-99" autocomplete="off">
+                            <input type="tel" name="tel" placeholder="(000) 000-00-00" autocomplete="off">
                           </div>
                         </div>
                       </div>
@@ -220,13 +215,9 @@
                     <div class="p-form__input w-full">
                       <div class="p-select relative text-16">
                         <input type="hidden" name="list" value="Услуга">
-                        <button class="p-select__btn flex flex-ai-center" type="button">
-                          <div class="p-select__current text-gray">Услуга</div>
-                          <div class="p-select__svg"><svg width="10" height="6" viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <button class="p-select__btn flex flex-ai-center" type="button"><span class="p-select__current text-gray">Услуга</span><span class="p-select__svg"><svg width="10" height="6" viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg">
 <path d="M5 6L9.33013 0H0.669873L5 6Z" fill="#AEAEAE"/>
-</svg>
-                          </div>
-                        </button>
+</svg></span></button>
                         <ul class="p-select__options absolute top-0 left-0 hidden">
                           <li class="p-select__option">Юридические услуги</li>
                           <li class="p-select__option">Партнерская программа</li>
@@ -264,32 +255,91 @@
       <div class="cards">
         <div class="container margin-center">
           <div class="cards__swiper">
-            <div class="swiper">
-              <div class="swiper-slide"></div>
+            <div class="swiper" data-speed="1000">
+              <div class="swiper-wrapper">
+                <div class="swiper-slide">
+                      <div class="cards__item overflow-hidden border-16 relative flex flex-col flex-j-between text-white">
+                        <div class="cards__item-bg absolute img_cover img_full">
+                              <picture>
+                                <source type="image/webp" srcset="#" data-srcset="img/cards/1.webp"><img class="lazy " width="322" height="308" src="#" data-src="img/cards/1.jpg" alt="" loading="lazy">
+                              </picture>
+                        </div>
+                        <div class="cards__item-block relative flex flex-col h-full w-full">
+                          <div class="cards__item-title text-30 text-600">Аренда квартиры</div><a class="p-btn p-btn_transparent flex flex-ai-center flex-j-center cards__item-btn text-white" href="#!">Подробнее</a>
+                        </div>
+                      </div>
+                </div>
+                <div class="swiper-slide">
+                      <div class="cards__item overflow-hidden border-16 relative flex flex-col flex-j-between ">
+                        <div class="cards__item-bg absolute img_cover img_full">
+                              <picture>
+                                <source type="image/webp" srcset="#" data-srcset="img/cards/2.webp"><img class="lazy " width="322" height="308" src="#" data-src="img/cards/2.jpg" alt="" loading="lazy">
+                              </picture>
+                        </div>
+                        <div class="cards__item-block relative flex flex-col h-full w-full">
+                          <div class="cards__item-title text-30 text-600">Покупка и&nbsp;продажа</div><a class="p-btn p-btn_transparent flex flex-ai-center flex-j-center cards__item-btn text-white" href="#!">Подробнее</a>
+                        </div>
+                      </div>
+                </div>
+                <div class="swiper-slide">
+                      <div class="cards__item overflow-hidden border-16 relative flex flex-col flex-j-between text-white">
+                        <div class="cards__item-bg absolute img_cover img_full">
+                              <picture>
+                                <source type="image/webp" srcset="#" data-srcset="img/cards/3.webp"><img class="lazy " width="322" height="308" src="#" data-src="img/cards/3.jpg" alt="" loading="lazy">
+                              </picture>
+                        </div>
+                        <div class="cards__item-block relative flex flex-col h-full w-full">
+                          <div class="cards__item-title text-30 text-600">Отдать в&nbsp;управление</div><a class="p-btn p-btn_transparent flex flex-ai-center flex-j-center cards__item-btn text-white" href="#!">Подробнее</a>
+                        </div>
+                      </div>
+                </div>
+                <div class="swiper-slide">
+                      <div class="cards__item overflow-hidden border-16 relative flex flex-col flex-j-between ">
+                        <div class="cards__item-bg absolute img_cover img_full">
+                              <picture>
+                                <source type="image/webp" srcset="#" data-srcset="img/cards/4.webp"><img class="lazy " width="322" height="308" src="#" data-src="img/cards/4.jpg" alt="" loading="lazy">
+                              </picture>
+                        </div>
+                        <div class="cards__item-block relative flex flex-col h-full w-full">
+                          <div class="cards__item-title text-30 text-600">Интерьер Дизайн</div><a class="p-btn p-btn_transparent flex flex-ai-center flex-j-center cards__item-btn text-white" href="#!">Подробнее</a>
+                        </div>
+                      </div>
+                </div>
+                <div class="swiper-slide">
+                      <div class="cards__item overflow-hidden border-16 relative flex flex-col flex-j-between text-white">
+                        <div class="cards__item-bg absolute img_cover img_full">
+                              <picture>
+                                <source type="image/webp" srcset="#" data-srcset="img/cards/5.webp"><img class="lazy " width="322" height="308" src="#" data-src="img/cards/5.jpg" alt="" loading="lazy">
+                              </picture>
+                        </div>
+                        <div class="cards__item-block relative flex flex-col h-full w-full">
+                          <div class="cards__item-title text-30 text-600">Юридические услуги</div><a class="p-btn p-btn_transparent flex flex-ai-center flex-j-center cards__item-btn text-white" href="#!">Подробнее</a>
+                        </div>
+                      </div>
+                </div>
+              </div>
             </div>
           </div>
           <div class="cards__bottom flex flex-ai-center relative">
             <div class="swiper-scrollbar"></div>
-            <div class="cards__nums flex">
-              <div class="cards__nums-start">01</div>
-              <div class="cards__nums-separator">/</div>
-              <div class="cards__nums-end">03</div>
-            </div>
-            <div class="swiper-button-prev">
-                  <picture>
-                    <source type="image/webp" srcset="#" data-srcset="img/cards/left.webp"><img class="lazy " width="31" height="30" src="#" data-src="img/cards/left.png" alt="" loading="lazy">
-                  </picture>
-            </div>
-            <div class="swiper-button-next">
-                  <picture>
-                    <source type="image/webp" srcset="#" data-srcset="img/cards/right.webp"><img class="lazy " width="31" height="30" src="#" data-src="img/cards/right.png" alt="" loading="lazy">
-                  </picture>
+            <div class="swiper-pagination text-20 font-inter"></div>
+            <div class="cards__arrows flex flex-ai-center">
+              <div class="swiper-button-prev swiper-button border-full flex flex-ai-center flex-j-center">
+                    <picture>
+                      <source type="image/webp" srcset="#" data-srcset="img/cards/left.webp"><img class="lazy " width="31" height="30" src="#" data-src="img/cards/left.png" alt="" loading="lazy">
+                    </picture>
+              </div>
+              <div class="swiper-button-next swiper-button border-full flex flex-ai-center flex-j-center">
+                    <picture>
+                      <source type="image/webp" srcset="#" data-srcset="img/cards/right.webp"><img class="lazy " width="31" height="30" src="#" data-src="img/cards/right.png" alt="" loading="lazy">
+                    </picture>
+              </div>
             </div>
           </div>
         </div>
       </div>
     </main>
     <script src="js/phones.js"></script>
-    <script src="js/script.min.js?v=6"></script>
+    <script src="js/script.min.js?v=9"></script>
   </body>
 </html>

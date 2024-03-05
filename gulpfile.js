@@ -115,7 +115,7 @@ function scripts() {
 
 function scriptsMain() {
     return src([
-        'node_modules/imask/dist/imask.js',
+        'node_modules/imask/dist/imask.min.js',
         'modules/swiper-master/dist/swiper-bundle.min.js',
         // 'node_modules/split-type/dist/index.js',
         // 'node_modules/gsap/dist/gsap.min.js',

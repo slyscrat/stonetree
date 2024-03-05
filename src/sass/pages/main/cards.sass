@@ -1,0 +1,58 @@
+@import "../../functions/placeholder"
+.cards
+  padding-top: 52px
+  padding-bottom: 48px
+  &__item
+    height: 308px
+    &-block
+      padding: 26px 25px
+      justify-content: space-between
+    &-title
+      max-width: 249px
+    &-btn
+      width: 199px
+      height: 48px
+      backdrop-filter: blur(4.349726676940918px)
+      background: rgba(0, 0, 0, 0.06)
+      border: 1.09px solid #fff
+      border-radius: 11px
+      &:hover
+        background: rgba(0, 0, 0, 0.06)
+  &__bottom
+    margin-top: 20px
+  .swiper
+    &-scrollbar
+      --swiper-scrollbar-top: 20px
+      --swiper-scrollbar-sides-offset: 0px
+      width: 1167px
+      height: 3px
+      background: #d9d9d9
+      border-radius: 100px
+      &-drag
+        cursor: pointer
+        background: #828282
+        border-radius: 100px
+    &-pagination, &-scrollbar, &-button
+      position: relative
+      inset: auto
+    &-pagination
+      width: auto
+      margin-left: 15px
+      &-total
+        color: #bfbfbf
+    &-slide
+      width: 322px
+    &-button
+      width: 56px
+      height: 56px
+      box-shadow: 0 1px 11px 0 rgba(0, 0, 0, 0.13)
+      background: #f7f7f7
+      margin-top: 0
+      &::after, &::before
+        display: none
+  &__nums
+    &-end
+      color: #bfbfbf
+  &__arrows
+    gap: 6px
+    margin-left: auto

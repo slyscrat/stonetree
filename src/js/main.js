@@ -20,43 +20,14 @@ document.addEventListener("DOMContentLoaded", () => {
                 on: {
                     afterInit: function (swiper){
                         _swiperPagination.style.setProperty('--count', swiper.pagination.bullets.length);
-                        main.querySelector('.main__nums-end').textContent = swiper.pagination.bullets.length;
+                        main.querySelector('.main__nums-end').textContent = swiper.pagination.bullets.length < 10 ? '0' + swiper.pagination.bullets.length : swiper.pagination.bullets.length;
                     },
                     slideChange: function (swiper){
-                        main.querySelector('.main__nums-start').textContent = swiper.realIndex + 1;
+                        main.querySelector('.main__nums-start').textContent = swiper.realIndex + 1 < 10 ? '0' + (swiper.realIndex + 1) : swiper.realIndex + 1;
                     }
                 }
             });
         })
-    }
-
-    function mask(event, _mask) {
-        event.keyCode && (keyCode = event.keyCode);
-        var pos = this.selectionStart;
-        if (pos < 3) event.preventDefault();
-        var matrix = _mask,
-            i = 0,
-            def = matrix.replace(/\D/g, ""),
-            val = this.value.replace(/\D/g, ""),
-            new_value = matrix.replace(/[_\d]/g, function(a) {
-                return i < val.length ? val.charAt(i++) : a
-            });
-        i = new_value.indexOf("_");
-        if (i != -1) {
-            i < 5 && (i = 3);
-            new_value = new_value.slice(0, i)
-        }
-        var reg = matrix.substr(0, this.value.length).replace(/_+/g,
-            function(a) {
-                return "\\d{1," + a.length + "}"
-            }).replace(/[+()]/g, "\\$&");
-        reg = new RegExp("^" + reg + "$");
-        if (!reg.test(this.value) || this.value.length < 5 || keyCode > 47 && keyCode < 58) {
-            this.value = new_value;
-        }
-        if (event.type == "blur" && this.value.length < 5) {
-            this.value = "";
-        }
     }
 
     const interTels = document.querySelectorAll('.p-inter-tel');
@@ -69,7 +40,6 @@ document.addEventListener("DOMContentLoaded", () => {
             const prefix = interTel.querySelector('.p-inter-tel__input-item span');
             const input = interTel.querySelector('.p-inter-tel__input-item input');
 
-
             const button = interTel.querySelector('.p-inter-tel__select-block');
             const buttonFlag = button.querySelector('.fi');
 
@@ -78,22 +48,44 @@ document.addEventListener("DOMContentLoaded", () => {
             const optionsSearch = options.querySelector('input');
 
             button.addEventListener('click', ()=>{
+                if (interTel.classList.contains('active')){
+                    _options.forEach((option)=>{
+                        option.classList.remove('hidden');
+                        optionsSearch.value = '';
+                    })
+                }
+
                 interTel.classList.toggle('active');
             })
 
             let _options = null;
             let _countries = pPhones;
+            let _mask = IMask(input, {
+                mask: input.placeholder,
+                lazy: false,
+            });
 
             _countries.forEach((country)=>{
                 const classes = slug === country.countryCode.toLowerCase() ? 'active' : '';
                 const optionOutput = `
-                    <li class="p-inter-tel__option flex flex-ai-center ${classes}" data-code="${country.countryCode.toLowerCase()}" data-num="+${country.phoneCode}" data-mask="${country.phoneMask}">
+                    <li class="p-inter-tel__option flex flex-ai-center ${classes}" data-country="${country['name' + langUpper]}" data-code="${country.countryCode.toLowerCase()}" data-num="+${country.phoneCode}" data-mask="${country.phoneMask}">
                       <div class="fi fi-${country.countryCode.toLowerCase()}"></div>
                       <div class="p-inter-tel__option-name">${country['name' + langUpper]}</div>
                       <div class="p-inter-tel__option-num">+${country.phoneCode}-${country.phoneMask}</div>
                     </li>
                 `;
                 optionsUl.insertAdjacentHTML('beforeend', optionOutput);
+
+                if (slug === country.countryCode.toLowerCase()){
+                    prefix.textContent = `+${country.phoneCode}`;
+                    buttonFlag.className = `fi fi-${country.countryCode.toLowerCase()}`;
+                    input.placeholder = country.phoneMask;
+                    input.value = '';
+                    _mask.masked.reset();
+                    _mask.updateOptions({
+                        mask: country.phoneMask,
+                    });
+                }
             });
             _options = optionsUl.querySelectorAll('.p-inter-tel__option');
 
@@ -113,11 +105,57 @@ document.addEventListener("DOMContentLoaded", () => {
                     prefix.textContent = num;
                     buttonFlag.className = `fi fi-${code}`;
                     input.placeholder = mask;
+                    input.value = '';
+                    _mask.masked.reset();
+                    _mask.updateOptions({
+                        mask: mask,
+                    });
+                    input.focus();
                     option.classList.add('active');
                     interTel.classList.remove('active');
-                    console.log(mask.length);
                 })
             })
+
+            optionsSearch.addEventListener('input', ()=>{
+                let search_query = optionsSearch.value.toLowerCase();
+                _options.forEach((option)=>{
+                    let is_matched = option.dataset.country.toLowerCase().includes(search_query);
+                    is_matched ? option.classList.remove('hidden') : option.classList.add('hidden');
+                })
+            })
+        })
+    }
+
+    const cards = document.querySelectorAll('.cards');
+    if (cards[0]){
+        cards.forEach((card)=>{
+            const _swiperElement = card.querySelector('.swiper');
+            const _swiperPagination = card.querySelector(".swiper-pagination");
+            const _swiperScrollbar = card.querySelector(".swiper-scrollbar");
+            const _swiper = new Swiper(_swiperElement, {
+                speed: _swiperElement.dataset.speed,
+                slidesPerView: 'auto',
+                spaceBetween: 15,
+                pagination: {
+                    el: _swiperPagination,
+                    clickable: true,
+                    type: 'custom',
+                    renderCustom: function (swiper, current, total) {
+                        let start = current < 10 ? '0' + current : current;
+                        let end = total - 1 < 10 ? '0' + total : total;
+                        return `<span class="cards__nums-start">${start}</span>/<span class="cards__nums-end">${end}</span>`;
+                    }
+                },
+                scrollbar: {
+                    draggable: true,
+                    el: _swiperScrollbar,
+                    snapOnRelease: true,
+                },
+                navigation: {
+                    nextEl: card.querySelector(".swiper-button-next"),
+                    prevEl: card.querySelector(".swiper-button-prev"),
+                },
+            });
         })
     }
 
