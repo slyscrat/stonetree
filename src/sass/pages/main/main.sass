@@ -2,11 +2,28 @@
 .main
   padding-top: 115px
   &__block
-    padding: 52px 95px 85px
+    padding: 52px 95px 60px
     min-height: 636px
+    position: relative
+    border-radius: 14px
+    overflow: hidden
+    &-bg
+      position: absolute
+      width: 100%
+      height: 100%
+      border-radius: 14px
+      overflow: hidden
+      left: 0
+      top: 0
+      :is(img, picture)
+        width: 100%
+        height: 100%
+        object-fit: cover
   &__item
     z-index: 2
     max-width: 660px
+    color: var(--white)
+    position: relative
     &_2
       .main
         &__subtitle
@@ -15,39 +32,70 @@
       .main
         &__list
           max-width: 529px
-  &__form
-    z-index: 2
+  &__title, &__subtitle, &__list
+    font-weight: 600
   &__title
     font-size: 45px
     line-height: 1.31111
     margin-bottom: 25px
+  &__nums
+    display: flex
+    align-items: center
+    font-size: 16px
   &__subtitle
     margin-bottom: 39px
+    font-size: 28px
   &__list
     gap: 21px
+    display: flex
+    flex-direction: column
+    font-size: 20px
     &-svg
+      flex-shrink: 0
       transform: translateY(3px)
     &-item
       gap: 15px
+      display: flex
+    &-title
+      font-size: 20px
   &__form
     width: 477px
-    border: 1px solid rgba(255, 255, 255, 0.3)
     border-radius: 13px
-    backdrop-filter: blur(128.87600708007812px)
     box-shadow: inset -32px 32px 32px 0 rgba(255, 255, 255, 0.01), inset 32px -32px 32px 0 rgba(13, 13, 13, 0.01)
     background: rgba(17, 17, 17, 0.01)
     top: 52px
     right: 95px
     padding: 38px 24px 37px 34px
     will-change: backdrop-filter
+    position: absolute
+    color: var(--white)
+    z-index: 2
+    border: 1px solid rgba(255, 255, 255, 0.3)
+    backdrop-filter: blur(128.87600708007812px)
+    &-bg
+      position: absolute
+      top: 50%
+      left: 50%
+      width: max-content
+      transform: translate(-50%, -50%)
+      display: none
+    &-item
+      position: relative
     &-title
       margin-bottom: 25px
+      font-size: 24px
+      font-weight: 600
   &__swiper
+    position: relative
     &-pagination
       left: 95px
-      bottom: 55px
+      bottom: 35px
       gap: 7px
       z-index: 1
+      display: flex
+      align-items: center
+      position: absolute
+      color: var(--white)
       .swiper-pagination
         display: flex
         align-items: center

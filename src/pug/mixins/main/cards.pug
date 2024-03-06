@@ -1,8 +1,8 @@
 mixin mainCard(img, title, classes="")
-    div(class="cards__item overflow-hidden border-16 relative flex flex-col flex-j-between"+ classes)
-        .cards__item-bg.absolute.img_cover.img_full
+    div(class="cards__item"+ classes)
+        .cards__item-bg
             +picture('img/cards/'+img+'.jpg', 'img/cards/'+img, true, '', 322, 308, '', '', '')
-        .cards__item-block.relative.flex.flex-col.h-full.w-full
-            .cards__item-title.text-30.text-600
+        .cards__item-block
+            h2.cards__item-title
                 | !{title}
             +btnTransparent('Подробнее', '#!', ' cards__item-btn text-white')

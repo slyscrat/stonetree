@@ -2,18 +2,28 @@
   padding-top: 24px
   transition: .3s
   z-index: 50
+  position: absolute
+  width: 100%
+  left: 0
+  &__block, &__center, &__nav, &__langs, &__list ul, &__lang, &__list-show, &__logo, &__logo
+    display: flex
+    align-items: center
   &__block
     padding: 20px 95px
+    justify-content: space-between
+    background: var(--black)
+    color: var(--white)
+    border-radius: 15px
   &__nav
+    font-size: 16px
     a
       &:hover
         color: var(--red)
   &__list
     ul
-      display: flex
-      align-items: center
       gap: 61px
     &-add
+      position: relative
       &:hover
         .header
           &__list
@@ -31,6 +41,11 @@
       min-width: 233px
       margin-left: -22px
       display: none
+      position: absolute
+      background: var(--black)
+      left: 0
+      width: max-content
+      overflow: hidden
       ul
         display: flex
         flex-direction: column
@@ -41,9 +56,13 @@
     padding: 2px 4px
     gap: 4px
     border-radius: 45px
+    background: var(--white)
+    color: var(--black)
+    font-size: 16px
   &__lang
     width: 29px
     height: 29px
+    justify-content: center
     &.active
       background: var(--black)
       color: var(--white)

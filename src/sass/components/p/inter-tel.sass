@@ -1,4 +1,8 @@
 .p-inter-tel
+  position: relative
+  &__input, &__select-block, &__input-item, &__option
+    display: flex
+    align-items: center
   &.active
     .p-inter-tel__options
       display: block
@@ -17,6 +21,7 @@
   &__select
     &-block
       gap: 4px
+      cursor: pointer
     &-flag
       &.fi
         width: 21px
@@ -27,7 +32,12 @@
     top: calc(100%)
     border-radius: 8px
     display: none
+    position: absolute
+    left: 0
+    width: 100%
+    color: var(--black)
     ul
+      overflow: hidden
       overflow-y: scroll
       scrollbar-width: thin
       height: 205px
