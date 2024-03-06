@@ -6,9 +6,9 @@
     <title>Главная</title>
     <script src="js/lazyload.min.js"></script>
     <script>var lazyContent="",lazyBackground="";window.addEventListener("DOMContentLoaded",(function(){lazyContent=new LazyLoad({use_native:!0}),lazyBackground=new LazyLoad({})}));</script>
-    <link rel="stylesheet" href="css/style.min.css?v=10">
+    <link rel="stylesheet" href="css/style.min.css?v=19">
   </head>
-  <body class="relative">
+  <body>
     <header class="header">
       <div class="container">
         <div class="header__block">
@@ -28,7 +28,7 @@
                 </ul>
               </div>
               <div class="header__list-add">
-                <button class="header__list-show" type="submit"><span class="header__list-span">Еще</span><svg width="10" height="8" viewBox="0 0 10 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <button class="header__list-show" type="button"><span class="header__list-span">Еще</span><svg width="10" height="8" viewBox="0 0 10 8" fill="none" xmlns="http://www.w3.org/2000/svg">
 <path d="M5 8L0.669872 0.5H9.33013L5 8Z" fill="white"/>
 </svg>
                 </button>
@@ -51,10 +51,10 @@
       </div>
     </header>
     <main>
-      <div class="main">
+      <div class="main" id="first">
         <div class="container">
           <div class="main__swiper">
-            <div class="swiper" data-autoplay="10000" data-speed="1000">
+            <div class="swiper" data-autoplay="12000" data-speed="1500">
               <div class="swiper-wrapper">
                 <div class="swiper-slide">
                   <div class="main__block">
@@ -187,10 +187,6 @@
                 </div>
               </div>
               <div class="main__form">
-                <div class="main__form-bg">
-                      <picture><img class="lazy " width="477" height="529" src="#" data-src="img/main/form.png" alt="" loading="lazy">
-                      </picture>
-                </div>
                 <form class="p-form main__form-item">
                   <div class="main__form-title">Оставьте заявку, чтобы получить бесплатную консультацию и оценку доходности вашего объекта</div>
                   <div class="p-form__inputs">
@@ -232,15 +228,12 @@
                       </div>
                     </div>
                     <div class="p-form__input">
-                      <div class="p-form__check">
-                        <input type="checkbox" name="check" id="check1">
-                        <label class="p-form__check-square" for="check1">
+                      <label class="p-form__check">
+                        <input type="checkbox" name="check"><span class="p-form__check-square">
                               <picture>
                                 <source type="image/webp" srcset="#" data-srcset="img/icons/tick.webp"><img class="lazy " width="8" height="8" src="#" data-src="img/icons/tick.png" alt="" loading="lazy">
-                              </picture>
-                        </label>
-                        <div class="p-form__check-title">Я даю cогласие на обработку персональных данных в&nbsp;соответствии с <a href="#!" class="text-underline">Политикой конфиденциальности</a></div>
-                      </div>
+                              </picture></span><span class="p-form__check-title">Я даю cогласие на обработку персональных данных в&nbsp;соответствии с <a href="#!">Политикой конфиденциальности</a></span>
+                      </label>
                     </div>
                     <div class="p-form__input">
                           <button class="p-btn p-form__btn" type="submit">Отправить</button>
@@ -273,7 +266,7 @@
                               </picture>
                         </div>
                         <div class="cards__item-block">
-                          <h2 class="cards__item-title">Аренда квартиры</h2><a class="p-btn p-btn_transparent cards__item-btn text-white" href="#!">Подробнее</a>
+                          <h2 class="cards__item-title">Аренда квартиры</h2><a class="cards__item-btn" href="#services1">Подробнее</a>
                         </div>
                       </div>
                 </div>
@@ -285,7 +278,7 @@
                               </picture>
                         </div>
                         <div class="cards__item-block">
-                          <h2 class="cards__item-title">Покупка и&nbsp;продажа</h2><a class="p-btn p-btn_transparent cards__item-btn text-white" href="#!">Подробнее</a>
+                          <h2 class="cards__item-title">Покупка и&nbsp;продажа</h2><a class="cards__item-btn" href="#services2">Подробнее</a>
                         </div>
                       </div>
                 </div>
@@ -297,7 +290,7 @@
                               </picture>
                         </div>
                         <div class="cards__item-block">
-                          <h2 class="cards__item-title">Отдать в&nbsp;управление</h2><a class="p-btn p-btn_transparent cards__item-btn text-white" href="#!">Подробнее</a>
+                          <h2 class="cards__item-title">Отдать в&nbsp;управление</h2><a class="cards__item-btn" href="#services3">Подробнее</a>
                         </div>
                       </div>
                 </div>
@@ -309,7 +302,7 @@
                               </picture>
                         </div>
                         <div class="cards__item-block">
-                          <h2 class="cards__item-title">Интерьер Дизайн</h2><a class="p-btn p-btn_transparent cards__item-btn text-white" href="#!">Подробнее</a>
+                          <h2 class="cards__item-title">Интерьер Дизайн</h2><a class="cards__item-btn" href="#services4">Подробнее</a>
                         </div>
                       </div>
                 </div>
@@ -321,7 +314,7 @@
                               </picture>
                         </div>
                         <div class="cards__item-block">
-                          <h2 class="cards__item-title">Юридические услуги</h2><a class="p-btn p-btn_transparent cards__item-btn text-white" href="#!">Подробнее</a>
+                          <h2 class="cards__item-title">Юридические услуги</h2><a class="cards__item-btn" href="#services5">Подробнее</a>
                         </div>
                       </div>
                 </div>
@@ -333,7 +326,7 @@
                               </picture>
                         </div>
                         <div class="cards__item-block">
-                          <h2 class="cards__item-title">Партнерская программа</h2><a class="p-btn p-btn_transparent cards__item-btn text-white" href="#!">Подробнее</a>
+                          <h2 class="cards__item-title">Партнерская программа</h2><a class="cards__item-btn" href="#services6">Подробнее</a>
                         </div>
                       </div>
                 </div>
@@ -345,7 +338,7 @@
                               </picture>
                         </div>
                         <div class="cards__item-block">
-                          <h2 class="cards__item-title">Продакшн студия</h2><a class="p-btn p-btn_transparent cards__item-btn text-white" href="#!">Подробнее</a>
+                          <h2 class="cards__item-title">Продакшн студия</h2><a class="cards__item-btn" href="#services7">Подробнее</a>
                         </div>
                       </div>
                 </div>
@@ -368,10 +361,601 @@
               </div>
             </div>
           </div>
+          <div class="cards__list">
+                <div class="cards__list-item cards__list-item_1">
+                  <div class="cards__list-num">7+</div>
+                  <div class="cards__list-text">лет опыта на&nbsp;рынке ОАЭ</div>
+                </div>
+                <div class="cards__list-item cards__list-item_2">
+                  <div class="cards__list-num">450+</div>
+                  <div class="cards__list-text">объектов в&nbsp;управлении</div>
+                </div>
+                <div class="cards__list-item cards__list-item_3">
+                  <div class="cards__list-num">220+</div>
+                  <div class="cards__list-text">инвесторов в&nbsp;пуле</div>
+                </div>
+                <div class="cards__list-item cards__list-item_4">
+                  <div class="cards__list-num">250+</div>
+                  <div class="cards__list-text">млн долларов стоимость объектов</div>
+                </div>
+                <div class="cards__list-item cards__list-item_5">
+                  <div class="cards__list-num">150+</div>
+                  <div class="cards__list-text">сотрудников в&nbsp;штате</div>
+                </div>
+          </div>
+        </div>
+      </div>
+      <div class="services">
+        <div class="container">
+          <div class="services__block">
+            <div class="services__item services__item_1" id="services1">
+              <div class="services__item-left">
+                    <picture>
+                      <source type="image/webp" srcset="#" data-srcset="img/main/services/1.webp"><img class="lazy " width="660" height="594" src="#" data-src="img/main/services/1.jpg" alt="" loading="lazy">
+                    </picture>
+              </div>
+              <div class="services__item-right">
+                <div class="services__item-block">
+                  <h2 class="services__item-title">Аренда квартиры</h2>
+                  <p class="services__item-text">Аренда объектов в самых привлекательных районах Дубая. Команда профессионалов оказывает всестороннюю поддержку гостям, делая их&nbsp;пребывание максимально комфортным.</p>
+                  <ul class="services__list">
+                    <li class="services__list-li">
+                      <div class="services__list-icon">
+                            <picture><img class="lazy " width="18" height="20" src="#" data-src="img/services/icon.svg" alt="" loading="lazy">
+                            </picture>
+                      </div>
+                      <div class="services__list-text">ТОП–10 Holiday Homes компаний Дубая, по версии Bayut</div>
+                    </li>
+                    <li class="services__list-li">
+                      <div class="services__list-icon">
+                            <picture><img class="lazy " width="18" height="20" src="#" data-src="img/services/icon.svg" alt="" loading="lazy">
+                            </picture>
+                      </div>
+                      <div class="services__list-text">Краткосрочная и долгосрочная аренда</div>
+                    </li>
+                    <li class="services__list-li">
+                      <div class="services__list-icon">
+                            <picture><img class="lazy " width="18" height="20" src="#" data-src="img/services/icon.svg" alt="" loading="lazy">
+                            </picture>
+                      </div>
+                      <div class="services__list-text">Большой выбор апартаментов от бюджетного до люкс сегмента</div>
+                    </li>
+                    <li class="services__list-li">
+                      <div class="services__list-icon">
+                            <picture><img class="lazy " width="18" height="20" src="#" data-src="img/services/icon.svg" alt="" loading="lazy">
+                            </picture>
+                      </div>
+                      <div class="services__list-text">Апартаменты и виллы более чем в 33 локациях в Дубае</div>
+                    </li>
+                    <li class="services__list-li">
+                      <div class="services__list-icon">
+                            <picture><img class="lazy " width="18" height="20" src="#" data-src="img/services/icon.svg" alt="" loading="lazy">
+                            </picture>
+                      </div>
+                      <div class="services__list-text">Круглосуточный консьерж-сервис с возможностью заселения и&nbsp;выселения арендатора</div>
+                    </li>
+                  </ul>
+                </div><a class="p-btn services__item-btn" href="#!">Найти жилье</a>
+              </div>
+            </div>
+            <div class="services__item services__item_reversed services__item_2" id="services2">
+              <div class="services__item-left">
+                    <picture>
+                      <source type="image/webp" srcset="#" data-srcset="img/main/services/2.webp"><img class="lazy " width="703" height="645" src="#" data-src="img/main/services/2.jpg" alt="" loading="lazy">
+                    </picture>
+              </div>
+              <div class="services__item-right">
+                <div class="services__item-block">
+                  <h2 class="services__item-title">Покупка и продажа недвижимости</h2>
+                  <p class="services__item-text">Формирование безопасных инвестиционных стратегий с высоким ROI и ликвидностью, а также стабильным доходом от аренды.</p>
+                  <ul class="services__list">
+                    <li class="services__list-li">
+                      <div class="services__list-icon">
+                            <picture><img class="lazy " width="18" height="20" src="#" data-src="img/services/icon.svg" alt="" loading="lazy">
+                            </picture>
+                      </div>
+                      <div class="services__list-text">Подбор, покупка или продажа объектов недвижимости в Дубае</div>
+                    </li>
+                    <li class="services__list-li">
+                      <div class="services__list-icon">
+                            <picture><img class="lazy " width="18" height="20" src="#" data-src="img/services/icon.svg" alt="" loading="lazy">
+                            </picture>
+                      </div>
+                      <div class="services__list-text">Сделки на первичном и вторичном рынке</div>
+                    </li>
+                    <li class="services__list-li">
+                      <div class="services__list-icon">
+                            <picture><img class="lazy " width="18" height="20" src="#" data-src="img/services/icon.svg" alt="" loading="lazy">
+                            </picture>
+                      </div>
+                      <div class="services__list-text">Покупка апартаментов, вилл, таунхаусов</div>
+                    </li>
+                    <li class="services__list-li">
+                      <div class="services__list-icon">
+                            <picture><img class="lazy " width="18" height="20" src="#" data-src="img/services/icon.svg" alt="" loading="lazy">
+                            </picture>
+                      </div>
+                      <div class="services__list-text">Ипотечные сделки</div>
+                    </li>
+                    <li class="services__list-li">
+                      <div class="services__list-icon">
+                            <picture><img class="lazy " width="18" height="20" src="#" data-src="img/services/icon.svg" alt="" loading="lazy">
+                            </picture>
+                      </div>
+                      <div class="services__list-text">Гарантия юридической чистоты сделки</div>
+                    </li>
+                  </ul>
+                </div><a class="p-btn services__item-btn" href="#!">Перейти на сайт</a>
+              </div>
+            </div>
+            <div class="services__item services__item_3" id="services3">
+              <div class="services__item-left">
+                    <picture>
+                      <source type="image/webp" srcset="#" data-srcset="img/main/services/3.webp"><img class="lazy " width="660" height="594" src="#" data-src="img/main/services/3.jpg" alt="" loading="lazy">
+                    </picture>
+              </div>
+              <div class="services__item-right">
+                <div class="services__item-block">
+                  <h2 class="services__item-title">Управление недвижимостью</h2>
+                  <p class="services__item-text">Индивидуальная разработка стратегии управления для каждого инвестора, подготовка и управление объектом под ключ, прозрачная система контроля отчетности для собственников через приложение.</p>
+                  <ul class="services__list">
+                    <li class="services__list-li">
+                      <div class="services__list-icon">
+                            <picture><img class="lazy " width="18" height="20" src="#" data-src="img/services/icon.svg" alt="" loading="lazy">
+                            </picture>
+                      </div>
+                      <div class="services__list-text">Топ-3 управляющих компаний в 2019 г. по версии Dubizzle</div>
+                    </li>
+                    <li class="services__list-li">
+                      <div class="services__list-icon">
+                            <picture><img class="lazy " width="18" height="20" src="#" data-src="img/services/icon.svg" alt="" loading="lazy">
+                            </picture>
+                      </div>
+                      <div class="services__list-text">Подготовка объекта и ввод его в эксплуатацию</div>
+                    </li>
+                    <li class="services__list-li">
+                      <div class="services__list-icon">
+                            <picture><img class="lazy " width="18" height="20" src="#" data-src="img/services/icon.svg" alt="" loading="lazy">
+                            </picture>
+                      </div>
+                      <div class="services__list-text">Стабильная загрузка объекта и высокий доход (ROI)</div>
+                    </li>
+                    <li class="services__list-li">
+                      <div class="services__list-icon">
+                            <picture><img class="lazy " width="18" height="20" src="#" data-src="img/services/icon.svg" alt="" loading="lazy">
+                            </picture>
+                      </div>
+                      <div class="services__list-text">Обслуживание и поддержка недвижимости</div>
+                    </li>
+                    <li class="services__list-li">
+                      <div class="services__list-icon">
+                            <picture><img class="lazy " width="18" height="20" src="#" data-src="img/services/icon.svg" alt="" loading="lazy">
+                            </picture>
+                      </div>
+                      <div class="services__list-text">Комплексная работа с арендаторами</div>
+                    </li>
+                  </ul>
+                </div><a class="p-btn services__item-btn" href="#!">Перейти на сайт</a>
+              </div>
+            </div>
+            <div class="services__item services__item_reversed services__item_4" id="services4">
+              <div class="services__item-left">
+                    <picture>
+                      <source type="image/webp" srcset="#" data-srcset="img/main/services/4.webp"><img class="lazy " width="703" height="592" src="#" data-src="img/main/services/4.jpg" alt="" loading="lazy">
+                    </picture>
+              </div>
+              <div class="services__item-right">
+                <div class="services__item-block">
+                  <h2 class="services__item-title">Интерьер и дизайн</h2>
+                  <p class="services__item-text">Команда специалистов занимается комплексной подготовкой недвижимости к сдаче в аренду или продаже для максимальной доходности.</p>
+                  <ul class="services__list">
+                    <li class="services__list-li">
+                      <div class="services__list-icon">
+                            <picture><img class="lazy " width="18" height="20" src="#" data-src="img/services/icon.svg" alt="" loading="lazy">
+                            </picture>
+                      </div>
+                      <div class="services__list-text">Максимизация ROI объекта</div>
+                    </li>
+                    <li class="services__list-li">
+                      <div class="services__list-icon">
+                            <picture><img class="lazy " width="18" height="20" src="#" data-src="img/services/icon.svg" alt="" loading="lazy">
+                            </picture>
+                      </div>
+                      <div class="services__list-text">Ремонт, мебелирование, декорирование, реновация</div>
+                    </li>
+                    <li class="services__list-li">
+                      <div class="services__list-icon">
+                            <picture><img class="lazy " width="18" height="20" src="#" data-src="img/services/icon.svg" alt="" loading="lazy">
+                            </picture>
+                      </div>
+                      <div class="services__list-text">Для собственного проживания или для сдачи в аренду</div>
+                    </li>
+                    <li class="services__list-li">
+                      <div class="services__list-icon">
+                            <picture><img class="lazy " width="18" height="20" src="#" data-src="img/services/icon.svg" alt="" loading="lazy">
+                            </picture>
+                      </div>
+                      <div class="services__list-text">Работа с износостойкими материалами и мебелью</div>
+                    </li>
+                    <li class="services__list-li">
+                      <div class="services__list-icon">
+                            <picture><img class="lazy " width="18" height="20" src="#" data-src="img/services/icon.svg" alt="" loading="lazy">
+                            </picture>
+                      </div>
+                      <div class="services__list-text">Гарантийная поддержка – 1 год</div>
+                    </li>
+                  </ul>
+                </div><a class="p-btn services__item-btn" href="#!">Перейти на сайт</a>
+              </div>
+            </div>
+            <div class="services__item services__item_5" id="services5">
+              <div class="services__item-left">
+                    <picture>
+                      <source type="image/webp" srcset="#" data-srcset="img/main/services/5.webp"><img class="lazy " width="660" height="594" src="#" data-src="img/main/services/5.jpg" alt="" loading="lazy">
+                    </picture>
+              </div>
+              <div class="services__item-right">
+                <div class="services__item-block">
+                  <h2 class="services__item-title">Юридические услуги</h2>
+                  <p class="services__item-text">Предоставление юридической и бухгалтерской поддержки, помощь с релокацией, организация поддержки в продвижении и поиске новых возможностей развития бизнеса.</p>
+                  <ul class="services__list">
+                    <li class="services__list-li">
+                      <div class="services__list-icon">
+                            <picture><img class="lazy " width="18" height="20" src="#" data-src="img/services/icon.svg" alt="" loading="lazy">
+                            </picture>
+                      </div>
+                      <div class="services__list-text">Юридическая консультация и поддержка</div>
+                    </li>
+                    <li class="services__list-li">
+                      <div class="services__list-icon">
+                            <picture><img class="lazy " width="18" height="20" src="#" data-src="img/services/icon.svg" alt="" loading="lazy">
+                            </picture>
+                      </div>
+                      <div class="services__list-text">Открытие компаний в ОАЭ</div>
+                    </li>
+                    <li class="services__list-li">
+                      <div class="services__list-icon">
+                            <picture><img class="lazy " width="18" height="20" src="#" data-src="img/services/icon.svg" alt="" loading="lazy">
+                            </picture>
+                      </div>
+                      <div class="services__list-text">Открытие банковских счетов в ОАЭ</div>
+                    </li>
+                    <li class="services__list-li">
+                      <div class="services__list-icon">
+                            <picture><img class="lazy " width="18" height="20" src="#" data-src="img/services/icon.svg" alt="" loading="lazy">
+                            </picture>
+                      </div>
+                      <div class="services__list-text">Бухгалтерское сопровождение</div>
+                    </li>
+                    <li class="services__list-li">
+                      <div class="services__list-icon">
+                            <picture><img class="lazy " width="18" height="20" src="#" data-src="img/services/icon.svg" alt="" loading="lazy">
+                            </picture>
+                      </div>
+                      <div class="services__list-text">PRO-услуги</div>
+                    </li>
+                  </ul>
+                </div><a class="p-btn p-btn_transparent services__item-btn services__item-btn_2 modal__show" href="#!" data-modal="cons1">Бесплатная консультация</a>
+              </div>
+            </div>
+            <div class="services__item services__item_reversed services__item_6" id="services6">
+              <div class="services__item-left">
+                    <picture>
+                      <source type="image/webp" srcset="#" data-srcset="img/main/services/6.webp"><img class="lazy " width="704" height="541" src="#" data-src="img/main/services/6.jpg" alt="" loading="lazy">
+                    </picture>
+              </div>
+              <div class="services__item-right">
+                <div class="services__item-block">
+                  <h2 class="services__item-title">Партнерская программа</h2>
+                  <p class="services__item-text">Множество вариантов партнерской программы по&nbsp;каждому направлению деятельности холдинга.</p>
+                  <ul class="services__list">
+                    <li class="services__list-li">
+                      <div class="services__list-icon">
+                            <picture><img class="lazy " width="18" height="20" src="#" data-src="img/services/icon.svg" alt="" loading="lazy">
+                            </picture>
+                      </div>
+                      <div class="services__list-text">Выгодные условия для агентов</div>
+                    </li>
+                    <li class="services__list-li">
+                      <div class="services__list-icon">
+                            <picture><img class="lazy " width="18" height="20" src="#" data-src="img/services/icon.svg" alt="" loading="lazy">
+                            </picture>
+                      </div>
+                      <div class="services__list-text">Прозрачное взаимодействие</div>
+                    </li>
+                    <li class="services__list-li">
+                      <div class="services__list-icon">
+                            <picture><img class="lazy " width="18" height="20" src="#" data-src="img/services/icon.svg" alt="" loading="lazy">
+                            </picture>
+                      </div>
+                      <div class="services__list-text">Доступ к отчетности о статусе сделки</div>
+                    </li>
+                    <li class="services__list-li">
+                      <div class="services__list-icon">
+                            <picture><img class="lazy " width="18" height="20" src="#" data-src="img/services/icon.svg" alt="" loading="lazy">
+                            </picture>
+                      </div>
+                      <div class="services__list-text">Закрепление всех условий договором</div>
+                    </li>
+                    <li class="services__list-li">
+                      <div class="services__list-icon">
+                            <picture><img class="lazy " width="18" height="20" src="#" data-src="img/services/icon.svg" alt="" loading="lazy">
+                            </picture>
+                      </div>
+                      <div class="services__list-text">Гарантия выплат</div>
+                    </li>
+                  </ul>
+                </div><a class="p-btn p-btn_transparent services__item-btn services__item-btn_2 modal__show" href="#!" data-modal="cons1">Бесплатная консультация</a>
+              </div>
+            </div>
+            <div class="services__item services__item_7" id="services7">
+              <div class="services__item-left">
+                    <picture>
+                      <source type="image/webp" srcset="#" data-srcset="img/main/services/7.webp"><img class="lazy " width="660" height="571" src="#" data-src="img/main/services/7.jpg" alt="" loading="lazy">
+                    </picture>
+              </div>
+              <div class="services__item-right">
+                <div class="services__item-block">
+                  <h2 class="services__item-title">Продакшн и студия</h2>
+                  <p class="services__item-text">Продюсирование проектов под ключ, создание креатива, подготовка и проведение съемки, полный цикл пост продакшна & студия подкастов в Дубае.</p>
+                  <ul class="services__list">
+                    <li class="services__list-li">
+                      <div class="services__list-icon">
+                            <picture><img class="lazy " width="18" height="20" src="#" data-src="img/services/icon.svg" alt="" loading="lazy">
+                            </picture>
+                      </div>
+                      <div class="services__list-text">Оборудование, лицензированное Netflix</div>
+                    </li>
+                    <li class="services__list-li">
+                      <div class="services__list-icon">
+                            <picture><img class="lazy " width="18" height="20" src="#" data-src="img/services/icon.svg" alt="" loading="lazy">
+                            </picture>
+                      </div>
+                      <div class="services__list-text">Разнообразие фонов в студии</div>
+                    </li>
+                    <li class="services__list-li">
+                      <div class="services__list-icon">
+                            <picture><img class="lazy " width="18" height="20" src="#" data-src="img/services/icon.svg" alt="" loading="lazy">
+                            </picture>
+                      </div>
+                      <div class="services__list-text">Выездные съемки, рекламы и прямые трансляции</div>
+                    </li>
+                    <li class="services__list-li">
+                      <div class="services__list-icon">
+                            <picture><img class="lazy " width="18" height="20" src="#" data-src="img/services/icon.svg" alt="" loading="lazy">
+                            </picture>
+                      </div>
+                      <div class="services__list-text">Монтаж, цветокоррекция, обработка звука, анимация, VFX</div>
+                    </li>
+                    <li class="services__list-li">
+                      <div class="services__list-icon">
+                            <picture><img class="lazy " width="18" height="20" src="#" data-src="img/services/icon.svg" alt="" loading="lazy">
+                            </picture>
+                      </div>
+                      <div class="services__list-text">Полноценная подготовка ролика «от» и «до»</div>
+                    </li>
+                  </ul>
+                </div><a class="p-btn p-btn_transparent services__item-btn services__item-btn_2 modal__show" href="#!" data-modal="cons3">Бесплатная консультация</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="contacts">
+        <div class="container">
+          <div class="contacts__block">
+            <div class="contacts__left"><a class="contacts__up" href="#first">
+                <div class="contacts__up-svg">
+                      <picture>
+                        <source type="image/webp" srcset="#" data-srcset="img/main/contacts/arrow.webp"><img class="lazy " width="21" height="20" src="#" data-src="img/main/contacts/arrow.png" alt="" loading="lazy">
+                      </picture>
+                </div>
+                <div class="contacts__up-title">Наверх</div></a>
+              <address class="contacts__address">
+                <div class="contacts__address-title contacts__title">Адрес:</div>
+                <div class="contacts__address-text">304-Ibn Batuta Gate, Jebel Ali, Dubai, United Arab Emirates</div>
+              </address>
+              <div class="contacts__socials">
+                <div class="contacts__socials-title contacts__title"></div>
+                <div class="contacts__socials-block"><a class="contacts__socials-item" href="#!">
+                        <picture>
+                          <source type="image/webp" srcset="#" data-srcset="img/main/contacts/instagram.webp"><img class="lazy " width="17" height="17" src="#" data-src="img/main/contacts/instagram.png" alt="" loading="lazy">
+                        </picture></a><a class="contacts__socials-item" href="#!">
+                        <picture>
+                          <source type="image/webp" srcset="#" data-srcset="img/main/contacts/in.webp"><img class="lazy " width="20" height="20" src="#" data-src="img/main/contacts/in.png" alt="" loading="lazy">
+                        </picture></a><a class="contacts__socials-item" href="#!">
+                        <picture>
+                          <source type="image/webp" srcset="#" data-srcset="img/main/contacts/youtube.webp"><img class="lazy " width="22" height="22" src="#" data-src="img/main/contacts/youtube.png" alt="" loading="lazy">
+                        </picture></a><a class="contacts__socials-item" href="#!">
+                        <picture>
+                          <source type="image/webp" srcset="#" data-srcset="img/main/contacts/telegram.webp"><img class="lazy " width="17" height="17" src="#" data-src="img/main/contacts/telegram.png" alt="" loading="lazy">
+                        </picture></a><a class="contacts__socials-item" href="#!">
+                        <picture>
+                          <source type="image/webp" srcset="#" data-srcset="img/main/contacts/tiktok.webp"><img class="lazy " width="19" height="19" src="#" data-src="img/main/contacts/tiktok.png" alt="" loading="lazy">
+                        </picture></a><a class="contacts__socials-item" href="#!">
+                        <picture>
+                          <source type="image/webp" srcset="#" data-srcset="img/main/contacts/vc.webp"><img class="lazy " width="20" height="18" src="#" data-src="img/main/contacts/vc.png" alt="" loading="lazy">
+                        </picture></a></div>
+              </div>
+            </div>
+            <div class="contacts__right"><iframe src="#" data-src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3614.788298067333!2d55.113508625956385!3d25.041257537998288!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e5f69d18c9c2c6f%3A0x85bce79f356eebfe!2sStonetree%20Vacation%20Homes%20LLC!5e0!3m2!1sru!2sby!4v1709728806863!5m2!1sru!2sby" width="904" height="403" style="border:0;" allowfullscreen="" loading="lazy" class="lazy contacts__iframe" referrerpolicy="no-referrer-when-downgrade"></iframe></div>
+          </div>
         </div>
       </div>
     </main>
+    <footer class="footer">
+      <div class="container">
+        <div class="footer__block">
+          <div class="footer__left">
+            <div class="footer__logo">
+                  <picture>
+                    <source type="image/webp" srcset="#" data-srcset="img/footer/logo.webp"><img class="lazy " width="266" height="56" src="#" data-src="img/footer/logo.png" alt="" loading="lazy">
+                  </picture>
+            </div>
+            <div class="footer__links"><a class="footer__link" href="#!">Политика конфиденциальности</a><a class="footer__link" href="#!">Условия пользования</a></div>
+          </div>
+          <div class="footer__right">
+            <nav>
+              <ul class="footer__nav-list">
+                <li class="footer__nav-li footer__nav-li_1"><a class="footer__nav-link" href="#!">Арендовать недвижимость</a></li>
+                <li class="footer__nav-li footer__nav-li_2"><a class="footer__nav-link" href="#!">Купить недвижимость</a></li>
+                <li class="footer__nav-li footer__nav-li_3"><a class="footer__nav-link" href="#!">Управление недвижимостью</a></li>
+                <li class="footer__nav-li footer__nav-li_4"><a class="footer__nav-link" href="#!">Дизайн, сервис, услуги интерьера</a></li>
+                <li class="footer__nav-li footer__nav-li_1"><a class="footer__nav-link" href="#!">Юридические услуги в&nbsp;ОАЭ</a></li>
+                <li class="footer__nav-li footer__nav-li_2"><a class="footer__nav-link" href="#!">Партнерская программа</a></li>
+                <li class="footer__nav-li footer__nav-li_3"><a class="footer__nav-link" href="#!">Продакшн и&nbsp;студия</a></li>
+                <li class="footer__nav-li footer__nav-li_4"><a class="footer__nav-link" href="#!">Карьера в&nbsp;STONETREE</a></li>
+              </ul>
+            </nav>
+          </div>
+        </div>
+      </div>
+    </footer>
+    <div class="modal modal_center modal__cons1">
+      <div class="modal__content">
+        <button class="modal__close" type="button">
+              <picture>
+                <source type="image/webp" srcset="#" data-srcset="img/modal/close.webp"><img class="lazy " width="29" height="29" src="#" data-src="img/modal/close.png" alt="" loading="lazy">
+              </picture>
+        </button>
+        <form class="p-form modal__form">
+          <div class="modal__form-title">Получите бесплатную консультацию</div>
+          <div class="modal__form-subtitle">Оставьте свои контакты, чтобы получить бесплатную консультацию и расчет доходности ваших апартаментов</div>
+          <div class="p-form__inputs">
+            <div class="p-form__input">
+              <input type="text" name="name" placeholder="Ваше имя" required>
+            </div>
+            <div class="p-form__input">
+              <div class="p-inter-tel" data-slug="ru" data-lang="ru">
+                <div class="p-inter-tel__input">
+                  <div class="p-inter-tel__select">
+                    <button class="p-inter-tel__select-block" type="button"><span class="fi fi-ru"></span><span class="p-inter-tel__select-svg"><svg width="10" height="6" viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M5 6L9.33013 0H0.669873L5 6Z" fill="#AEAEAE"/>
+</svg></span></button>
+                    <div class="p-inter-tel__options">
+                      <input type="text" placeholder="Поиск названия страны">
+                      <ul></ul>
+                    </div>
+                  </div>
+                  <div class="p-inter-tel__input-item">
+                    <div class="p-inter-tel__input-prefix"><span>+7</span>&nbsp;</div>
+                    <input type="tel" name="tel" placeholder="(000) 000-00-00" autocomplete="off">
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="p-form__input">
+              <label class="p-form__check">
+                <input type="checkbox" name="check"><span class="p-form__check-square">
+                      <picture>
+                        <source type="image/webp" srcset="#" data-srcset="img/modal/tick.webp"><img class="lazy " width="8" height="8" src="#" data-src="img/modal/tick.png" alt="" loading="lazy">
+                      </picture></span><span class="p-form__check-title">Я даю cогласие на обработку персональных данных в&nbsp;соответствии с&nbsp;<a href="#!">Политикой конфиденциальности</a></span>
+              </label>
+            </div>
+            <div class="p-form__input">
+                  <button class="p-btn p-form__btn" type="submit">Отправить</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+    <div class="modal modal_center modal__cons2">
+      <div class="modal__content">
+        <button class="modal__close" type="button">
+              <picture>
+                <source type="image/webp" srcset="#" data-srcset="img/modal/close.webp"><img class="lazy " width="29" height="29" src="#" data-src="img/modal/close.png" alt="" loading="lazy">
+              </picture>
+        </button>
+        <form class="p-form modal__form">
+          <div class="modal__form-title">Получите бесплатную консультацию</div>
+          <div class="modal__form-subtitle">Оставьте свои контакты, чтобы получить бесплатную консультацию и расчет доходности ваших апартаментов</div>
+          <div class="p-form__inputs">
+            <div class="p-form__input">
+              <input type="text" name="name" placeholder="Ваше имя" required>
+            </div>
+            <div class="p-form__input">
+              <div class="p-inter-tel" data-slug="ru" data-lang="ru">
+                <div class="p-inter-tel__input">
+                  <div class="p-inter-tel__select">
+                    <button class="p-inter-tel__select-block" type="button"><span class="fi fi-ru"></span><span class="p-inter-tel__select-svg"><svg width="10" height="6" viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M5 6L9.33013 0H0.669873L5 6Z" fill="#AEAEAE"/>
+</svg></span></button>
+                    <div class="p-inter-tel__options">
+                      <input type="text" placeholder="Поиск названия страны">
+                      <ul></ul>
+                    </div>
+                  </div>
+                  <div class="p-inter-tel__input-item">
+                    <div class="p-inter-tel__input-prefix"><span>+7</span>&nbsp;</div>
+                    <input type="tel" name="tel" placeholder="(000) 000-00-00" autocomplete="off">
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="p-form__input">
+              <label class="p-form__check">
+                <input type="checkbox" name="check"><span class="p-form__check-square">
+                      <picture>
+                        <source type="image/webp" srcset="#" data-srcset="img/modal/tick.webp"><img class="lazy " width="8" height="8" src="#" data-src="img/modal/tick.png" alt="" loading="lazy">
+                      </picture></span><span class="p-form__check-title">Я даю cогласие на обработку персональных данных в&nbsp;соответствии с&nbsp;<a href="#!">Политикой конфиденциальности</a></span>
+              </label>
+            </div>
+            <div class="p-form__input">
+                  <button class="p-btn p-form__btn" type="submit">Отправить</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+    <div class="modal modal_center modal__cons3">
+      <div class="modal__content">
+        <button class="modal__close" type="button">
+              <picture>
+                <source type="image/webp" srcset="#" data-srcset="img/modal/close.webp"><img class="lazy " width="29" height="29" src="#" data-src="img/modal/close.png" alt="" loading="lazy">
+              </picture>
+        </button>
+        <form class="p-form modal__form">
+          <div class="modal__form-title">Получите бесплатную консультацию</div>
+          <div class="modal__form-subtitle">Оставьте свои контакты, чтобы получить бесплатную консультацию и расчет доходности ваших апартаментов</div>
+          <div class="p-form__inputs">
+            <div class="p-form__input">
+              <input type="text" name="name" placeholder="Ваше имя" required>
+            </div>
+            <div class="p-form__input">
+              <div class="p-inter-tel" data-slug="ru" data-lang="ru">
+                <div class="p-inter-tel__input">
+                  <div class="p-inter-tel__select">
+                    <button class="p-inter-tel__select-block" type="button"><span class="fi fi-ru"></span><span class="p-inter-tel__select-svg"><svg width="10" height="6" viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M5 6L9.33013 0H0.669873L5 6Z" fill="#AEAEAE"/>
+</svg></span></button>
+                    <div class="p-inter-tel__options">
+                      <input type="text" placeholder="Поиск названия страны">
+                      <ul></ul>
+                    </div>
+                  </div>
+                  <div class="p-inter-tel__input-item">
+                    <div class="p-inter-tel__input-prefix"><span>+7</span>&nbsp;</div>
+                    <input type="tel" name="tel" placeholder="(000) 000-00-00" autocomplete="off">
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="p-form__input">
+              <label class="p-form__check">
+                <input type="checkbox" name="check"><span class="p-form__check-square">
+                      <picture>
+                        <source type="image/webp" srcset="#" data-srcset="img/modal/tick.webp"><img class="lazy " width="8" height="8" src="#" data-src="img/modal/tick.png" alt="" loading="lazy">
+                      </picture></span><span class="p-form__check-title">Я даю cогласие на обработку персональных данных в&nbsp;соответствии с&nbsp;<a href="#!">Политикой конфиденциальности</a></span>
+              </label>
+            </div>
+            <div class="p-form__input">
+                  <button class="p-btn p-form__btn" type="submit">Отправить</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
     <script src="js/phones.js"></script>
-    <script src="js/script.min.js?v=10"></script>
+    <script src="js/script.min.js?v=19"></script>
   </body>
 </html>

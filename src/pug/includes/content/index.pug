@@ -1,10 +1,10 @@
 include ../mixins
 include ../../mixins/main/cards
 main
-    .main
+    #first.main
         .container
             .main__swiper
-                .swiper(data-autoplay="10000" data-speed="1000")
+                .swiper(data-autoplay="12000" data-speed="1500")
                     .swiper-wrapper
                         .swiper-slide
                             .main__block
@@ -103,8 +103,6 @@ main
                                                 </svg>
                                             .main__list-title Доставка цветов, фруктов и подарков
                     .main__form
-                        .main__form-bg
-                            +picture('img/main/form.png', '', true, '', 477, 529, '', '', '')
                         form.p-form.main__form-item
                             .main__form-title Оставьте заявку, чтобы получить бесплатную консультацию и оценку доходности вашего объекта
                             .p-form__inputs
@@ -142,11 +140,11 @@ main
                                             li.p-select__option Сайт основателя
                                             li.p-select__option Карьера
                                 .p-form__input
-                                    .p-form__check
-                                        input(type="checkbox" name="check" id="check1")
-                                        label.p-form__check-square(for="check1")
+                                    label.p-form__check
+                                        input(type="checkbox" name="check")
+                                        span.p-form__check-square
                                             +picture('img/icons/tick.png', 'img/icons/tick', true, '', 8, 8, '', '', '')
-                                        .p-form__check-title Я даю cогласие на обработку персональных данных в&nbsp;соответствии с <a href="#!" class="text-underline">Политикой конфиденциальности</a>
+                                        span.p-form__check-title Я даю cогласие на обработку персональных данных в&nbsp;соответствии с <a href="#!">Политикой конфиденциальности</a>
                                 .p-form__input
                                     +btnSubmit('Отправить', ' p-form__btn')
                 .main__swiper-pagination
@@ -161,19 +159,19 @@ main
                 .swiper(data-speed="1000")
                     .swiper-wrapper
                         .swiper-slide
-                            +mainCard(1, 'Аренда квартиры', ' cards__item_white')
+                            +mainCard(1, 'Аренда квартиры', '#services1', ' cards__item_white')
                         .swiper-slide
-                            +mainCard(2, 'Покупка и&nbsp;продажа', ' ')
+                            +mainCard(2, 'Покупка и&nbsp;продажа', '#services2', ' ')
                         .swiper-slide
-                            +mainCard(3, 'Отдать в&nbsp;управление', ' cards__item_white')
+                            +mainCard(3, 'Отдать в&nbsp;управление','#services3', ' cards__item_white')
                         .swiper-slide
-                            +mainCard(4, 'Интерьер Дизайн', ' ')
+                            +mainCard(4, 'Интерьер Дизайн', '#services4', ' ')
                         .swiper-slide
-                            +mainCard(5, 'Юридические услуги', ' cards__item_white')
+                            +mainCard(5, 'Юридические услуги', '#services5', ' cards__item_white')
                         .swiper-slide
-                            +mainCard(6, 'Партнерская программа', ' ')
+                            +mainCard(6, 'Партнерская программа', '#services6', ' ')
                         .swiper-slide
-                            +mainCard(7, 'Продакшн студия', ' cards__item_white')
+                            +mainCard(7, 'Продакшн студия', '#services7', ' cards__item_white')
             .cards__bottom
                 .swiper-scrollbar
                 .swiper-pagination
@@ -182,3 +180,260 @@ main
                         +picture('img/cards/left.png', 'img/cards/left', true, '', 31, 30, '', '', '')
                     .swiper-button-next.swiper-button
                         +picture('img/cards/right.png', 'img/cards/right', true, '', 31, 30, '', '', '')
+            .cards__list
+                +cardsListItem('7+', 'лет опыта на&nbsp;рынке ОАЭ', ' cards__list-item_1')
+                +cardsListItem('450+', 'объектов в&nbsp;управлении', ' cards__list-item_2')
+                +cardsListItem('220+', 'инвесторов в&nbsp;пуле', ' cards__list-item_3')
+                +cardsListItem('250+', 'млн долларов стоимость объектов', ' cards__list-item_4')
+                +cardsListItem('150+', 'сотрудников в&nbsp;штате', ' cards__list-item_5')
+
+    .services
+        .container
+            .services__block
+                #services1.services__item.services__item_1
+                    .services__item-left
+                        +picture('img/main/services/1.jpg', 'img/main/services/1', true, '', 660, 594, '', '', '')
+                    .services__item-right
+                        .services__item-block
+                            h2.services__item-title Аренда квартиры
+                            p.services__item-text Аренда объектов в самых привлекательных районах Дубая. Команда профессионалов оказывает всестороннюю поддержку гостям, делая их&nbsp;пребывание максимально комфортным.
+                            ul.services__list
+                                li.services__list-li
+                                    .services__list-icon
+                                        include ../../components/serviceListIcon
+                                    .services__list-text ТОП–10 Holiday Homes компаний Дубая, по версии Bayut
+                                li.services__list-li
+                                    .services__list-icon
+                                        include ../../components/serviceListIcon
+                                    .services__list-text Краткосрочная и долгосрочная аренда
+                                li.services__list-li
+                                    .services__list-icon
+                                        include ../../components/serviceListIcon
+                                    .services__list-text Большой выбор апартаментов от бюджетного до люкс сегмента
+                                li.services__list-li
+                                    .services__list-icon
+                                        include ../../components/serviceListIcon
+                                    .services__list-text Апартаменты и виллы более чем в 33 локациях в Дубае
+                                li.services__list-li
+                                    .services__list-icon
+                                        include ../../components/serviceListIcon
+                                    .services__list-text Круглосуточный консьерж-сервис с возможностью заселения и&nbsp;выселения арендатора
+                        +btn('Найти жилье', ' services__item-btn')
+                #services2.services__item.services__item_reversed.services__item_2
+                    .services__item-left
+                        +picture('img/main/services/2.jpg', 'img/main/services/2', true, '', 703, 645, '', '', '')
+                    .services__item-right
+                        .services__item-block
+                            h2.services__item-title Покупка и продажа недвижимости
+                            p.services__item-text Формирование безопасных инвестиционных стратегий с высоким ROI и ликвидностью, а также стабильным доходом от аренды.
+                            ul.services__list
+                                li.services__list-li
+                                    .services__list-icon
+                                        include ../../components/serviceListIcon
+                                    .services__list-text Подбор, покупка или продажа объектов недвижимости в Дубае
+                                li.services__list-li
+                                    .services__list-icon
+                                        include ../../components/serviceListIcon
+                                    .services__list-text Сделки на первичном и вторичном рынке
+                                li.services__list-li
+                                    .services__list-icon
+                                        include ../../components/serviceListIcon
+                                    .services__list-text Покупка апартаментов, вилл, таунхаусов
+                                li.services__list-li
+                                    .services__list-icon
+                                        include ../../components/serviceListIcon
+                                    .services__list-text Ипотечные сделки
+                                li.services__list-li
+                                    .services__list-icon
+                                        include ../../components/serviceListIcon
+                                    .services__list-text Гарантия юридической чистоты сделки
+                        +btn('Перейти на сайт', ' services__item-btn')
+                #services3.services__item.services__item_3
+                    .services__item-left
+                        +picture('img/main/services/3.jpg', 'img/main/services/3', true, '', 660, 594, '', '', '')
+                    .services__item-right
+                        .services__item-block
+                            h2.services__item-title Управление недвижимостью
+                            p.services__item-text Индивидуальная разработка стратегии управления для каждого инвестора, подготовка и управление объектом под ключ, прозрачная система контроля отчетности для собственников через приложение.
+                            ul.services__list
+                                li.services__list-li
+                                    .services__list-icon
+                                        include ../../components/serviceListIcon
+                                    .services__list-text Топ-3 управляющих компаний в 2019 г. по версии Dubizzle
+                                li.services__list-li
+                                    .services__list-icon
+                                        include ../../components/serviceListIcon
+                                    .services__list-text Подготовка объекта и ввод его в эксплуатацию
+                                li.services__list-li
+                                    .services__list-icon
+                                        include ../../components/serviceListIcon
+                                    .services__list-text Стабильная загрузка объекта и высокий доход (ROI)
+                                li.services__list-li
+                                    .services__list-icon
+                                        include ../../components/serviceListIcon
+                                    .services__list-text Обслуживание и поддержка недвижимости
+                                li.services__list-li
+                                    .services__list-icon
+                                        include ../../components/serviceListIcon
+                                    .services__list-text Комплексная работа с арендаторами
+                        +btn('Перейти на сайт', ' services__item-btn')
+
+
+
+                #services4.services__item.services__item_reversed.services__item_4
+                    .services__item-left
+                        +picture('img/main/services/4.jpg', 'img/main/services/4', true, '', 703, 592, '', '', '')
+                    .services__item-right
+                        .services__item-block
+                            h2.services__item-title Интерьер и дизайн
+                            p.services__item-text Команда специалистов занимается комплексной подготовкой недвижимости к сдаче в аренду или продаже для максимальной доходности.
+                            ul.services__list
+                                li.services__list-li
+                                    .services__list-icon
+                                        include ../../components/serviceListIcon
+                                    .services__list-text Максимизация ROI объекта
+                                li.services__list-li
+                                    .services__list-icon
+                                        include ../../components/serviceListIcon
+                                    .services__list-text Ремонт, мебелирование, декорирование, реновация
+                                li.services__list-li
+                                    .services__list-icon
+                                        include ../../components/serviceListIcon
+                                    .services__list-text Для собственного проживания или для сдачи в аренду
+                                li.services__list-li
+                                    .services__list-icon
+                                        include ../../components/serviceListIcon
+                                    .services__list-text Работа с износостойкими материалами и мебелью
+                                li.services__list-li
+                                    .services__list-icon
+                                        include ../../components/serviceListIcon
+                                    .services__list-text Гарантийная поддержка – 1 год
+                        +btn('Перейти на сайт', ' services__item-btn')
+                #services5.services__item.services__item_5
+                    .services__item-left
+                        +picture('img/main/services/5.jpg', 'img/main/services/5', true, '', 660, 594, '', '', '')
+                    .services__item-right
+                        .services__item-block
+                            h2.services__item-title Юридические услуги
+                            p.services__item-text Предоставление юридической и бухгалтерской поддержки, помощь с релокацией, организация поддержки в продвижении и поиске новых возможностей развития бизнеса.
+                            ul.services__list
+                                li.services__list-li
+                                    .services__list-icon
+                                        include ../../components/serviceListIcon
+                                    .services__list-text Юридическая консультация и поддержка
+                                li.services__list-li
+                                    .services__list-icon
+                                        include ../../components/serviceListIcon
+                                    .services__list-text Открытие компаний в ОАЭ
+                                li.services__list-li
+                                    .services__list-icon
+                                        include ../../components/serviceListIcon
+                                    .services__list-text Открытие банковских счетов в ОАЭ
+                                li.services__list-li
+                                    .services__list-icon
+                                        include ../../components/serviceListIcon
+                                    .services__list-text Бухгалтерское сопровождение
+                                li.services__list-li
+                                    .services__list-icon
+                                        include ../../components/serviceListIcon
+                                    .services__list-text PRO-услуги
+                        +btnTransparent('Бесплатная консультация', '#!', ' services__item-btn services__item-btn_2 modal__show')(data-modal="cons1")
+                #services6.services__item.services__item_reversed.services__item_6
+                    .services__item-left
+                        +picture('img/main/services/6.jpg', 'img/main/services/6', true, '', 704, 541, '', '', '')
+                    .services__item-right
+                        .services__item-block
+                            h2.services__item-title Партнерская программа
+                            p.services__item-text Множество вариантов партнерской программы по&nbsp;каждому направлению деятельности холдинга.
+                            ul.services__list
+                                li.services__list-li
+                                    .services__list-icon
+                                        include ../../components/serviceListIcon
+                                    .services__list-text Выгодные условия для агентов
+                                li.services__list-li
+                                    .services__list-icon
+                                        include ../../components/serviceListIcon
+                                    .services__list-text Прозрачное взаимодействие
+                                li.services__list-li
+                                    .services__list-icon
+                                        include ../../components/serviceListIcon
+                                    .services__list-text Доступ к отчетности о статусе сделки
+                                li.services__list-li
+                                    .services__list-icon
+                                        include ../../components/serviceListIcon
+                                    .services__list-text Закрепление всех условий договором
+                                li.services__list-li
+                                    .services__list-icon
+                                        include ../../components/serviceListIcon
+                                    .services__list-text Гарантия выплат
+                        +btnTransparent('Бесплатная консультация', '#!', ' services__item-btn services__item-btn_2 modal__show')(data-modal="cons1")
+                #services7.services__item.services__item_7
+                    .services__item-left
+                        +picture('img/main/services/7.jpg', 'img/main/services/7', true, '', 660, 571, '', '', '')
+                    .services__item-right
+                        .services__item-block
+                            h2.services__item-title Продакшн и студия
+                            p.services__item-text Продюсирование проектов под ключ, создание креатива, подготовка и проведение съемки, полный цикл пост продакшна & студия подкастов в Дубае.
+                            ul.services__list
+                                li.services__list-li
+                                    .services__list-icon
+                                        include ../../components/serviceListIcon
+                                    .services__list-text Оборудование, лицензированное Netflix
+                                li.services__list-li
+                                    .services__list-icon
+                                        include ../../components/serviceListIcon
+                                    .services__list-text Разнообразие фонов в студии
+                                li.services__list-li
+                                    .services__list-icon
+                                        include ../../components/serviceListIcon
+                                    .services__list-text Выездные съемки, рекламы и прямые трансляции
+                                li.services__list-li
+                                    .services__list-icon
+                                        include ../../components/serviceListIcon
+                                    .services__list-text Монтаж, цветокоррекция, обработка звука, анимация, VFX
+                                li.services__list-li
+                                    .services__list-icon
+                                        include ../../components/serviceListIcon
+                                    .services__list-text Полноценная подготовка ролика «от» и «до»
+                        +btnTransparent('Бесплатная консультация', '#!', ' services__item-btn services__item-btn_2 modal__show')(data-modal="cons3")
+
+    .contacts
+        .container
+            .contacts__block
+                .contacts__left
+                    a(href="#first").contacts__up
+                        .contacts__up-svg
+                            +picture('img/main/contacts/arrow.png', 'img/main/contacts/arrow', true, '', 21, 20, '', '', '')
+                        .contacts__up-title Наверх
+                    address.contacts__address
+                        .contacts__address-title.contacts__title Адрес:
+                        .contacts__address-text 304-Ibn Batuta Gate, Jebel Ali, Dubai, United Arab Emirates
+                    .contacts__socials
+                        .contacts__socials-title.contacts__title
+                        .contacts__socials-block
+                            a(href="#!").contacts__socials-item
+                                +picture('img/main/contacts/instagram.png', 'img/main/contacts/instagram',
+                                    true, '', 17, 17, '', '', ''
+                                )
+                            a(href="#!").contacts__socials-item
+                                +picture('img/main/contacts/in.png', 'img/main/contacts/in',
+                                    true, '', 20, 20, '', '', ''
+                                )
+                            a(href="#!").contacts__socials-item
+                                +picture('img/main/contacts/youtube.png', 'img/main/contacts/youtube',
+                                    true, '', 22, 22, '', '', ''
+                                )
+                            a(href="#!").contacts__socials-item
+                                +picture('img/main/contacts/telegram.png', 'img/main/contacts/telegram',
+                                    true, '', 17, 17, '', '', ''
+                                )
+                            a(href="#!").contacts__socials-item
+                                +picture('img/main/contacts/tiktok.png', 'img/main/contacts/tiktok',
+                                    true, '', 19, 19, '', '', ''
+                                )
+                            a(href="#!").contacts__socials-item
+                                +picture('img/main/contacts/vc.png', 'img/main/contacts/vc',
+                                    true, '', 20, 18, '', '', ''
+                                )
+                .contacts__right
+                    <iframe src="#" data-src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3614.788298067333!2d55.113508625956385!3d25.041257537998288!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e5f69d18c9c2c6f%3A0x85bce79f356eebfe!2sStonetree%20Vacation%20Homes%20LLC!5e0!3m2!1sru!2sby!4v1709728806863!5m2!1sru!2sby" width="904" height="403" style="border:0;" allowfullscreen="" loading="lazy" class="lazy contacts__iframe" referrerpolicy="no-referrer-when-downgrade"></iframe>

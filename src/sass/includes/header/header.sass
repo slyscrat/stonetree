@@ -1,10 +1,16 @@
 .header
   padding-top: 24px
-  transition: .3s
-  z-index: 50
-  position: absolute
+  position: relative
   width: 100%
   left: 0
+  top: 0
+  z-index: 60
+  &.fixed
+    position: fixed
+    padding-top: 0
+    .header
+      &__block
+        border-radius: 0 0 15px 15px
   &__block, &__center, &__nav, &__langs, &__list ul, &__lang, &__list-show, &__logo, &__logo
     display: flex
     align-items: center
@@ -14,6 +20,7 @@
     background: var(--black)
     color: var(--white)
     border-radius: 15px
+    width: 100%
   &__nav
     font-size: 16px
     a
@@ -59,6 +66,8 @@
     background: var(--white)
     color: var(--black)
     font-size: 16px
+    position: relative
+    z-index: 10
   &__lang
     width: 29px
     height: 29px

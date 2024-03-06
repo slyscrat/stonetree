@@ -9,16 +9,61 @@
   -webkit-overflow-scrolling: touch
   overflow-y: scroll
   transition: .3s
-  background: rgba(37, 37, 37, 0.3)
-  --width-content: 100%
+  background: rgba(0, 0, 0, 0.8)
+  --width-content: 709px
+  &_center
+    display: flex
+    align-items: center
+    justify-content: center
 
   &.active
     opacity: 1
     visibility: visible
     z-index: 105
 
-  &__show
+  &__show, &__close
     cursor: pointer
+  &__close
+    position: absolute
+    top: 36px
+    right: 36px
   &__content
     cursor: default
     max-width: var(--width-content)
+    background: var(--white)
+    margin: 0 auto
+    border-radius: 15px
+    padding: 50px 60px 60px
+  &__form
+    &-title, &-subtitle
+      text-align: center
+    &-title
+      font-size: 45px
+      line-height: 1.31
+      margin-bottom: 15px
+    &-subtitle
+      font-size: 20px
+      margin-bottom: 35px
+    .p-form
+      &__input
+        :is(input, .p-inter-tel__input)
+          border: 1px solid var(--black)
+          padding: 23px 35px
+          color: var(--black)
+        input[type="tel"]
+          border: none
+          padding: 0
+      &__inputs
+        gap: 20px
+      &__check
+        margin-top: 2px
+        margin-bottom: 20px
+        input:checked
+          ~
+            .p-form__check-square
+              border-color: var(--red)
+        &-title
+          font-size: 16px
+      &__btn
+        width: 100%
+        font-size: 20px

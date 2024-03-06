@@ -1,4 +1,16 @@
 document.addEventListener("DOMContentLoaded", () => {
+    const header = document.querySelector('.header');
+    const main = document.querySelector('.main');
+
+    window.addEventListener('scroll', ()=>{
+        if (window.scrollY > 200){
+            header.classList.add('fixed')
+            main.classList.add('fixed')
+        } else {
+            header.classList.remove('fixed');
+            main.classList.remove('fixed');
+        }
+    })
 
     const mains = document.querySelectorAll('.main');
     if (mains[0]) {
@@ -9,6 +21,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 speed: _swiperElement.dataset.speed,
                 spaceBetween: 10,
                 loop: true,
+                oneWayMovement: true,
                 autoplay: {
                     delay: _swiperElement.dataset.autoplay,
                     disableOnInteraction: false
@@ -156,11 +169,20 @@ document.addEventListener("DOMContentLoaded", () => {
                 },
                 scrollbar: {
                     el: _swiperScrollbar,
+                    draggable: true,
                     snapOnRelease: true,
                 },
                 navigation: {
                     nextEl: card.querySelector(".swiper-button-next"),
                     prevEl: card.querySelector(".swiper-button-prev"),
+                },
+                breakpoints: {
+                    320: {
+                        allowTouchMove: true,
+                    },
+                    1200: {
+                        allowTouchMove: false,
+                    }
                 },
             });
         })
@@ -189,6 +211,20 @@ document.addEventListener("DOMContentLoaded", () => {
         })
     }
 
+
+    const anchors = document.querySelectorAll('a[href*="#"]')
+    for (let anchor of anchors) {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault()
+
+            const blockID = anchor.getAttribute('href').substr(1)
+
+            document.getElementById(blockID).scrollIntoView({
+                behavior: 'smooth',
+                block: 'start'
+            })
+        })
+    }
 
     function resetEvent(e) {
         e.preventDefault();
@@ -254,7 +290,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 modal.addEventListener("click", (e) => {
                     resetEvent(e);
                     const dataModal = modal.getAttribute("data-modal");
-                    const _modal = document.querySelector(".modal_" + dataModal);
+                    const _modal = document.querySelector(".modal__" + dataModal);
                     addModal(_modal);
                     document.body.style.overflow = "hidden";
 

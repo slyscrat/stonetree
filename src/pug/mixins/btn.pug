@@ -1,6 +1,8 @@
 mixin btn(text, classes='')
-	a(href="#!" class="p-btn"+classes)=text
+	a(href="#!" class="p-btn"+classes)&attributes(attributes)=text
 mixin btnSubmit(text, classes='')
-	button(type="submit" class="p-btn"+classes)=text
+	button(type="submit" class="p-btn"+classes)&attributes(attributes)=text
+mixin btnButton(text, classes='')
+	button(type="button" class="p-btn"+classes)&attributes(attributes)=text
 mixin btnTransparent(text, id, classes='')
-	a(href=id class="p-btn p-btn_transparent"+classes)=text
+	a(href=id class="p-btn p-btn_transparent"+classes)&attributes(attributes)=text

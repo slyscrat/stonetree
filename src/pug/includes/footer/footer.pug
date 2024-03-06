@@ -1,1 +1,131 @@
 include ../mixins
+footer.footer
+    .container
+        .footer__block
+            .footer__left
+                .footer__logo
+                    +picture('img/footer/logo.png', 'img/footer/logo', true, '', 266, 56, '', '', '')
+                .footer__links
+                    a(href="#!").footer__link Политика конфиденциальности
+                    a(href="#!").footer__link Условия пользования
+            .footer__right
+                nav
+                    ul.footer__nav-list
+                        li.footer__nav-li.footer__nav-li_1
+                            a(href="#!").footer__nav-link Арендовать недвижимость
+                        li.footer__nav-li.footer__nav-li_2
+                            a(href="#!").footer__nav-link Купить недвижимость
+                        li.footer__nav-li.footer__nav-li_3
+                            a(href="#!").footer__nav-link Управление недвижимостью
+                        li.footer__nav-li.footer__nav-li_4
+                            a(href="#!").footer__nav-link Дизайн, сервис, услуги интерьера
+                        li.footer__nav-li.footer__nav-li_1
+                            a(href="#!").footer__nav-link Юридические услуги в&nbsp;ОАЭ
+                        li.footer__nav-li.footer__nav-li_2
+                            a(href="#!").footer__nav-link Партнерская программа
+                        li.footer__nav-li.footer__nav-li_3
+                            a(href="#!").footer__nav-link Продакшн и&nbsp;студия
+                        li.footer__nav-li.footer__nav-li_4
+                            a(href="#!").footer__nav-link Карьера в&nbsp;STONETREE
+.modal.modal_center.modal__cons1
+    .modal__content
+        button(type="button").modal__close
+            +picture('img/modal/close.png', 'img/modal/close', true, '', 29, 29, '', '', '')
+        form.p-form.modal__form
+            .modal__form-title Получите бесплатную консультацию
+            .modal__form-subtitle Оставьте свои контакты, чтобы получить бесплатную консультацию и расчет доходности ваших апартаментов
+            .p-form__inputs
+                .p-form__input
+                    input(type="text" name="name" placeholder="Ваше имя" required)
+                .p-form__input
+                    .p-inter-tel(data-slug="ru" data-lang="ru")
+                        .p-inter-tel__input
+                            .p-inter-tel__select
+                                button(type="button").p-inter-tel__select-block
+                                    span.fi.fi-ru
+                                    span.p-inter-tel__select-svg
+                                        <svg width="10" height="6" viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M5 6L9.33013 0H0.669873L5 6Z" fill="#AEAEAE"/>
+                                        </svg>
+                                .p-inter-tel__options
+                                    input(type="text" placeholder="Поиск названия страны")
+                                    ul
+                            .p-inter-tel__input-item
+                                .p-inter-tel__input-prefix <span>+7</span>&nbsp;
+                                input(type="tel" name="tel" placeholder="(000) 000-00-00" autocomplete="off")
+                .p-form__input
+                    label.p-form__check
+                        input(type="checkbox" name="check")
+                        span.p-form__check-square
+                            +picture('img/modal/tick.png', 'img/modal/tick', true, '', 8, 8, '', '', '')
+                        span.p-form__check-title Я даю cогласие на обработку персональных данных в&nbsp;соответствии с&nbsp;<a href="#!">Политикой конфиденциальности</a>
+                .p-form__input
+                    +btnSubmit('Отправить', ' p-form__btn')
+.modal.modal_center.modal__cons2
+    .modal__content
+        button(type="button").modal__close
+            +picture('img/modal/close.png', 'img/modal/close', true, '', 29, 29, '', '', '')
+        form.p-form.modal__form
+            .modal__form-title Получите бесплатную консультацию
+            .modal__form-subtitle Оставьте свои контакты, чтобы получить бесплатную консультацию и расчет доходности ваших апартаментов
+            .p-form__inputs
+                .p-form__input
+                    input(type="text" name="name" placeholder="Ваше имя" required)
+                .p-form__input
+                    .p-inter-tel(data-slug="ru" data-lang="ru")
+                        .p-inter-tel__input
+                            .p-inter-tel__select
+                                button(type="button").p-inter-tel__select-block
+                                    span.fi.fi-ru
+                                    span.p-inter-tel__select-svg
+                                        <svg width="10" height="6" viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M5 6L9.33013 0H0.669873L5 6Z" fill="#AEAEAE"/>
+                                        </svg>
+                                .p-inter-tel__options
+                                    input(type="text" placeholder="Поиск названия страны")
+                                    ul
+                            .p-inter-tel__input-item
+                                .p-inter-tel__input-prefix <span>+7</span>&nbsp;
+                                input(type="tel" name="tel" placeholder="(000) 000-00-00" autocomplete="off")
+                .p-form__input
+                    label.p-form__check
+                        input(type="checkbox" name="check")
+                        span.p-form__check-square
+                            +picture('img/modal/tick.png', 'img/modal/tick', true, '', 8, 8, '', '', '')
+                        span.p-form__check-title Я даю cогласие на обработку персональных данных в&nbsp;соответствии с&nbsp;<a href="#!">Политикой конфиденциальности</a>
+                .p-form__input
+                    +btnSubmit('Отправить', ' p-form__btn')
+.modal.modal_center.modal__cons3
+    .modal__content
+        button(type="button").modal__close
+            +picture('img/modal/close.png', 'img/modal/close', true, '', 29, 29, '', '', '')
+        form.p-form.modal__form
+            .modal__form-title Получите бесплатную консультацию
+            .modal__form-subtitle Оставьте свои контакты, чтобы получить бесплатную консультацию и расчет доходности ваших апартаментов
+            .p-form__inputs
+                .p-form__input
+                    input(type="text" name="name" placeholder="Ваше имя" required)
+                .p-form__input
+                    .p-inter-tel(data-slug="ru" data-lang="ru")
+                        .p-inter-tel__input
+                            .p-inter-tel__select
+                                button(type="button").p-inter-tel__select-block
+                                    span.fi.fi-ru
+                                    span.p-inter-tel__select-svg
+                                        <svg width="10" height="6" viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M5 6L9.33013 0H0.669873L5 6Z" fill="#AEAEAE"/>
+                                        </svg>
+                                .p-inter-tel__options
+                                    input(type="text" placeholder="Поиск названия страны")
+                                    ul
+                            .p-inter-tel__input-item
+                                .p-inter-tel__input-prefix <span>+7</span>&nbsp;
+                                input(type="tel" name="tel" placeholder="(000) 000-00-00" autocomplete="off")
+                .p-form__input
+                    label.p-form__check
+                        input(type="checkbox" name="check")
+                        span.p-form__check-square
+                            +picture('img/modal/tick.png', 'img/modal/tick', true, '', 8, 8, '', '', '')
+                        span.p-form__check-title Я даю cогласие на обработку персональных данных в&nbsp;соответствии с&nbsp;<a href="#!">Политикой конфиденциальности</a>
+                .p-form__input
+                    +btnSubmit('Отправить', ' p-form__btn')

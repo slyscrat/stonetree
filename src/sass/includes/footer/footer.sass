@@ -1,0 +1,44 @@
+.footer
+  padding-top: 10px
+  padding-bottom: 37px
+  &__links, &__block, &__nav-list
+    display: flex
+    align-items: center
+  &__link, &__nav-link
+    font-family: 'Inter', sans-serif
+  &__block
+    background: var(--black)
+    color: var(--white)
+    border-radius: 15px
+    padding: 50px 39px
+    gap: 132px
+  &__left
+    width: 266px
+  &__right
+    width: calc(100% - 132px - 266px)
+  &__logo
+    margin-bottom: 30px
+  &__links
+    flex-wrap: wrap
+  &__link
+    width: 100%
+    font-size: 16px
+    text-decoration: underline
+    text-decoration-skip-ink: none
+    color: #d9d9d9
+    font-family: 'Inter', sans-serif
+  &__nav
+    &-list
+      flex-wrap: wrap
+      gap: 38px 93px
+    &-li
+      width: calc(100% / 4 - 70px)
+      line-height: 1.33333
+      &_1
+        width: 143px
+      &_2
+        width: 135px
+      &_3
+        width: 152px
+      &_4
+        width: 160px

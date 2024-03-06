@@ -2,7 +2,7 @@
 .cards
   padding-top: 52px
   padding-bottom: 48px
-  &__bottom, &__arrows, .swiper-button
+  &__bottom, &__arrows, .swiper-button, &__item-btn
     display: flex
     align-items: center
   &__item, &__item-block
@@ -36,14 +36,19 @@
       max-width: 249px
       font-size: 30px
       font-weight: 600
+      text-wrap: balance
     &-btn
       width: 199px
       height: 48px
       backdrop-filter: blur(4.349726676940918px)
       background: rgba(0, 0, 0, 0.06)
       border-radius: 11px
+      border: 1px solid #fff
+      color: var(--white)
+      justify-content: center
       &:hover
-        background: rgba(0, 0, 0, 0.06)
+        background: #f7f7f7
+        color: var(--black)
   &__bottom
     margin-top: 20px
     position: relative
@@ -58,6 +63,7 @@
       &-drag
         background: #828282
         border-radius: 100px
+        cursor: pointer
     &-pagination, &-scrollbar, &-button
       position: relative
       inset: auto
@@ -86,3 +92,43 @@
   &__arrows
     gap: 6px
     margin-left: auto
+  &__list
+    display: flex
+    align-items: center
+    padding-top: 40px
+    color: #000000
+    &-item
+      padding: 0 60px
+      text-align: center
+      position: relative
+      &:after
+        content: ''
+        position: absolute
+        bottom: 8px
+        right: 0
+        width: 1px
+        height: 105px
+        background: var(--gray)
+      &:first-of-type
+        padding-left: 47px
+      &:last-of-type
+        padding-right: 48px
+        &:after
+          display: none
+      &_1
+        width: 255px
+      &_2
+        width: 277px
+      &_3
+        width: 265px
+      &_4
+        width: 330px
+      &_5
+        width: 277px
+      &_6
+        width: 247px
+    &-num
+      font-weight: 600
+      font-size: 60px
+    &-text
+      font-size: 21px

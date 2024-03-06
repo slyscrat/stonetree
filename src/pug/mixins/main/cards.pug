@@ -1,8 +1,13 @@
-mixin mainCard(img, title, classes="")
+mixin mainCard(img, title, id, classes="")
     div(class="cards__item"+ classes)
         .cards__item-bg
             +picture('img/cards/'+img+'.jpg', 'img/cards/'+img, true, '', 322, 308, '', '', '')
         .cards__item-block
             h2.cards__item-title
                 | !{title}
-            +btnTransparent('Подробнее', '#!', ' cards__item-btn text-white')
+            a(href=id).cards__item-btn Подробнее
+mixin cardsListItem(num, content, classes='')
+    div(class="cards__list-item"+ classes)
+        .cards__list-num=num
+        .cards__list-text
+            | !{content}

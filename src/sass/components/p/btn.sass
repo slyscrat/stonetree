@@ -6,8 +6,13 @@
   background: var(--red)
   font-weight: 600
   color: var(--white)
-  &_transparent
-    color: var(--white)
-    border: 1px solid #fff
   &:hover
     background: var(--red-hover)
+  &_transparent
+    border: 1px solid var(--red)
+    background: transparent
+    color: var(--red)
+    &:hover
+      color: var(--white)
+      border-color: var(--red-hover)
+      background: var(--red-hover)
