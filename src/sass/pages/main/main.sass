@@ -26,6 +26,10 @@
     max-width: 660px
     color: var(--white)
     position: relative
+    &_1
+      .main
+        &__subtitle
+          max-width: 567px
     &_2
       .main
         &__subtitle
@@ -34,10 +38,9 @@
       .main
         &__list
           max-width: 529px
-  &__title, &__subtitle, &__list
-    font-weight: 600
   &__title
-    font-size: 45px
+    font-weight: 700
+    font-size: 40px
     line-height: 1.31111
     margin-bottom: 25px
   &__nums
@@ -45,8 +48,9 @@
     align-items: center
     font-size: 16px
   &__subtitle
-    margin-bottom: 39px
-    font-size: 28px
+    margin-bottom: 38px
+    font-size: 26px
+    font-weight: 600
   &__list
     gap: 21px
     display: flex
@@ -75,18 +79,18 @@
     border: 1px solid rgba(255, 255, 255, 0.3)
     backdrop-filter: blur(128.87600708007812px)
     transform: translate3d(0, 0, 0)
-    &-bg
-      position: absolute
-      top: 50%
-      left: 50%
-      width: max-content
-      transform: translate(-50%, -50%)
-      display: none
+    height: 545px
+    .thank
+      --width-img: 74px
+      &__close
+        display: none
     &-item
       position: relative
     &-title
       margin-bottom: 25px
       font-size: 24px
+      font-weight: 500
+    .p-btn
       font-weight: 600
   &__swiper
     position: relative

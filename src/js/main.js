@@ -1,6 +1,13 @@
 document.addEventListener("DOMContentLoaded", () => {
     const header = document.querySelector('.header');
     const main = document.querySelector('.main');
+    const ipapi = fetch('https://ipapi.co/json', {
+        method: 'GET',
+    })
+        .then(response => response.json())
+        .then(data => {
+            return data;
+        });
 
     window.addEventListener('scroll', ()=>{
         if (window.scrollY > 200){
@@ -11,6 +18,10 @@ document.addEventListener("DOMContentLoaded", () => {
             main.classList.remove('fixed');
         }
     })
+    let _countries = pPhones;
+    function getOptionByCode(slug){
+        return _countries.find(country => country.countryCode.toLowerCase() === slug)
+    }
 
     const mains = document.querySelectorAll('.main');
     if (mains[0]) {
@@ -54,12 +65,13 @@ document.addEventListener("DOMContentLoaded", () => {
     const interTels = document.querySelectorAll('.p-inter-tel');
     if (interTels[0]) {
         interTels.forEach((interTel) => {
-            const slug = interTel.dataset.slug;
-            const lang = interTel.dataset.lang;
-            const langUpper = lang.charAt(0).toUpperCase() + lang.slice(1);
+            const lang = interTel.querySelector('input[name="tel_lang"]');
+            const slug = interTel.querySelector('input[name="tel_slug"]');
+            const langUpper = lang.value.charAt(0).toUpperCase() + lang.value.slice(1);
 
+            const number = interTel.querySelector('input[name="tel_number"]');
             const prefix = interTel.querySelector('.p-inter-tel__input-item span');
-            const input = interTel.querySelector('.p-inter-tel__input-item input');
+            const input = interTel.querySelector('.p-inter-tel__input-item input[type="tel"]');
 
             const button = interTel.querySelector('.p-inter-tel__select-block');
             const buttonFlag = button.querySelector('.fi');
@@ -68,72 +80,82 @@ document.addEventListener("DOMContentLoaded", () => {
             const optionsUl = options.querySelector('ul');
             const optionsSearch = options.querySelector('input');
 
+            function resetQuery() {
+                _options.forEach((option) => {
+                    option.classList.remove('hidden');
+                    optionsSearch.value = '';
+                })
+            }
+
+
             button.addEventListener('click', () => {
                 if (interTel.classList.contains('active')) {
-                    _options.forEach((option) => {
-                        option.classList.remove('hidden');
-                        optionsSearch.value = '';
-                    })
+                    resetQuery();
                 }
 
                 interTel.classList.toggle('active');
             })
 
             let _options = null;
-            let _countries = pPhones;
             let _mask = IMask(input, {
                 mask: input.placeholder,
                 lazy: false,
             });
+            input._mask = _mask;
+
+            const activeOptionToJson = getOptionByCode(slug.value);
+
+            number.value = `+${activeOptionToJson.phoneCode}`;
+            prefix.textContent = `+${activeOptionToJson.phoneCode}`;
+            buttonFlag.className = `fi fi-${activeOptionToJson.countryCode.toLowerCase()}`;
+            lang.value = `${activeOptionToJson.countryCode.toLowerCase()}`;
+            input.placeholder = '';
+            input.value = '';
+            _mask.masked.reset();
+            _mask.updateOptions({
+                mask: activeOptionToJson.phoneMask,
+            });
 
             _countries.forEach((country) => {
-                const classes = slug === country.countryCode.toLowerCase() ? 'active' : '';
+                const classes = slug.value === country.countryCode.toLowerCase() ? 'active' : '';
                 const optionOutput = `
-                    <li class="p-inter-tel__option ${classes}" data-country="${country['name' + langUpper]}" data-code="${country.countryCode.toLowerCase()}" data-num="+${country.phoneCode}" data-mask="${country.phoneMask}">
+                    <li class="p-inter-tel__option ${classes}" data-country="${country['name' + langUpper]}" data-code="${country.countryCode.toLowerCase()}">
                       <div class="fi fi-${country.countryCode.toLowerCase()}"></div>
                       <div class="p-inter-tel__option-name">${country['name' + langUpper]}</div>
-                      <div class="p-inter-tel__option-num">+${country.phoneCode}-${country.phoneMask}</div>
+                      <div class="p-inter-tel__option-num">+${country.phoneCode}</div>
                     </li>
                 `;
                 optionsUl.insertAdjacentHTML('beforeend', optionOutput);
-
-                if (slug === country.countryCode.toLowerCase()) {
-                    prefix.textContent = `+${country.phoneCode}`;
-                    buttonFlag.className = `fi fi-${country.countryCode.toLowerCase()}`;
-                    input.placeholder = country.phoneMask;
-                    input.value = '';
-                    _mask.masked.reset();
-                    _mask.updateOptions({
-                        mask: country.phoneMask,
-                    });
-                }
             });
             _options = optionsUl.querySelectorAll('.p-inter-tel__option');
 
             _options.forEach((option) => {
                 option.addEventListener('click', () => {
-                    const num = option.dataset.num;
-                    const mask = option.dataset.mask;
                     const code = option.dataset.code;
+                    const activeOptionToJson = getOptionByCode(option.dataset.code);
+                    const num = activeOptionToJson.phoneCode;
+                    const mask = activeOptionToJson.phoneMask;
+                    console.log(mask);
 
                     const activeOption = optionsUl.querySelector('.p-inter-tel__option.active');
                     if (activeOption) {
                         activeOption.classList.remove('active');
                     }
 
-                    interTel.dataset.slug = code;
-
+                    slug.value = code;
+                    number.value = num;
                     prefix.textContent = num;
                     buttonFlag.className = `fi fi-${code}`;
-                    input.placeholder = mask;
                     input.value = '';
                     _mask.masked.reset();
                     _mask.updateOptions({
                         mask: mask,
+                        lazy: false,
                     });
                     input.focus();
                     option.classList.add('active');
                     interTel.classList.remove('active');
+                    resetQuery();
                 })
             })
 
@@ -146,6 +168,40 @@ document.addEventListener("DOMContentLoaded", () => {
             })
         })
     }
+
+
+    ipapi.then((data) => {
+        let slug = data.country_code.toLowerCase();
+        interTels.forEach((interTel) => {
+            const tel_number = interTel.querySelector('input[name="tel_number"]');
+            const statusIp = interTel.querySelector('input[name="ip_status"]');
+            if (statusIp.value === 'true'){
+                interTel.querySelector('input[name="tel_slug"]').value = slug;
+                const options = interTel.querySelector('.p-inter-tel__options');
+                const optionsUl = options.querySelector('ul');
+                const input = interTel.querySelector('.p-inter-tel__input-item input[type="tel"]');
+                const _mask = input._mask;
+                const button = interTel.querySelector('.p-inter-tel__select-block');
+                const buttonFlag = button.querySelector('.fi');
+                const prefix = interTel.querySelector('.p-inter-tel__input-item span');
+                const option = optionsUl.querySelector('.p-inter-tel__option[data-code="'+slug+'"]');
+                const activeOptionToJson = getOptionByCode(slug);
+                if (option){
+                    option.classList.add('active');
+                    input.value = '';
+                    buttonFlag.className = `fi fi-${option.dataset.code}`;
+                    input._mask = _mask;
+                    tel_number.value = `${activeOptionToJson.phoneCode}`;
+                    prefix.textContent = `${activeOptionToJson.phoneCode}`;
+                    _mask.masked.reset();
+                    _mask.updateOptions({
+                        mask: activeOptionToJson.phoneMask,
+                        lazy: false,
+                    });
+                }
+            }
+        })
+    });
 
     const cards = document.querySelectorAll('.cards');
     if (cards[0]) {
@@ -225,6 +281,118 @@ document.addEventListener("DOMContentLoaded", () => {
             })
         })
     }
+
+    const forms = document.querySelectorAll('form');
+    if (forms[0]){
+        forms.forEach((form)=>{
+            form.addEventListener('submit', (e)=>{
+                resetEvent(e);
+                e.stopImmediatePropagation();
+                let status = false;
+                let countInvalid = 0;
+                let isValidForm = form.checkValidity();
+
+                const pFormInputs = form.querySelectorAll('.p-form__input');
+                if (pFormInputs[0]){
+                    pFormInputs.forEach((pFormInput)=>{
+                        pFormInput.classList.remove('invalid', 'valid');
+                        if (pFormInput.classList.contains('p-form__input_single')){
+                            const input = pFormInput.querySelector('input');
+                            if (!input.checkValidity()){
+                                countInvalid = countInvalid + 1;
+                                pFormInput.classList.add('invalid');
+                            }
+                        } else if (pFormInput.classList.contains('p-form__input_checkbox')) {
+                            const input = pFormInput.querySelector('input');
+                            if (!input.checked){
+                                countInvalid = countInvalid + 1;
+                                pFormInput.classList.add('invalid');
+                            }
+                        } else {
+                            const interTel = pFormInput.querySelector('.p-inter-tel');
+                            if (interTel){
+                                const input = interTel.querySelector('.p-inter-tel__input-item input[type="tel"]');
+                                if (input._mask.value.includes('_')){
+                                    countInvalid = countInvalid + 1;
+                                    pFormInput.classList.add('invalid');
+                                }
+                            }
+                            const pSelect = pFormInput.querySelector('.p-select');
+                            if (pSelect){
+                                const input = pSelect.querySelector('.p-select__input');
+                                if (input.value === '' || input.value === input.dataset.default){
+                                    countInvalid = countInvalid + 1;
+                                    pFormInput.classList.add('invalid');
+                                }
+                            }
+                        }
+                    })
+                }
+
+                if (!countInvalid){
+                    status = true;
+                }
+
+                if (status && isValidForm){
+                    console.log('Validated!');
+
+
+                    // Main Block
+                    const main = form.closest('.main');
+                    if (main){
+                        const mainForm = main.querySelector('.main__form');
+                        form.style.display = 'none';
+                        mainForm.insertAdjacentElement('afterbegin', thankYouOutput());
+                    }
+
+                    // Modal
+                    const modalWithThank = form.closest('.modal.modal_with-thank');
+                    if (modalWithThank){
+                        const modalThankContent = modalWithThank.querySelector('.modal_with-thank__content');
+                        const modalContent = modalWithThank.querySelector('.modal__content');
+                        modalThankContent.style.display = 'block';
+                        modalContent.style.display = 'none';
+                        modalThankContent.insertAdjacentElement('afterbegin', thankYouOutput());
+
+                        const close = modalThankContent.querySelector('.thank__close');
+                        if (close){
+                            close.addEventListener('click', ()=>{
+                                removeModal(modalWithThank);
+                                document.body.style.overflow = '';
+                            })
+                        }
+                    }
+
+                    lazyContent.update();
+                    lazyBackground.update();
+                }
+            })
+        })
+    }
+
+    function thankYouOutput(){
+        const element = document.createElement('div');
+        element.className = 'thank';
+        element.innerHTML = `
+          <div class="thank__close">
+            <picture>
+              <source type="image/webp" srcset="#" data-srcset="img/modal/close_thank.webp">
+              <img class="lazy " width="21" height="21" src="#" data-src="img/modal/close_thank.png" alt="" loading="lazy">
+            </picture>
+          </div>
+          <div class="thank__img">
+                <picture>
+                  <source type="image/webp" srcset="#" data-srcset="img/modal/verified.webp">
+                  <img class="lazy " width="84" height="84" src="#" data-src="img/modal/verified.png" alt="" loading="lazy">
+                </picture>
+          </div>
+          <div class="thank__title">Спасибо за отправку!</div>
+          <div class="thank__subtitle">Наши эксперты свяжутся с Вами в&nbsp;течение 2 рабочих часов.</div>
+        `;
+        return element;
+    }
+
+
 
     function resetEvent(e) {
         e.preventDefault();

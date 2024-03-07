@@ -6,3 +6,5 @@ mixin btnButton(text, classes='')
 	button(type="button" class="p-btn"+classes)&attributes(attributes)=text
 mixin btnTransparent(text, id, classes='')
 	a(href=id class="p-btn p-btn_transparent"+classes)&attributes(attributes)=text
+mixin btnTransparentButton(text, classes='')
+	button(type="button" class="p-btn p-btn_transparent"+classes)&attributes(attributes)=text

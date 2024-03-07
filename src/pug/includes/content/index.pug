@@ -76,7 +76,7 @@ main
                                     +picture('img/main/bg3.jpg', 'img/main/bg3', true, '', 1380, 636, '', '', '')
                                 .main__item.main__item_3
                                     h2.main__title Широкий спектр дополнительных услуг
-                                    h3.main__subtitle Обеспечение комфортной жизни арендаторов за счет вспомогательных сервисов
+                                    h3.main__subtitle Обеспечение комфортной жизни арендаторов за&nbsp;счет вспомогательных сервисов
                                     ul.main__list
                                         li.main__list-item
                                             .main__list-svg
@@ -106,10 +106,10 @@ main
                         form.p-form.main__form-item
                             .main__form-title Оставьте заявку, чтобы получить бесплатную консультацию и оценку доходности вашего объекта
                             .p-form__inputs
+                                .p-form__input.p-form__input_single
+                                    input(type="text" name="name" pattern="^[A-Za-zА-Яа-яЁё\\s]{2,}" minlength="2" placeholder="Ваше имя" required)
                                 .p-form__input
-                                    input(type="text" name="name" placeholder="Ваше имя" required)
-                                .p-form__input
-                                    .p-inter-tel(data-slug="ru" data-lang="ru")
+                                    .p-inter-tel
                                         .p-inter-tel__input
                                             .p-inter-tel__select
                                                 button(type="button").p-inter-tel__select-block
@@ -123,10 +123,14 @@ main
                                                     ul
                                             .p-inter-tel__input-item
                                                 .p-inter-tel__input-prefix <span>+7</span>&nbsp;
+                                                input(type="hidden" name="ip_status" value="true")
+                                                input(type="hidden" name="tel_lang" value="ru")
+                                                input(type="hidden" name="tel_slug" value="ru")
+                                                input(type="hidden" name="tel_number" value="+7")
                                                 input(type="tel" name="tel" placeholder="(000) 000-00-00" autocomplete="off")
                                 .p-form__input
                                     .p-select
-                                        input(type="hidden" name="list" value="Услуга").p-select__input
+                                        input(type="hidden" name="list" value="Услуга" data-default="Услуга").p-select__input
                                         button(type="button").p-select__btn
                                             span.p-select__current Услуга
                                             span.p-select__svg
@@ -139,7 +143,7 @@ main
                                             li.p-select__option Продакшн Студия
                                             li.p-select__option Сайт основателя
                                             li.p-select__option Карьера
-                                .p-form__input
+                                .p-form__input.p-form__input_checkbox
                                     label.p-form__check
                                         input(type="checkbox" name="check")
                                         span.p-form__check-square
@@ -286,7 +290,7 @@ main
                     .services__item-right
                         .services__item-block
                             h2.services__item-title Интерьер и дизайн
-                            p.services__item-text Команда специалистов занимается комплексной подготовкой недвижимости к сдаче в аренду или продаже для максимальной доходности.
+                            p.services__item-text Команда специалистов занимается комплексной подготовкой недвижимости к сдаче в аренду или&nbsp;продаже для максимальной доходности.
                             ul.services__list
                                 li.services__list-li
                                     .services__list-icon
@@ -337,7 +341,7 @@ main
                                     .services__list-icon
                                         include ../../components/serviceListIcon
                                     .services__list-text PRO-услуги
-                        +btnTransparent('Бесплатная консультация', '#!', ' services__item-btn services__item-btn_2 modal__show')(data-modal="cons1")
+                        +btnTransparentButton('Бесплатная консультация', ' services__item-btn services__item-btn_2 modal__show')(data-modal="cons1")
                 #services6.services__item.services__item_reversed.services__item_6
                     .services__item-left
                         +picture('img/main/services/6.jpg', 'img/main/services/6', true, '', 704, 541, '', '', '')
@@ -366,7 +370,7 @@ main
                                     .services__list-icon
                                         include ../../components/serviceListIcon
                                     .services__list-text Гарантия выплат
-                        +btnTransparent('Бесплатная консультация', '#!', ' services__item-btn services__item-btn_2 modal__show')(data-modal="cons1")
+                        +btnTransparentButton('Бесплатная консультация', ' services__item-btn services__item-btn_2 modal__show')(data-modal="cons2")
                 #services7.services__item.services__item_7
                     .services__item-left
                         +picture('img/main/services/7.jpg', 'img/main/services/7', true, '', 660, 571, '', '', '')
@@ -395,7 +399,7 @@ main
                                     .services__list-icon
                                         include ../../components/serviceListIcon
                                     .services__list-text Полноценная подготовка ролика «от» и «до»
-                        +btnTransparent('Бесплатная консультация', '#!', ' services__item-btn services__item-btn_2 modal__show')(data-modal="cons3")
+                        +btnTransparentButton('Бесплатная консультация', ' services__item-btn services__item-btn_2 modal__show')(data-modal="cons3")
 
     .contacts
         .container

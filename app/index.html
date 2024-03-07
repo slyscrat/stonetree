@@ -6,7 +6,7 @@
     <title>Главная</title>
     <script src="js/lazyload.min.js"></script>
     <script>var lazyContent="",lazyBackground="";window.addEventListener("DOMContentLoaded",(function(){lazyContent=new LazyLoad({use_native:!0}),lazyBackground=new LazyLoad({})}));</script>
-    <link rel="stylesheet" href="css/style.min.css?v=19">
+    <link rel="stylesheet" href="css/style.min.css?v=28">
   </head>
   <body>
     <header class="header">
@@ -14,7 +14,7 @@
         <div class="header__block">
           <div class="header__logo">
                 <picture>
-                  <source type="image/webp" srcset="img/logo.webp"><img width="196" height="41" src="img/logo.png" alt="" loading="lazy">
+                  <source type="image/webp" srcset="img/logo.webp"><img width="196" height="41" src="img/logo.png" alt="">
                 </picture>
           </div>
           <div class="header__center">
@@ -60,7 +60,7 @@
                   <div class="main__block">
                     <div class="main__block-bg">
                           <picture>
-                            <source type="image/webp" srcset="img/main/bg1.webp"><img width="1380" height="636" src="img/main/bg1.jpg" alt="" loading="lazy">
+                            <source type="image/webp" srcset="img/main/bg1.webp"><img width="1380" height="636" src="img/main/bg1.jpg" alt="">
                           </picture>
                     </div>
                     <div class="main__item main__item_1">
@@ -151,7 +151,7 @@
                     </div>
                     <div class="main__item main__item_3">
                       <h2 class="main__title">Широкий спектр дополнительных услуг</h2>
-                      <h3 class="main__subtitle">Обеспечение комфортной жизни арендаторов за счет вспомогательных сервисов</h3>
+                      <h3 class="main__subtitle">Обеспечение комфортной жизни арендаторов за&nbsp;счет вспомогательных сервисов</h3>
                       <ul class="main__list">
                         <li class="main__list-item">
                           <div class="main__list-svg"><svg width="21" height="21" viewBox="0 0 21 21" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -190,11 +190,11 @@
                 <form class="p-form main__form-item">
                   <div class="main__form-title">Оставьте заявку, чтобы получить бесплатную консультацию и оценку доходности вашего объекта</div>
                   <div class="p-form__inputs">
-                    <div class="p-form__input">
-                      <input type="text" name="name" placeholder="Ваше имя" required>
+                    <div class="p-form__input p-form__input_single">
+                      <input type="text" name="name" pattern="^[A-Za-zА-Яа-яЁё\s]{2,}" minlength="2" placeholder="Ваше имя" required>
                     </div>
                     <div class="p-form__input">
-                      <div class="p-inter-tel" data-slug="ru" data-lang="ru">
+                      <div class="p-inter-tel">
                         <div class="p-inter-tel__input">
                           <div class="p-inter-tel__select">
                             <button class="p-inter-tel__select-block" type="button"><span class="fi fi-ru"></span><span class="p-inter-tel__select-svg"><svg width="10" height="6" viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -207,6 +207,10 @@
                           </div>
                           <div class="p-inter-tel__input-item">
                             <div class="p-inter-tel__input-prefix"><span>+7</span>&nbsp;</div>
+                            <input type="hidden" name="ip_status" value="true">
+                            <input type="hidden" name="tel_lang" value="ru">
+                            <input type="hidden" name="tel_slug" value="ru">
+                            <input type="hidden" name="tel_number" value="+7">
                             <input type="tel" name="tel" placeholder="(000) 000-00-00" autocomplete="off">
                           </div>
                         </div>
@@ -214,7 +218,7 @@
                     </div>
                     <div class="p-form__input">
                       <div class="p-select">
-                        <input class="p-select__input" type="hidden" name="list" value="Услуга">
+                        <input class="p-select__input" type="hidden" name="list" value="Услуга" data-default="Услуга">
                         <button class="p-select__btn" type="button"><span class="p-select__current">Услуга</span><span class="p-select__svg"><svg width="10" height="6" viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg">
 <path d="M5 6L9.33013 0H0.669873L5 6Z" fill="#AEAEAE"/>
 </svg></span></button>
@@ -227,7 +231,7 @@
                         </ul>
                       </div>
                     </div>
-                    <div class="p-form__input">
+                    <div class="p-form__input p-form__input_checkbox">
                       <label class="p-form__check">
                         <input type="checkbox" name="check"><span class="p-form__check-square">
                               <picture>
@@ -547,7 +551,7 @@
               <div class="services__item-right">
                 <div class="services__item-block">
                   <h2 class="services__item-title">Интерьер и дизайн</h2>
-                  <p class="services__item-text">Команда специалистов занимается комплексной подготовкой недвижимости к сдаче в аренду или продаже для максимальной доходности.</p>
+                  <p class="services__item-text">Команда специалистов занимается комплексной подготовкой недвижимости к сдаче в аренду или&nbsp;продаже для максимальной доходности.</p>
                   <ul class="services__list">
                     <li class="services__list-li">
                       <div class="services__list-icon">
@@ -635,7 +639,8 @@
                       <div class="services__list-text">PRO-услуги</div>
                     </li>
                   </ul>
-                </div><a class="p-btn p-btn_transparent services__item-btn services__item-btn_2 modal__show" href="#!" data-modal="cons1">Бесплатная консультация</a>
+                </div>
+                    <button class="p-btn p-btn_transparent services__item-btn services__item-btn_2 modal__show" type="button" data-modal="cons1">Бесплатная консультация</button>
               </div>
             </div>
             <div class="services__item services__item_reversed services__item_6" id="services6">
@@ -685,7 +690,8 @@
                       <div class="services__list-text">Гарантия выплат</div>
                     </li>
                   </ul>
-                </div><a class="p-btn p-btn_transparent services__item-btn services__item-btn_2 modal__show" href="#!" data-modal="cons1">Бесплатная консультация</a>
+                </div>
+                    <button class="p-btn p-btn_transparent services__item-btn services__item-btn_2 modal__show" type="button" data-modal="cons2">Бесплатная консультация</button>
               </div>
             </div>
             <div class="services__item services__item_7" id="services7">
@@ -735,7 +741,8 @@
                       <div class="services__list-text">Полноценная подготовка ролика «от» и «до»</div>
                     </li>
                   </ul>
-                </div><a class="p-btn p-btn_transparent services__item-btn services__item-btn_2 modal__show" href="#!" data-modal="cons3">Бесплатная консультация</a>
+                </div>
+                    <button class="p-btn p-btn_transparent services__item-btn services__item-btn_2 modal__show" type="button" data-modal="cons3">Бесплатная консультация</button>
               </div>
             </div>
           </div>
@@ -811,7 +818,8 @@
         </div>
       </div>
     </footer>
-    <div class="modal modal_center modal__cons1">
+    <div class="modal modal_center modal_with-thank modal__cons1">
+      <div class="modal_with-thank__content"></div>
       <div class="modal__content">
         <button class="modal__close" type="button">
               <picture>
@@ -819,14 +827,15 @@
               </picture>
         </button>
         <form class="p-form modal__form">
+          <input type="hidden" name="type" value="Юридические услуги">
           <div class="modal__form-title">Получите бесплатную консультацию</div>
           <div class="modal__form-subtitle">Оставьте свои контакты, чтобы получить бесплатную консультацию и расчет доходности ваших апартаментов</div>
           <div class="p-form__inputs">
-            <div class="p-form__input">
-              <input type="text" name="name" placeholder="Ваше имя" required>
+            <div class="p-form__input p-form__input_single">
+              <input type="text" name="name" pattern="^[A-Za-zА-Яа-яЁё\s]{2,}" minlength="2" placeholder="Ваше имя" required>
             </div>
             <div class="p-form__input">
-              <div class="p-inter-tel" data-slug="ru" data-lang="ru">
+              <div class="p-inter-tel">
                 <div class="p-inter-tel__input">
                   <div class="p-inter-tel__select">
                     <button class="p-inter-tel__select-block" type="button"><span class="fi fi-ru"></span><span class="p-inter-tel__select-svg"><svg width="10" height="6" viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -839,12 +848,16 @@
                   </div>
                   <div class="p-inter-tel__input-item">
                     <div class="p-inter-tel__input-prefix"><span>+7</span>&nbsp;</div>
+                    <input type="hidden" name="ip_status" value="true">
+                    <input type="hidden" name="tel_lang" value="ru">
+                    <input type="hidden" name="tel_slug" value="ru">
+                    <input type="hidden" name="tel_number" value="+7">
                     <input type="tel" name="tel" placeholder="(000) 000-00-00" autocomplete="off">
                   </div>
                 </div>
               </div>
             </div>
-            <div class="p-form__input">
+            <div class="p-form__input p-form__input_checkbox">
               <label class="p-form__check">
                 <input type="checkbox" name="check"><span class="p-form__check-square">
                       <picture>
@@ -859,7 +872,8 @@
         </form>
       </div>
     </div>
-    <div class="modal modal_center modal__cons2">
+    <div class="modal modal_center modal_with-thank modal__cons2">
+      <div class="modal_with-thank__content"></div>
       <div class="modal__content">
         <button class="modal__close" type="button">
               <picture>
@@ -867,14 +881,15 @@
               </picture>
         </button>
         <form class="p-form modal__form">
+          <input type="hidden" name="type" value="Партнерская программа">
           <div class="modal__form-title">Получите бесплатную консультацию</div>
           <div class="modal__form-subtitle">Оставьте свои контакты, чтобы получить бесплатную консультацию и расчет доходности ваших апартаментов</div>
           <div class="p-form__inputs">
-            <div class="p-form__input">
-              <input type="text" name="name" placeholder="Ваше имя" required>
+            <div class="p-form__input p-form__input_single">
+              <input type="text" name="name" pattern="^[A-Za-zА-Яа-яЁё\s]{2,}" minlength="2" placeholder="Ваше имя" required>
             </div>
             <div class="p-form__input">
-              <div class="p-inter-tel" data-slug="ru" data-lang="ru">
+              <div class="p-inter-tel">
                 <div class="p-inter-tel__input">
                   <div class="p-inter-tel__select">
                     <button class="p-inter-tel__select-block" type="button"><span class="fi fi-ru"></span><span class="p-inter-tel__select-svg"><svg width="10" height="6" viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -887,12 +902,16 @@
                   </div>
                   <div class="p-inter-tel__input-item">
                     <div class="p-inter-tel__input-prefix"><span>+7</span>&nbsp;</div>
+                    <input type="hidden" name="ip_status" value="true">
+                    <input type="hidden" name="tel_lang" value="ru">
+                    <input type="hidden" name="tel_slug" value="ru">
+                    <input type="hidden" name="tel_number" value="+7">
                     <input type="tel" name="tel" placeholder="(000) 000-00-00" autocomplete="off">
                   </div>
                 </div>
               </div>
             </div>
-            <div class="p-form__input">
+            <div class="p-form__input p-form__input_checkbox">
               <label class="p-form__check">
                 <input type="checkbox" name="check"><span class="p-form__check-square">
                       <picture>
@@ -907,7 +926,8 @@
         </form>
       </div>
     </div>
-    <div class="modal modal_center modal__cons3">
+    <div class="modal modal_center modal_with-thank modal__cons3">
+      <div class="modal_with-thank__content"></div>
       <div class="modal__content">
         <button class="modal__close" type="button">
               <picture>
@@ -915,14 +935,15 @@
               </picture>
         </button>
         <form class="p-form modal__form">
+          <input type="hidden" name="type" value="Продакшн и студия">
           <div class="modal__form-title">Получите бесплатную консультацию</div>
           <div class="modal__form-subtitle">Оставьте свои контакты, чтобы получить бесплатную консультацию и расчет доходности ваших апартаментов</div>
           <div class="p-form__inputs">
-            <div class="p-form__input">
-              <input type="text" name="name" placeholder="Ваше имя" required>
+            <div class="p-form__input p-form__input_single">
+              <input type="text" name="name" pattern="^[A-Za-zА-Яа-яЁё\s]{2,}" minlength="2" placeholder="Ваше имя" required>
             </div>
             <div class="p-form__input">
-              <div class="p-inter-tel" data-slug="ru" data-lang="ru">
+              <div class="p-inter-tel">
                 <div class="p-inter-tel__input">
                   <div class="p-inter-tel__select">
                     <button class="p-inter-tel__select-block" type="button"><span class="fi fi-ru"></span><span class="p-inter-tel__select-svg"><svg width="10" height="6" viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -935,12 +956,16 @@
                   </div>
                   <div class="p-inter-tel__input-item">
                     <div class="p-inter-tel__input-prefix"><span>+7</span>&nbsp;</div>
+                    <input type="hidden" name="ip_status" value="true">
+                    <input type="hidden" name="tel_lang" value="ru">
+                    <input type="hidden" name="tel_slug" value="ru">
+                    <input type="hidden" name="tel_number" value="+7">
                     <input type="tel" name="tel" placeholder="(000) 000-00-00" autocomplete="off">
                   </div>
                 </div>
               </div>
             </div>
-            <div class="p-form__input">
+            <div class="p-form__input p-form__input_checkbox">
               <label class="p-form__check">
                 <input type="checkbox" name="check"><span class="p-form__check-square">
                       <picture>
@@ -956,6 +981,6 @@
       </div>
     </div>
     <script src="js/phones.js"></script>
-    <script src="js/script.min.js?v=19"></script>
+    <script src="js/script.min.js?v=28"></script>
   </body>
 </html>

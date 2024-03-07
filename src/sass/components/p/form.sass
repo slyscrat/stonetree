@@ -21,6 +21,12 @@
     height: 57px
   &__input
     width: 100%
+    &.invalid
+      :is(input[type="text"], .p-inter-tel__input, .p-select__btn, .p-form__check-square)
+        border-color: var(--red)
+    &.valid
+      :is(input[type="text"], .p-inter-tel__input, .p-select__btn, .p-form__check-square)
+        border-color: green
   &__check
     gap: 12px
     margin-top: -4px
