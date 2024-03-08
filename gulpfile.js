@@ -134,7 +134,7 @@ function scriptsMain() {
                 ]
             ]
         }))
-        .pipe(uglify())
+        // .pipe(uglify())
         .pipe(dest('app/js/'))
         .pipe(browserSync.stream())
 }

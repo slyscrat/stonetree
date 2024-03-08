@@ -5,6 +5,8 @@ header.header
             .header__logo
                 +picture('img/logo.png', 'img/logo', false, '', 196, 41, '', '', '')
             .header__center
+                .header__menu.modal__show(data-modal="menu")
+                    +picture('img/header/menu.png', 'img/header/menu', false, '', 25, 25, '', '', '')
                 nav.header__nav
                     .header__list
                         ul

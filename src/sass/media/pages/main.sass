@@ -1,0 +1,355 @@
+@media screen and (max-width: 1380px)
+  .main, .main__block, .main__block-bg, .contacts__block, .footer__block
+    border-radius: 0
+  :is(.main, .cards, .contacts, .footer)
+    .container
+      padding-left: 0
+      padding-right: 0
+  .main__block, .cards__swiper .swiper, .cards__bottom
+    padding-left: 20px
+    padding-right: 20px
+  .main
+    padding-top: 0
+    &__block
+      &-bg
+        picture
+          &:nth-child(1)
+            display: none
+          &:nth-child(2)
+            display: flex
+    &__swiper
+      padding-left: 20px
+      padding-right: 20px
+      &-pagination
+        left: 20px
+        .swiper
+          &-pagination
+            width: 42.0625vw
+  .cards
+    &__arrows
+      margin-left: 20px
+    &__list
+      flex-wrap: wrap
+      justify-content: center
+      gap: 27px 0
+      &-item
+        &:nth-child(3)
+          &::after
+            opacity: 0
+  .services
+    &__item
+      --width-img: 50%
+      &_reversed
+        --width-img: 48.6%
+  .contacts
+    &__right
+      width: 47.083333333333336vw
+    &__left
+      width: calc(100% - 47.083333333333336vw - 82px)
+  .footer
+    padding: 0
+@media screen and (max-width: 1140px)
+  .main
+    --height-form: 545px
+    &__block
+      padding-bottom: calc(83px + var(--height-form))
+    &__swiper
+      padding: 0
+      .swiper
+        position: relative
+        top: auto
+        left: auto
+      &-pagination
+        width: calc(100% - 40px)
+        gap: 9px
+        margin-bottom: 20px
+        bottom: var(--height-form)
+        .swiper-pagination
+          width: calc(100% - 43px - 9px)
+    &__nums
+      flex-shrink: 0
+      width: 43px
+    &__form
+      position: absolute
+      bottom: 0
+      left: 0
+      width: 100%
+      border-bottom-left-radius: 0
+      border-bottom-right-radius: 0
+      min-height: auto
+  .cards
+    &__list
+      max-width: 378px
+      margin-left: auto
+      margin-right: auto
+      &-item
+        padding-left: 22px
+        padding-right: 22px
+        &:after
+          height: 66px
+        &:first-of-type
+          padding-left: 0
+        &:last-of-type
+          padding-right: 0
+        &_1
+          width: 131px
+        &_2
+          width: 141px
+        &_3
+          width: 106px
+          padding-right: 0
+        &_4
+          width: 176px
+          padding-left: 0
+        &_5
+          width: 112px
+      &-num
+        font-size: 35px
+      &-text
+        font-size: 15px
+  .services
+    &__item
+      flex-direction: column
+      --width-img: 100%
+      align-items: flex-start
+      &-left
+        aspect-ratio: 380 / 318
+        height: auto
+        @supports not (aspect-ratio: 1)
+          height: 75.71vw
+      &-right
+        width: 100%
+  .contacts
+    &__block
+      flex-direction: column
+      padding: 0
+    &__left
+      padding: 32px 38px 30px
+    &__right
+      width: 100%
+    &__iframe
+      height: 228px
+      border-radius: 0
+@media screen and (max-width: 768px)
+  .main
+    &__block
+      padding-top: 25px
+      padding-bottom: calc(63px + var(--height-form))
+    &__title
+      font-size: 25px
+      margin-bottom: 15px
+    &__subtitle
+      font-size: 20px
+      margin-bottom: 20px
+    &__list
+      gap: 12px
+      &-item
+        gap: 9px
+      &-svg
+        transform: translateY(4px)
+        display: flex
+        svg
+          width: 14px
+          height: 14px
+      &-title
+        font-size: 16px
+    &__nums
+      font-size: 13px
+    &__form
+      margin-left: -1px
+      margin-right: -1px
+      width: calc(100% + 2px)
+      padding: 25px 20px
+      display: flex
+      align-items: center
+      justify-content: center
+      &-title
+        font-size: 20px
+        margin-bottom: 15px
+      .p-btn
+        width: 100%
+      .thank
+        gap: 12px
+    &__item
+      &_1, &_3
+        .main
+          &__title, &__subtitle
+            max-width: 319px
+          &__list
+            &-item
+              &:nth-child(3)
+                max-width: 276px
+      &_3, &_2
+        .main
+          &__list
+            &-item
+              max-width: 322px
+    &__list
+      max-width: 370px
+  .thank
+    &__title
+      font-size: 25px
+    &__subtitle
+      font-size: 16px
+      max-width: 258px
+    &__close
+      top: 17px
+      right: 20px
+      img
+        width: 13px
+  .cards
+    padding-top: 25px
+    padding-bottom: 0
+    &__item
+      border-radius: 8px
+      height: 162px
+      &-block
+        padding: 14px 13px
+      &-title
+        font-size: 16px
+        max-width: 116px
+      &-btn
+        width: 118px
+        height: 30px
+        border-radius: 5px
+        font-size: 12px
+    &__list
+      padding-top: 35px
+    .swiper
+      &-slide
+        width: 169px
+      &-pagination
+        font-size: 13px
+        margin-left: 5px
+    &__arrows
+      display: none
+  .services
+    padding-top: 49px
+    padding-bottom: 25px
+    &__item
+      &-left,&-right
+        border-radius: 13px
+      &-right
+        padding: 25px 18px
+      &-title
+        font-size: 25px
+        margin-bottom: 15px
+      &-text
+        font-size: 16px
+        margin-bottom: 25px
+      &-btn
+        margin-top: 25px
+        width: 100%
+        height: 46px
+        border-radius: 7px
+      &_1
+        .services
+          &__list
+            &-li
+              &:nth-child(1)
+                .services__list-text
+                  max-width: 263px
+              &:nth-child(3)
+                .services__list-text
+                  max-width: 263px
+              &:nth-child(5)
+                .services__list-text
+                  max-width: 265px
+              &:nth-child(4)
+                .services__list-text
+                  max-width: 226px
+      &_2
+        .services
+          &__list
+            &-li
+              &:nth-child(1)
+                .services__list-text
+                  max-width: 282px
+      &_3
+        .services
+          &__list
+            &-li
+              &:nth-child(1)
+                .services__list-text
+                  max-width: 246px
+              &:nth-child(2)
+                .services__list-text
+                  max-width: 246px
+              &:nth-child(3)
+                .services__list-text
+                  max-width: 246px
+      &_4
+        .services
+          &__list
+            &-li
+              &:nth-child(1)
+                .services__list-text
+                  max-width: 246px
+              &:nth-child(2)
+                .services__list-text
+                  max-width: 246px
+              &:nth-child(3)
+                .services__list-text
+                  max-width: 246px
+              &:nth-child(4)
+                .services__list-text
+                  max-width: 246px
+    &__block
+      gap: 25px
+    &__list
+      gap: 16px
+      &-icon
+        transform: translateY(4px)
+        img
+          width: 14px
+      &-li
+        gap: 9px
+  .contacts
+    &__left
+      width: 100%
+    &__right
+      width: 100%
+    &__up
+      gap: 14px
+      margin-bottom: 30px
+      &-title
+        font-size: 20px
+      &-svg
+        width: 39px
+        height: 39px
+        img
+          width: 15px
+    &__address
+      margin-bottom: 30px
+      &-title
+        margin-bottom: 10px
+        font-size: 25px
+      &-text
+        font-size: 16px
+        max-width: 225px
+    &__block
+      gap: 0
+    &__socials
+      &-block
+        gap: 7px
+      &-item
+        width: 42px
+        height: 42px
+@media screen and (max-width: 390px)
+  .cards
+    &__list
+      &-item
+        width: 157px
+        &:nth-child(2)
+          padding-right: 0
+          &::after
+            opacity: 0
+        &:nth-child(3)
+          padding-right: 20px
+          &::after
+            opacity: 1
+        &:nth-child(4)
+          padding-right: 0
+          padding-left: 20px
+          &::after
+            opacity: 0

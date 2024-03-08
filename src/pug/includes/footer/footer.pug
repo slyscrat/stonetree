@@ -27,6 +27,9 @@ footer.footer
                             a(href="#!").footer__nav-link Продакшн и&nbsp;студия
                         li.footer__nav-li.footer__nav-li_4
                             a(href="#!").footer__nav-link Карьера в&nbsp;STONETREE
+                .footer__links
+                    a(href="#!").footer__link Политика конфиденциальности
+                    a(href="#!").footer__link Условия пользования
 .modal.modal_center.modal_with-thank.modal__cons1
     .modal_with-thank__content
     .modal__content
@@ -147,3 +150,47 @@ footer.footer
                         span.p-form__check-title Я даю cогласие на обработку персональных данных в&nbsp;соответствии с&nbsp;<a href="#!">Политикой конфиденциальности</a>
                 .p-form__input
                     +btnSubmit('Отправить', ' p-form__btn')
+.modal.modal__menu
+    .modal__content
+        button(type="button").modal__close
+            +picture('img/modal/close_menu.png', 'img/modal/close_menu', true, '', 19, 19, '', '', '')
+        ul.modal__menu-list
+            li.modal__menu-li
+                a(href="#!").modal__menu-link Арендовать
+            li.modal__menu__list-li
+                a(href="#!").modal__menu-link Купить
+            li.modal__menu__list-li
+                a(href="#!").modal__menu-link Управление
+            li.modal__menu__list-li
+                a(href="#!").modal__menu-link Интерьер | Дизайн
+            li.modal__menu__list-li
+                a(href="#!").modal__menu-link Юридические услуги
+            li.modal__menu__list-li
+                a(href="#!").modal__menu-link Партнерская программа
+            li.modal__menu__list-li
+                a(href="#!").modal__menu-link Продакшн студия
+        .contacts__socials-block
+            a(href="#!").contacts__socials-item
+                +picture('img/main/contacts/instagram.png', 'img/main/contacts/instagram',
+                    true, '', 17, 17, '', '', ''
+                )
+            a(href="#!").contacts__socials-item
+                +picture('img/main/contacts/in.png', 'img/main/contacts/in',
+                    true, '', 20, 20, '', '', ''
+                )
+            a(href="#!").contacts__socials-item
+                +picture('img/main/contacts/youtube.png', 'img/main/contacts/youtube',
+                    true, '', 22, 22, '', '', ''
+                )
+            a(href="#!").contacts__socials-item
+                +picture('img/main/contacts/telegram.png', 'img/main/contacts/telegram',
+                    true, '', 17, 17, '', '', ''
+                )
+            a(href="#!").contacts__socials-item
+                +picture('img/main/contacts/tiktok.png', 'img/main/contacts/tiktok',
+                    true, '', 19, 19, '', '', ''
+                )
+            a(href="#!").contacts__socials-item
+                +picture('img/main/contacts/vc.png', 'img/main/contacts/vc',
+                    true, '', 20, 18, '', '', ''
+                )

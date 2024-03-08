@@ -7,13 +7,20 @@
   z-index: 60
   &.fixed
     position: fixed
-    padding-top: 0
+    top: -95px
+    left: 0
+    right: 0
+    z-index: 80
+    transform: translateY(70px)
+    transition: transform 500ms ease, background 500ms ease
     .header
       &__block
         border-radius: 0 0 15px 15px
   &__block, &__center, &__nav, &__langs, &__list ul, &__lang, &__list-show, &__logo, &__logo
     display: flex
     align-items: center
+  &__menu
+    display: none
   &__block
     padding: 20px 95px
     justify-content: space-between

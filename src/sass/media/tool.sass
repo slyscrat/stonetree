@@ -1,10 +1,206 @@
-@media screen and (max-width: 1200px)
-  [class*="flex-ord"]
-    order: inherit
+@media screen and (max-width: 1380px)
   .container
-    padding-left: 15px
-    padding-right: 15px
+    padding-left: 20px
+    padding-right: 20px
   .header
-    padding-top: 24px
+    padding-top: 0
+    &.fixed
+      top: -72px
+      .header
+        &__block
+          border-radius: 0
+    .container
+      padding-left: 0
+      padding-right: 0
+    &__block
+      padding-left: 20px
+      padding-right: 20px
+      border-radius: 0
     &__list
+      ul
+        gap: 3.1770833333333335vw
+    &__nav
+      gap: 3.0208333333333335vw
+  .footer
+    &__nav
+      &-li
+        width: calc(100% / 2 - 93px / 2)
+@media screen and (max-width: 1140px)
+  .header
+    &_-block
+      position: relative
+    &__nav
       display: none
+    &__menu
+      display: block
+    &__center
+      order: 3
+    &__logo
+      order: 2
+      position: absolute
+      top: 50%
+      left: 50%
+      transform: translate(-50%, -50%)
+    &__right
+      order: 1
+  .footer
+    &__block
+      flex-direction: column
+      padding: 30px 38px 68px
+      gap: 36px
+    &__left, &__right
+      width: 100%
+    &__links
+      display: none
+    &__right
+      .footer
+        &__links
+          display: flex
+          flex-direction: column
+          gap: 18px
+          margin-top: 30px
+          padding-top: 25px
+          border-top: 0.5px solid #686868
+@media screen and (max-width: 768px)
+  body
+    font-size: 16px
+  .header
+    &__block
+      padding: 17px 20px
+    &__langs
+      padding: 1px 3px
+      gap: 4px
+    &__lang
+      font-size: 14px
+      width: 27px
+      height: 27px
+      &.active
+        padding: 4px
+    &__logo
+      img
+        width: 133px
+    &__menu
+      transform: translateY(1px)
+  .p
+    &-form
+      &__inputs
+        gap: 10px
+      &__input
+        :is(input[type=text],input[type=tel])
+          padding: 14px 19px
+      &__check
+        margin-top: 0
+        align-items: flex-start
+        &-square
+          transform: translateY(3px)
+          width: 16px
+          height: 16px
+        &-title
+          font-size: 14px
+    &-inter
+      &-tel
+        &__input
+          padding: 14px 19px
+          input[type=tel]
+            padding: 0
+    &-select
+      &__btn
+        padding: 14px 19px
+    &-btn
+      height: 44px
+      border-radius: 8px
+      font-size: 14px
+  .footer
+    &__logo
+      margin-bottom: 0
+      img
+        width: 220px
+    &__nav
+      &-list
+        gap: 25px 61px
+      &-li
+        width: calc(100% / 2 - 61px / 2)
+    &__link
+      font-size: 14px
+      text-underline-offset: 2px
+  .modal
+    &_center
+      display: block
+      padding-left: 20px
+      padding-right: 20px
+    &_with
+      &-thank
+        .thank
+          max-width: 381px
+          border-radius: 13px
+          margin-left: auto
+          margin-right: auto
+          margin-top: 137px
+          padding: 39px 64px 44px
+          --width-img: 59px
+          &__title
+            font-size: 25px
+        .modal
+          &__close
+            top: 27px
+            right: 19px
+            img
+              width: 19px
+          &__content
+            padding: 25px 18px 30px
+            border-radius: 13px
+            max-width: 380px
+            width: 100%
+            margin-top: 137px
+    &__form
+      &-title
+        font-size: 25px
+        max-width: 318px
+      &-subtitle
+        font-size: 16px
+      &-title, &-subtitle
+        margin-right: auto
+        margin-left: auto
+      .p-inter
+        &-tel
+          &__input
+            &-prefix
+              font-size: 14px
+      .p-form
+        &__input
+          :is(input,.p-inter-tel__input)
+            padding: 16px 22px
+            font-size: 14px
+        &__check
+          margin-bottom: 10px
+          &-title
+            font-size: 11px
+            max-width: 279px
+        &__inputs
+          gap: 10px
+        &__btn
+          font-size: 12px
+@media screen and (max-width: 420px)
+  .modal
+    &__menu
+      .modal__content
+          max-width: 277px
+@media screen and (max-width: 390px)
+  .footer
+    &__nav
+      &-list
+        column-gap: 35px
+      &-li
+        width: calc(50% - 17.5px)
+        font-size: 14px
+  .modal
+    &__form
+      &-title
+        font-size: 22px
+      &-subtitle
+        font-size: 14px
+      .p-form
+        &__input
+          :is(.p-inter-tel__input)
+            padding-top: 14px
+            padding-bottom: 14px

@@ -4,8 +4,8 @@
   &.fixed
     padding-top: 90px
   &__block
-    padding: 52px 95px 60px
-    min-height: 636px
+    padding: 52px 95px 90px
+    height: 100%
     position: relative
     border-radius: 14px
     overflow: hidden
@@ -21,6 +21,9 @@
         width: 100%
         height: 100%
         object-fit: cover
+      picture
+        &:nth-child(2)
+          display: block
   &__item
     z-index: 2
     max-width: 660px
@@ -67,19 +70,14 @@
   &__form
     width: 477px
     border-radius: 13px
-    box-shadow: inset -32px 32px 32px 0 rgba(255, 255, 255, 0.01), inset 32px -32px 32px 0 rgba(13, 13, 13, 0.01)
-    background: rgba(17, 17, 17, 0.01)
-    top: 52px
-    right: 95px
     padding: 38px 24px 37px 34px
-    will-change: backdrop-filter
-    position: absolute
     color: var(--white)
     z-index: 10
     border: 1px solid rgba(255, 255, 255, 0.3)
-    backdrop-filter: blur(128.87600708007812px)
-    transform: translate3d(0, 0, 0)
-    height: 545px
+    background: linear-gradient(159deg, rgba(74, 74, 74, 0.94) 0%, rgba(106, 106, 106, 0.94) 39.72%, rgba(74, 74, 74, 0.94) 100%)
+    min-height: 545px
+    position: relative
+    margin-left: auto
     .thank
       --width-img: 74px
       &__close
@@ -93,10 +91,17 @@
     .p-btn
       font-weight: 600
   &__swiper
+    padding: 52px 96px 55px
     position: relative
+    .swiper
+      width: 100%
+      height: 100%
+      position: absolute
+      top: 0
+      left: 0
     &-pagination
       left: 95px
-      bottom: 35px
+      bottom: 55px
       gap: 7px
       z-index: 1
       display: flex

@@ -9,6 +9,28 @@ document.addEventListener("DOMContentLoaded", () => {
             return data;
         });
 
+    function resize(){
+        if (window.innerWidth < 1140){
+            const mains = document.querySelectorAll('.main');
+            if (mains[0]) {
+                mains.forEach((main) => {
+                    const form = main.querySelector('.main__form');
+                    if (window.innerWidth < 1140) {
+                        form.style.minHeight = form.scrollHeight + 'px';
+                        main.style.setProperty('--height-form', `${form.scrollHeight}px`);
+                    } else {
+                        main.style.removeProperty('--height-form');
+                        form.style.minHeight = '';
+                    }
+                })
+            }
+        }
+    }
+    resize();
+    window.addEventListener('resize', ()=>{
+        resize();
+    })
+
     window.addEventListener('scroll', ()=>{
         if (window.scrollY > 200){
             header.classList.add('fixed')
@@ -18,6 +40,8 @@ document.addEventListener("DOMContentLoaded", () => {
             main.classList.remove('fixed');
         }
     })
+
+
     let _countries = pPhones;
     function getOptionByCode(slug){
         return _countries.find(country => country.countryCode.toLowerCase() === slug)
@@ -28,11 +52,17 @@ document.addEventListener("DOMContentLoaded", () => {
         mains.forEach((main) => {
             const _swiperElement = main.querySelector('.swiper');
             const _swiperPagination = main.querySelector(".swiper-pagination");
+            new IntersectionObserver((entries, observer) => {
+                if (entries[0].isIntersecting) {
+                    _swiper.autoplay.resume()
+                } else {
+                    _swiper.autoplay.pause()
+                }
+            }).observe(_swiperElement)
+
             const _swiper = new Swiper(_swiperElement, {
                 speed: _swiperElement.dataset.speed,
                 spaceBetween: 10,
-                loop: true,
-                oneWayMovement: true,
                 autoplay: {
                     delay: _swiperElement.dataset.autoplay,
                     disableOnInteraction: false
@@ -41,12 +71,16 @@ document.addEventListener("DOMContentLoaded", () => {
                     el: _swiperPagination,
                     clickable: true,
                 },
+                loop: true,
+                rewind: true,
                 breakpoints: {
                     320: {
                         allowTouchMove: true,
+                        autoHeight: 'auto',
                     },
                     1200: {
                         allowTouchMove: false,
+                        autoHeight: false,
                     }
                 },
                 on: {
@@ -59,6 +93,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     }
                 }
             });
+            _swiper.autoplay.pause();
         })
     }
 
@@ -144,7 +179,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
                     slug.value = code;
                     number.value = num;
-                    prefix.textContent = num;
+                    prefix.textContent = `+${num}`;
                     buttonFlag.className = `fi fi-${code}`;
                     input.value = '';
                     _mask.masked.reset();
@@ -192,7 +227,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     buttonFlag.className = `fi fi-${option.dataset.code}`;
                     input._mask = _mask;
                     tel_number.value = `${activeOptionToJson.phoneCode}`;
-                    prefix.textContent = `${activeOptionToJson.phoneCode}`;
+                    prefix.textContent = `+${activeOptionToJson.phoneCode}`;
                     _mask.masked.reset();
                     _mask.updateOptions({
                         mask: activeOptionToJson.phoneMask,
@@ -235,8 +270,10 @@ document.addEventListener("DOMContentLoaded", () => {
                 breakpoints: {
                     320: {
                         allowTouchMove: true,
+                        spaceBetween: 5,
                     },
-                    1200: {
+                    768: {
+                        spaceBetween: 15,
                         allowTouchMove: false,
                     }
                 },
