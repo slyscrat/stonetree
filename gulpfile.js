@@ -125,17 +125,17 @@ function scriptsMain() {
         'src/js/main.js',
     ])
         .pipe(concat('script.min.js'))
-        .pipe(babel({
-            presets: [
-                [
-                    "@babel/preset-env",
-                    {
-                        "useBuiltIns": "entry",
-                        "corejs": "3.22"
-                    }
-                ]
-            ]
-        }))
+        // .pipe(babel({
+        //     presets: [
+        //         [
+        //             "@babel/preset-env",
+        //             {
+        //                 "useBuiltIns": "entry",
+        //                 "corejs": "3.22"
+        //             }
+        //         ]
+        //     ]
+        // }))
         // .pipe(uglify())
         .pipe(dest('app/js/'))
         .pipe(browserSync.stream())
