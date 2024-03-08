@@ -92,31 +92,33 @@ function browsersync() {
 function scripts() {
     return src([
         'node_modules/vanilla-lazyload/dist/lazyload.min.js',
+        'node_modules/imask/dist/imask.min.js',
+        'modules/swiper-master/dist/swiper-bundle.js',
         // 'node_modules/imask/dist/imask.js',
         // 'node_modules/split-type/dist/index.js',
         // 'node_modules/gsap/dist/gsap.min.js',
         // 'node_modules/gsap/dist/ScrollTrigger.min.js',
     ])
-        .pipe(babel({
-            presets: [
-                [
-                    "@babel/preset-env",
-                    {
-                        "useBuiltIns": "entry",
-                        "corejs": "3.22"
-                    }
-                ]
-            ]
-        }))
-        .pipe(uglify({toplevel: true}))
+        // .pipe(babel({
+        //     presets: [
+        //         [
+        //             "@babel/preset-env",
+        //             {
+        //                 "useBuiltIns": "entry",
+        //                 "corejs": "3.22"
+        //             }
+        //         ]
+        //     ]
+        // }))
+        .pipe(uglify())
         .pipe(dest('app/js/'))
         .pipe(browserSync.stream())
 }
 
 function scriptsMain() {
     return src([
-        'node_modules/imask/dist/imask.min.js',
-        'modules/swiper-master/dist/swiper-bundle.min.js',
+        // 'node_modules/imask/dist/imask.min.js',
+        // 'modules/swiper-master/dist/swiper-bundle.min.js',
         // 'node_modules/split-type/dist/index.js',
         // 'node_modules/gsap/dist/gsap.min.js',
         // 'node_modules/gsap/dist/ScrollTrigger.min.js',

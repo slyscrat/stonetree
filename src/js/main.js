@@ -1,6 +1,8 @@
 document.addEventListener("DOMContentLoaded", () => {
     const header = document.querySelector('.header');
     const main = document.querySelector('.main');
+
+    // Получаем местоположение по https://ipapi.co/json
     const ipapi = fetch('https://ipapi.co/json', {
         method: 'GET',
     })
@@ -9,8 +11,12 @@ document.addEventListener("DOMContentLoaded", () => {
             return data;
         });
 
+
+    // Ресайз страницы, если ширина экрана меньше 1140
     function resize(){
         if (window.innerWidth < 1140){
+
+            // Нужно в телефоне при разной размере экрана дать отступ для слайдера, чтобы поместилась форма
             const mains = document.querySelectorAll('.main');
             if (mains[0]) {
                 mains.forEach((main) => {
@@ -31,7 +37,10 @@ document.addEventListener("DOMContentLoaded", () => {
         resize();
     })
 
+    // Слежение за скролл страницы
     window.addEventListener('scroll', ()=>{
+
+        // Если больше 200 пикселей страница, показываем шапку
         if (window.scrollY > 200){
             header.classList.add('fixed')
             main.classList.add('fixed')
@@ -42,16 +51,20 @@ document.addEventListener("DOMContentLoaded", () => {
     })
 
 
+
     let _countries = pPhones;
     function getOptionByCode(slug){
         return _countries.find(country => country.countryCode.toLowerCase() === slug)
     }
 
+    // Главный экран - слайдер Swiper, документация https://swiperjs.com/swiper-api
     const mains = document.querySelectorAll('.main');
     if (mains[0]) {
         mains.forEach((main) => {
             const _swiperElement = main.querySelector('.swiper');
             const _swiperPagination = main.querySelector(".swiper-pagination");
+
+            // Следим за видимостью экрана, если видно запускаем автоплей слайдера иначе отключаем
             new IntersectionObserver((entries, observer) => {
                 if (entries[0].isIntersecting) {
                     _swiper.autoplay.resume()
@@ -85,15 +98,17 @@ document.addEventListener("DOMContentLoaded", () => {
                 },
                 on: {
                     afterInit: function (swiper) {
-                        _swiperPagination.style.setProperty('--count', swiper.pagination.bullets.length);
-                        main.querySelector('.main__nums-end').textContent = swiper.pagination.bullets.length < 10 ? '0' + swiper.pagination.bullets.length : swiper.pagination.bullets.length;
+                        _swiperPagination.style.setProperty('--count', swiper.pagination.bullets.length); // Передаем количество пагинаций
+                        main.querySelector('.main__nums-end').textContent = swiper.pagination.bullets.length < 10 ? '0' + swiper.pagination.bullets.length : swiper.pagination.bullets.length; // Общее количество слайдов
                     },
                     slideChange: function (swiper) {
-                        main.querySelector('.main__nums-start').textContent = swiper.realIndex + 1 < 10 ? '0' + (swiper.realIndex + 1) : swiper.realIndex + 1;
+                        main.querySelector('.main__nums-start').textContent = swiper.realIndex + 1 < 10 ? '0' + (swiper.realIndex + 1) : swiper.realIndex + 1;  // Показывает число нужного слайда
                     }
                 }
             });
-            _swiper.autoplay.pause();
+
+
+            _swiper.autoplay.pause(); // Отключаем автоплей. Стоит слежение за видимостью экрана по необходимости запустит
         })
     }
 
@@ -204,14 +219,15 @@ document.addEventListener("DOMContentLoaded", () => {
         })
     }
 
-
+    // Получаем местоположение, проверяем если нужно учитывать местоположение и перебираем международный список телефонов, вставляется нужные данные
     ipapi.then((data) => {
         let slug = data.country_code.toLowerCase();
         interTels.forEach((interTel) => {
-            const tel_number = interTel.querySelector('input[name="tel_number"]');
-            const statusIp = interTel.querySelector('input[name="ip_status"]');
+            const tel_number = interTel.querySelector('input[name="tel_number"]') // Код номера
+            const statusIp = interTel.querySelector('input[name="ip_status"]'); // Статус местоположение
             if (statusIp.value === 'true'){
-                interTel.querySelector('input[name="tel_slug"]').value = slug;
+                interTel.querySelector('input[name="tel_slug"]').value = slug; // Код страны
+
                 const options = interTel.querySelector('.p-inter-tel__options');
                 const optionsUl = options.querySelector('ul');
                 const input = interTel.querySelector('.p-inter-tel__input-item input[type="tel"]');
@@ -238,6 +254,7 @@ document.addEventListener("DOMContentLoaded", () => {
         })
     });
 
+    // Список карточек - слайдер Swiper, документация https://swiperjs.com/swiper-api
     const cards = document.querySelectorAll('.cards');
     if (cards[0]) {
         cards.forEach((card) => {
@@ -281,30 +298,35 @@ document.addEventListener("DOMContentLoaded", () => {
         })
     }
 
+    // Кастомный select
     const pSelects = document.querySelectorAll('.p-select');
     if (pSelects[0]){
         pSelects.forEach((pSelect)=>{
             const input = pSelect.querySelector('.p-select__input');
             const btn = pSelect.querySelector('.p-select__btn');
-            const current = btn.querySelector('.p-select__current');
-            const options = pSelect.querySelectorAll('.p-select__options .p-select__option');
+            const current = btn.querySelector('.p-select__current'); // Выбранная опция
+            const options = pSelect.querySelectorAll('.p-select__options .p-select__option'); // Список опций
 
+            // Показываем список опции при клике
             btn.addEventListener('click', ()=>{
                 pSelect.classList.toggle('active');
             })
 
+            // Перебор опций и добавляем событие клика
             options.forEach((option)=>{
                 option.addEventListener('click', ()=>{
+
                     input.value = option.textContent;
                     current.textContent = option.textContent;
+
                     pSelect.classList.remove('active');
-                    btn.classList.add('active');
+                    btn.classList.add('active'); // Выделяем активную опцию - меняется цвет серого на нужный по классу
                 })
             })
         })
     }
 
-
+    // Плавная прокрутка ссылок по якорю через #id
     const anchors = document.querySelectorAll('a[href*="#"]')
     for (let anchor of anchors) {
         anchor.addEventListener('click', function (e) {
@@ -407,6 +429,7 @@ document.addEventListener("DOMContentLoaded", () => {
         })
     }
 
+    // Шаблон верстка Cпасибо
     function thankYouOutput(){
         const element = document.createElement('div');
         element.className = 'thank';
@@ -420,7 +443,7 @@ document.addEventListener("DOMContentLoaded", () => {
           <div class="thank__img">
                 <picture>
                   <source type="image/webp" srcset="#" data-srcset="img/modal/verified.webp">
-                  <img class="lazy " width="84" height="84" src="#" data-src="img/modal/verified.png" alt="" loading="lazy">
+                  <img class="lazy" width="84" height="84" src="#" data-src="img/modal/verified.png" alt="" loading="lazy">
                 </picture>
           </div>
           <div class="thank__title">Спасибо за отправку!</div>
@@ -430,24 +453,24 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
 
-
+    // Сброс event
     function resetEvent(e) {
         e.preventDefault();
         e.stopPropagation();
     }
-
+    // Показываем модальное окно по классу active, передаем элемент
     function addModal(element) {
         element.classList.add("active");
     }
-
+    // Скрываем модальное окно по классу active, передаем элемент
     function removeModal(element) {
         element.classList.remove("active");
     }
-
+    // Всплывающее окно
     class PovlyModal {
         constructor() {
-            this.allModals();
-            this.allModalShows();
+            this.allModals(); // Получаем все элементы и добавляем события
+            this.allModalShows(); // Получаем все кнопки с классом modal__show и открывает по клику окно по (data-modal="id"), где id - название модалки. Например modal__test, test - это id
         }
 
         allModals() {
