@@ -11,25 +11,74 @@ document.addEventListener("DOMContentLoaded", () => {
             return data;
         });
 
+    // Получаем список масок телефона phones.json
+    const phones = fetch('phones.json')
+        .then((res => res.json()))
+        .then((data)=>{
+            return data;
+        });
+
+    // Получаем список телефонов phone-codes.json - страна, код и маска
+    const phone_codes = fetch('phone-codes.json')
+        .then((res => res.json()))
+        .then((data)=>{
+            return data;
+        });
+
+
+    function _addListInternalObjectAndCode(codes, objects, code, data){
+        if (codes.includes(code)){
+            // Если имеется такой код страны, добавляем маску
+            objects[codes.length-1].mask.push(data.mask);
+        } else {
+            codes.push(code); // Добавляем код страны
+            objects.push({ // Добавляем обьект с кодом, массив и язык
+                mask: [data.mask],
+                langsIndex: ['ru', 'en'],
+                startWith: data.startWith,
+                langs: [
+                    {
+                        name: data['name_ru']
+                    },
+                    {
+                        name: data['name_en']
+                    }
+                ]
+            });
+        }
+    }
+
+    // Перебираем список phone-codes.json
+    const _listInternalObjects = []; // Список объектов с масками
+    const _listInternalCodes = []; // Список кодов стран. Здесь можно проверять индекс и получить в списке объектов
+    phone_codes.then((results)=>{
+        results.forEach((data)=>{
+            if (Array.isArray(data.cc)){
+                data.cc.forEach((code)=>{
+                    _addListInternalObjectAndCode(_listInternalCodes, _listInternalObjects, code, data);
+                })
+            } else {
+                _addListInternalObjectAndCode(_listInternalCodes, _listInternalObjects, data.cc, data);
+            }
+        })
+    })
+
 
     // Ресайз страницы, если ширина экрана меньше 1140
     function resize(){
-        if (window.innerWidth < 1140){
-
-            // Нужно в телефоне при разной размере экрана дать отступ для слайдера, чтобы поместилась форма
-            const mains = document.querySelectorAll('.main');
-            if (mains[0]) {
-                mains.forEach((main) => {
-                    const form = main.querySelector('.main__form');
-                    if (window.innerWidth < 1140) {
-                        form.style.minHeight = form.scrollHeight + 'px';
-                        main.style.setProperty('--height-form', `${form.scrollHeight}px`);
-                    } else {
-                        main.style.removeProperty('--height-form');
-                        form.style.minHeight = '';
-                    }
-                })
-            }
+        // Нужно в телефоне при разной размере экрана дать отступ для слайдера, чтобы поместилась форма
+        const mains = document.querySelectorAll('.main');
+        if (mains[0]) {
+            mains.forEach((main) => {
+                const form = main.querySelector('.main__form');
+                if (window.innerWidth < 1140) {
+                    form.style.minHeight = form.scrollHeight + 'px';
+                    main.style.setProperty('--height-form', `${form.scrollHeight}px`);
+                } else {
+                    main.style.removeProperty('--height-form');
+                    form.style.minHeight = '';
+                }
+            })
         }
     }
     resize();
@@ -52,10 +101,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 
-    let _countries = pPhones;
-    function getOptionByCode(slug){
-        return _countries.find(country => country.countryCode.toLowerCase() === slug)
-    }
 
     // Главный экран - слайдер Swiper, документация https://swiperjs.com/swiper-api
     const mains = document.querySelectorAll('.main');
@@ -114,22 +159,44 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const interTels = document.querySelectorAll('.p-inter-tel');
     if (interTels[0]) {
+        // Маска, перебираем, создаем объект и внедряем в Imask. Дока https://imask.js.org
+        function getMaskArray(object){
+
+            const maskArray = [];
+            object.mask.forEach((mask)=>{
+                maskArray.push({
+                    mask: mask.replace(/#/g, '0'),
+                    lazy: false,
+                    overwrite: true,
+                });
+            })
+            return maskArray;
+        }
         interTels.forEach((interTel) => {
-            const lang = interTel.querySelector('input[name="tel_lang"]');
-            const slug = interTel.querySelector('input[name="tel_slug"]');
-            const langUpper = lang.value.charAt(0).toUpperCase() + lang.value.slice(1);
+            const lang = interTel.querySelector('input[name="tel_lang"]'); // язык
+            const slug = interTel.querySelector('input[name="tel_slug"]'); // код страны
 
-            const number = interTel.querySelector('input[name="tel_number"]');
-            const prefix = interTel.querySelector('.p-inter-tel__input-item span');
-            const input = interTel.querySelector('.p-inter-tel__input-item input[type="tel"]');
+            const input = interTel.querySelector('.p-inter-tel__input-item input[type="tel"]'); // Само поле телефона
 
-            const button = interTel.querySelector('.p-inter-tel__select-block');
-            const buttonFlag = button.querySelector('.fi');
+            const button = interTel.querySelector('.p-inter-tel__select-block'); // Кнопка
+            const buttonFlag = button.querySelector('.fi'); // Флаг
 
-            const options = interTel.querySelector('.p-inter-tel__options');
-            const optionsUl = options.querySelector('ul');
-            const optionsSearch = options.querySelector('input');
+            const options = interTel.querySelector('.p-inter-tel__options'); // Блок опций
+            const optionsUl = options.querySelector('ul'); // Список, где будем добавлять опции
+            const optionsSearch = options.querySelector('input'); // Поиск
 
+            // Шаблон опций
+            function outputOption(mask, code, name, classes) {
+                return optionOutput = `
+                    <li class="p-inter-tel__option ${classes}" data-code="${code}" data-name="${name}">
+                      <div class="fi fi-${code.toLowerCase()}"></div>
+                      <div class="p-inter-tel__option-name">${name}</div>
+                      <div class="p-inter-tel__option-num">${mask.replace(/[{}()#-]/g, '')}</div>
+                    </li>
+                `;
+            }
+
+            // Сброс поиска и убираем класс hidden
             function resetQuery() {
                 _options.forEach((option) => {
                     option.classList.remove('hidden');
@@ -137,122 +204,103 @@ document.addEventListener("DOMContentLoaded", () => {
                 })
             }
 
-
+            // Показываем список опции при клике
             button.addEventListener('click', () => {
                 if (interTel.classList.contains('active')) {
                     resetQuery();
                 }
-
                 interTel.classList.toggle('active');
             })
 
-            let _options = null;
-            let _mask = IMask(input, {
-                mask: input.placeholder,
-                lazy: false,
-            });
-            input._mask = _mask;
+            let _options = null; // Список опций
 
-            const activeOptionToJson = getOptionByCode(slug.value);
+            // Перебираем список кодов _listInternalCodes, получаем по индексу обьект _listInternalObjects[index]
+            phone_codes.then(()=>{
+                _listInternalCodes.forEach((code, index)=>{
+                    let currentObject = _listInternalObjects[index]; // Обьект
+                    let currentObjectLang = currentObject.langs[currentObject.langsIndex.indexOf(lang.value)]; // Получаем название по языку
+                    let optionClasses = ''; // Класс
 
-            number.value = `+${activeOptionToJson.phoneCode}`;
-            prefix.textContent = `+${activeOptionToJson.phoneCode}`;
-            buttonFlag.className = `fi fi-${activeOptionToJson.countryCode.toLowerCase()}`;
-            lang.value = `${activeOptionToJson.countryCode.toLowerCase()}`;
-            input.placeholder = '';
-            input.value = '';
-            _mask.masked.reset();
-            _mask.updateOptions({
-                mask: activeOptionToJson.phoneMask,
-            });
-
-            _countries.forEach((country) => {
-                const classes = slug.value === country.countryCode.toLowerCase() ? 'active' : '';
-                const optionOutput = `
-                    <li class="p-inter-tel__option ${classes}" data-country="${country['name' + langUpper]}" data-code="${country.countryCode.toLowerCase()}">
-                      <div class="fi fi-${country.countryCode.toLowerCase()}"></div>
-                      <div class="p-inter-tel__option-name">${country['name' + langUpper]}</div>
-                      <div class="p-inter-tel__option-num">+${country.phoneCode}</div>
-                    </li>
-                `;
-                optionsUl.insertAdjacentHTML('beforeend', optionOutput);
-            });
-            _options = optionsUl.querySelectorAll('.p-inter-tel__option');
-
-            _options.forEach((option) => {
-                option.addEventListener('click', () => {
-                    const code = option.dataset.code;
-                    const activeOptionToJson = getOptionByCode(option.dataset.code);
-                    const num = activeOptionToJson.phoneCode;
-                    const mask = activeOptionToJson.phoneMask;
-                    console.log(mask);
-
-                    const activeOption = optionsUl.querySelector('.p-inter-tel__option.active');
-                    if (activeOption) {
-                        activeOption.classList.remove('active');
+                    if (slug.value === code.toLowerCase()){ // Проверяем совпадение кода страны и ставим по умолчанию
+                        optionClasses = 'active';
+                        const maskArray = getMaskArray(currentObject); // Получаем массив масок
+                        buttonFlag.className = `fi fi-${code.toLowerCase()}`; // Фиксируем флаг по коду
+                        input.p_imask = IMask(input, { // Внедряем маску
+                            mask: maskArray,
+                            lazy: false,
+                            overwrite: true,
+                        });
                     }
 
-                    slug.value = code;
-                    number.value = num;
-                    prefix.textContent = `+${num}`;
-                    buttonFlag.className = `fi fi-${code}`;
-                    input.value = '';
-                    _mask.masked.reset();
-                    _mask.updateOptions({
-                        mask: mask,
-                        lazy: false,
-                    });
-                    input.focus();
-                    option.classList.add('active');
-                    interTel.classList.remove('active');
-                    resetQuery();
+                    const option = outputOption(currentObject.mask[0], code, currentObjectLang.name, optionClasses); // Получаем шаблон, готовую опцию для добавления
+                    optionsUl.insertAdjacentHTML('beforeend', option); // Добавляем опцию в список
+                })
+
+                // Получаем все опции и создаем событие клика
+                _options = optionsUl.querySelectorAll('.p-inter-tel__option');
+                _options.forEach((_option)=>{
+                    _option.addEventListener('click', ()=>{
+                        const code = _option.dataset.code;
+                        const activeOption = optionsUl.querySelector('.p-inter-tel__option.active');
+                        if (activeOption) { // Убираем активную опцию
+                            activeOption.classList.remove('active');
+                        }
+
+                        const currentObject = _listInternalObjects[_listInternalCodes.indexOf(code)]; // Текущий обьект
+                        const maskArray = getMaskArray(currentObject); // Получаем массив масок
+
+                        input.value = ''; // Сброс значения
+                        input.p_imask.masked.reset(); // Сброс масок
+                        input.p_imask.updateOptions({ // Обновляем маску
+                            mask: maskArray,
+                            lazy: false,
+                        });
+                        slug.value = code; // Обновляем код
+                        buttonFlag.className = `fi fi-${code.toLowerCase()}`; // Обновляем флаг
+                        input.focus(); // Фокусируем поле
+                        _option.classList.add('active');
+                        interTel.classList.remove('active');
+                        resetQuery();
+                    })
                 })
             })
 
-            optionsSearch.addEventListener('input', () => {
-                let search_query = optionsSearch.value.toLowerCase();
-                _options.forEach((option) => {
-                    let is_matched = option.dataset.country.toLowerCase().includes(search_query);
+            optionsSearch.addEventListener('input', ()=>{
+                let search_query = optionsSearch.value.toLowerCase(); // Получаем значение поиска
+                _options.forEach((option) => { // Перебираем все опции
+                    let is_matched = option.dataset.name.toLowerCase().includes(search_query); // Проверяем совпадение слов, букв и возвращает булевое значение
                     is_matched ? option.classList.remove('hidden') : option.classList.add('hidden');
                 })
             })
         })
     }
 
-    // Получаем местоположение, проверяем если нужно учитывать местоположение и перебираем международный список телефонов, вставляется нужные данные
-    ipapi.then((data) => {
-        let slug = data.country_code.toLowerCase();
+    // Promise. Ожидаем что загрузились список кодов и местоположения через fetch
+    // results[0] - phone_codes, results[1] - ipapi
+    // Можем использовать _listInternalObjects где отфильтровали phone_codes и _listInternalCodes. А мы их получаем после полной загрузки, обработки
+    Promise.all([phone_codes, ipapi]).then((results)=>{
+        const slug = results[1].country_code; // Получаем код страны по местоположению
         interTels.forEach((interTel) => {
-            const tel_number = interTel.querySelector('input[name="tel_number"]') // Код номера
-            const statusIp = interTel.querySelector('input[name="ip_status"]'); // Статус местоположение
+            const statusIp = interTel.querySelector('input[name="ip_status"]'); // Статус, если true - то обновляем все функционалы международного телефона (custom select)
             if (statusIp.value === 'true'){
-                interTel.querySelector('input[name="tel_slug"]').value = slug; // Код страны
-
-                const options = interTel.querySelector('.p-inter-tel__options');
-                const optionsUl = options.querySelector('ul');
+                interTel.querySelector('input[name="tel_slug"]').value = slug.toLowerCase(); // Обновляем код страны
+                let currentObject = _listInternalObjects[_listInternalCodes.indexOf(slug)];
+                const maskArray = getMaskArray(currentObject);
                 const input = interTel.querySelector('.p-inter-tel__input-item input[type="tel"]');
-                const _mask = input._mask;
-                const button = interTel.querySelector('.p-inter-tel__select-block');
-                const buttonFlag = button.querySelector('.fi');
-                const prefix = interTel.querySelector('.p-inter-tel__input-item span');
-                const option = optionsUl.querySelector('.p-inter-tel__option[data-code="'+slug+'"]');
-                const activeOptionToJson = getOptionByCode(slug);
-                if (option){
-                    option.classList.add('active');
-                    input.value = '';
-                    buttonFlag.className = `fi fi-${option.dataset.code}`;
-                    input._mask = _mask;
-                    tel_number.value = `${activeOptionToJson.phoneCode}`;
-                    prefix.textContent = `+${activeOptionToJson.phoneCode}`;
-                    _mask.masked.reset();
-                    _mask.updateOptions({
-                        mask: activeOptionToJson.phoneMask,
-                        lazy: false,
-                    });
-                }
+
+                input.value = ''; // Сброс значения
+                input.p_imask.masked.reset(); // Сброс масок
+                input.p_imask.updateOptions({ // Обновляем маску
+                    mask: maskArray,
+                    lazy: false,
+                });
+
+                const button = interTel.querySelector('.p-inter-tel__select-block'); // Кнопка
+                const buttonFlag = button.querySelector('.fi'); // Флаг
+                buttonFlag.className = `fi fi-${slug.toLowerCase()}`;
             }
         })
-    });
+    })
 
     // Список карточек - слайдер Swiper, документация https://swiperjs.com/swiper-api
     const cards = document.querySelectorAll('.cards');

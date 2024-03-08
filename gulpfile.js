@@ -122,20 +122,10 @@ function scriptsMain() {
         // 'node_modules/split-type/dist/index.js',
         // 'node_modules/gsap/dist/gsap.min.js',
         // 'node_modules/gsap/dist/ScrollTrigger.min.js',
+        // 'node_modules/axios/dist/axios.js',
         'src/js/main.js',
     ])
         .pipe(concat('script.min.js'))
-        // .pipe(babel({
-        //     presets: [
-        //         [
-        //             "@babel/preset-env",
-        //             {
-        //                 "useBuiltIns": "entry",
-        //                 "corejs": "3.22"
-        //             }
-        //         ]
-        //     ]
-        // }))
         // .pipe(uglify())
         .pipe(dest('app/js/'))
         .pipe(browserSync.stream())

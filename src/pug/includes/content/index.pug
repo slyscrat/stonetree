@@ -110,7 +110,7 @@ main
                         .main__form-title Оставьте заявку, чтобы получить бесплатную консультацию и оценку доходности вашего объекта
                         .p-form__inputs
                             .p-form__input.p-form__input_single
-                                input(type="text" name="name" pattern="^[A-Za-zА-Яа-яЁё\\s]{2,}" minlength="2" placeholder="Ваше имя" required)
+                                input(type="text" name="name" placeholder="Ваше имя")
                             .p-form__input
                                 .p-inter-tel
                                     .p-inter-tel__input
@@ -129,8 +129,7 @@ main
                                             input(type="hidden" name="ip_status" value="true")
                                             input(type="hidden" name="tel_lang" value="ru")
                                             input(type="hidden" name="tel_slug" value="ru")
-                                            input(type="hidden" name="tel_number" value="+7")
-                                            input(type="tel" name="tel" placeholder="(000) 000-00-00" autocomplete="off")
+                                            input(type="tel" name="tel" autocomplete="off")
                             .p-form__input
                                 .p-select
                                     input(type="hidden" name="list" value="Услуга" data-default="Услуга").p-select__input
