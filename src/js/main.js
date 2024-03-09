@@ -14,22 +14,22 @@ document.addEventListener("DOMContentLoaded", () => {
     // Получаем список масок телефона phones.json
     const phones = fetch('phones.json')
         .then((res => res.json()))
-        .then((data)=>{
+        .then((data) => {
             return data;
         });
 
     // Получаем список телефонов phone-codes.json - страна, код и маска
     const phone_codes = fetch('phone-codes.json')
         .then((res => res.json()))
-        .then((data)=>{
+        .then((data) => {
             return data;
         });
 
 
-    function _addListInternalObjectAndCode(codes, objects, code, data){
-        if (codes.includes(code)){
+    function _addListInternalObjectAndCode(codes, objects, code, data) {
+        if (codes.includes(code)) {
             // Если имеется такой код страны, добавляем маску
-            objects[codes.length-1].mask.push(data.mask);
+            objects[codes.length - 1].mask.push(data.mask);
         } else {
             codes.push(code); // Добавляем код страны
             objects.push({ // Добавляем обьект с кодом, массив и язык
@@ -51,10 +51,10 @@ document.addEventListener("DOMContentLoaded", () => {
     // Перебираем список phone-codes.json
     const _listInternalObjects = []; // Список объектов с масками
     const _listInternalCodes = []; // Список кодов стран. Здесь можно проверять индекс и получить в списке объектов
-    phone_codes.then((results)=>{
-        results.forEach((data)=>{
-            if (Array.isArray(data.cc)){
-                data.cc.forEach((code)=>{
+    phone_codes.then((results) => {
+        results.forEach((data) => {
+            if (Array.isArray(data.cc)) {
+                data.cc.forEach((code) => {
                     _addListInternalObjectAndCode(_listInternalCodes, _listInternalObjects, code, data);
                 })
             } else {
@@ -65,7 +65,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
     // Ресайз страницы, если ширина экрана меньше 1140
-    function resize(){
+    function resize() {
         // Нужно в телефоне при разной размере экрана дать отступ для слайдера, чтобы поместилась форма
         const mains = document.querySelectorAll('.main');
         if (mains[0]) {
@@ -81,16 +81,17 @@ document.addEventListener("DOMContentLoaded", () => {
             })
         }
     }
+
     resize();
-    window.addEventListener('resize', ()=>{
+    window.addEventListener('resize', () => {
         resize();
     })
 
     // Слежение за скролл страницы
-    window.addEventListener('scroll', ()=>{
+    window.addEventListener('scroll', () => {
 
         // Если больше 200 пикселей страница, показываем шапку
-        if (window.scrollY > 200){
+        if (window.scrollY > 200) {
             header.classList.add('fixed')
             main.classList.add('fixed')
         } else {
@@ -98,8 +99,6 @@ document.addEventListener("DOMContentLoaded", () => {
             main.classList.remove('fixed');
         }
     })
-
-
 
 
     // Главный экран - слайдер Swiper, документация https://swiperjs.com/swiper-api
@@ -160,10 +159,10 @@ document.addEventListener("DOMContentLoaded", () => {
     const interTels = document.querySelectorAll('.p-inter-tel');
     if (interTels[0]) {
         // Маска, перебираем, создаем объект и внедряем в Imask. Дока https://imask.js.org
-        function getMaskArray(object){
+        function getMaskArray(object) {
 
             const maskArray = [];
-            object.mask.forEach((mask)=>{
+            object.mask.forEach((mask) => {
                 maskArray.push({
                     mask: mask.replace(/#/g, '0'),
                     lazy: false,
@@ -172,6 +171,7 @@ document.addEventListener("DOMContentLoaded", () => {
             })
             return maskArray;
         }
+
         interTels.forEach((interTel) => {
             const lang = interTel.querySelector('input[name="tel_lang"]'); // язык
             const slug = interTel.querySelector('input[name="tel_slug"]'); // код страны
@@ -215,13 +215,13 @@ document.addEventListener("DOMContentLoaded", () => {
             let _options = null; // Список опций
 
             // Перебираем список кодов _listInternalCodes, получаем по индексу обьект _listInternalObjects[index]
-            phone_codes.then(()=>{
-                _listInternalCodes.forEach((code, index)=>{
+            phone_codes.then(() => {
+                _listInternalCodes.forEach((code, index) => {
                     let currentObject = _listInternalObjects[index]; // Обьект
                     let currentObjectLang = currentObject.langs[currentObject.langsIndex.indexOf(lang.value)]; // Получаем название по языку
                     let optionClasses = ''; // Класс
 
-                    if (slug.value === code.toLowerCase()){ // Проверяем совпадение кода страны и ставим по умолчанию
+                    if (slug.value === code.toLowerCase()) { // Проверяем совпадение кода страны и ставим по умолчанию
                         optionClasses = 'active';
                         const maskArray = getMaskArray(currentObject); // Получаем массив масок
                         buttonFlag.className = `fi fi-${code.toLowerCase()}`; // Фиксируем флаг по коду
@@ -238,8 +238,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
                 // Получаем все опции и создаем событие клика
                 _options = optionsUl.querySelectorAll('.p-inter-tel__option');
-                _options.forEach((_option)=>{
-                    _option.addEventListener('click', ()=>{
+                _options.forEach((_option) => {
+                    _option.addEventListener('click', () => {
                         const code = _option.dataset.code;
                         const activeOption = optionsUl.querySelector('.p-inter-tel__option.active');
                         if (activeOption) { // Убираем активную опцию
@@ -265,7 +265,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 })
             })
 
-            optionsSearch.addEventListener('input', ()=>{
+            optionsSearch.addEventListener('input', () => {
                 let search_query = optionsSearch.value.toLowerCase(); // Получаем значение поиска
                 _options.forEach((option) => { // Перебираем все опции
                     let is_matched = option.dataset.name.toLowerCase().includes(search_query); // Проверяем совпадение слов, букв и возвращает булевое значение
@@ -278,11 +278,11 @@ document.addEventListener("DOMContentLoaded", () => {
     // Promise. Ожидаем что загрузились список кодов и местоположения через fetch
     // results[0] - phone_codes, results[1] - ipapi
     // Можем использовать _listInternalObjects где отфильтровали phone_codes и _listInternalCodes. А мы их получаем после полной загрузки, обработки
-    Promise.all([phone_codes, ipapi]).then((results)=>{
+    Promise.all([phone_codes, ipapi]).then((results) => {
         const slug = results[1].country_code; // Получаем код страны по местоположению
         interTels.forEach((interTel) => {
             const statusIp = interTel.querySelector('input[name="ip_status"]'); // Статус, если true - то обновляем все функционалы международного телефона (custom select)
-            if (statusIp.value === 'true'){
+            if (statusIp.value === 'true') {
                 interTel.querySelector('input[name="tel_slug"]').value = slug.toLowerCase(); // Обновляем код страны
                 let currentObject = _listInternalObjects[_listInternalCodes.indexOf(slug)];
                 const maskArray = getMaskArray(currentObject);
@@ -348,21 +348,21 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Кастомный select
     const pSelects = document.querySelectorAll('.p-select');
-    if (pSelects[0]){
-        pSelects.forEach((pSelect)=>{
+    if (pSelects[0]) {
+        pSelects.forEach((pSelect) => {
             const input = pSelect.querySelector('.p-select__input');
             const btn = pSelect.querySelector('.p-select__btn');
             const current = btn.querySelector('.p-select__current'); // Выбранная опция
             const options = pSelect.querySelectorAll('.p-select__options .p-select__option'); // Список опций
 
             // Показываем список опции при клике
-            btn.addEventListener('click', ()=>{
+            btn.addEventListener('click', () => {
                 pSelect.classList.toggle('active');
             })
 
             // Перебор опций и добавляем событие клика
-            options.forEach((option)=>{
-                option.addEventListener('click', ()=>{
+            options.forEach((option) => {
+                option.addEventListener('click', () => {
 
                     input.value = option.textContent;
                     current.textContent = option.textContent;
@@ -389,96 +389,248 @@ document.addEventListener("DOMContentLoaded", () => {
         })
     }
 
-    const forms = document.querySelectorAll('form');
-    if (forms[0]){
-        forms.forEach((form)=>{
-            form.addEventListener('submit', (e)=>{
-                resetEvent(e);
-                e.stopImmediatePropagation();
-                let status = false;
-                let countInvalid = 0;
-                let isValidForm = form.checkValidity();
+    // Шаблон уведомления ошибки под полем
+    function showMessageError(element, message, time = 5) {
 
-                const pFormInputs = form.querySelectorAll('.p-form__input');
-                if (pFormInputs[0]){
-                    pFormInputs.forEach((pFormInput)=>{
-                        pFormInput.classList.remove('invalid', 'valid');
-                        if (pFormInput.classList.contains('p-form__input_single')){
-                            const input = pFormInput.querySelector('input');
-                            if (!input.checkValidity()){
-                                countInvalid = countInvalid + 1;
-                                pFormInput.classList.add('invalid');
-                            }
-                        } else if (pFormInput.classList.contains('p-form__input_checkbox')) {
-                            const input = pFormInput.querySelector('input');
-                            if (!input.checked){
-                                countInvalid = countInvalid + 1;
-                                pFormInput.classList.add('invalid');
-                            }
-                        } else {
-                            const interTel = pFormInput.querySelector('.p-inter-tel');
-                            if (interTel){
-                                const input = interTel.querySelector('.p-inter-tel__input-item input[type="tel"]');
-                                if (input._mask.value.includes('_')){
-                                    countInvalid = countInvalid + 1;
-                                    pFormInput.classList.add('invalid');
-                                }
-                            }
-                            const pSelect = pFormInput.querySelector('.p-select');
-                            if (pSelect){
-                                const input = pSelect.querySelector('.p-select__input');
-                                if (input.value === '' || input.value === input.dataset.default){
-                                    countInvalid = countInvalid + 1;
-                                    pFormInput.classList.add('invalid');
-                                }
-                            }
+
+        const parentBlock = element.closest('.p-form__input'); // Получаем блок, где будем добавлять уведомление или класс для стиля
+        // Шаблон сообщения и добавляем в блок
+        parentBlock.insertAdjacentHTML('beforeend', `
+            <div class="p-form__error">${message}</div>
+        `);
+        parentBlock.classList.add('invalid'); // Делаем обводку красным
+
+
+        const activeMessage = parentBlock.querySelector('.p-form__error'); // Проверяем сообщение добавленное и запускаем таймер для скрытия, точнее удаления. При отправки формы у нас сбрасывается все сообщения при функции resetMessages(form)
+        if (activeMessage){
+            setTimeout(()=>{
+                activeMessage.remove();
+            }, time * 1000)
+        }
+    }
+
+    // Сбрасываем все ошибки
+    function resetMessages(form){
+        const messages = form.querySelectorAll('.p-form__error');
+        if (messages[0]){
+            messages.forEach((message) => {
+                message.remove();
+            })
+        }
+        const invalids = form.querySelectorAll('.invalid')
+        invalids.forEach((invalid)=>{
+            invalid.classList.remove('invalid');
+        })
+    }
+
+
+    // Валидация - сообщения с языками и методы для проверки
+    const validator = {
+        messages: {
+            ru: {
+                required: 'Поле обязательно для заполнения',
+                letterSpacing: 'Поле должно содержать только буквы',
+                telShort: 'Слишком короткое значение',
+                error: 'Произошла ошибка при отправке данных.',
+            },
+            en: {
+                required: 'Field is required',
+                letterSpacing: 'Field must contain only letters',
+                telShort: 'Too short value',
+                error: 'An error occurred while sending data.',
+            }
+        },
+        methods: {
+            letterSpacing(str){ // Проверка на буквы
+              const re = /^[A-ZА-ЯЁ]+$/i;
+              return re.test(str);
+            },
+            checked(input){ // Проверка на чекбокс
+                return input.checked;
+            },
+            customSelect(input, checkOptions = true){ // Проверка на селект, на дефолтное значение
+                const value = input.value;
+                const _def = input.dataset.default;
+                if (value !== _def){
+                    return true
+                } else if (checkOptions){
+                    const pSelect = input.closest('.p-select');
+                    const options = pSelect.querySelectorAll('.p-select__options');
+                    return [...options].find(option => option.textContent === value)
+                }
+            },
+            required(value){ // Проверка на количество символов
+                return value.length > 0;
+            },
+            countDigitsInString(str){
+                return (str.match(/\d/g) || []).length;
+            },
+            countDigitsInMask(mask){
+                return (mask.match(/#/g) || []).length;
+            },
+            checkPhoneValidity(phone, phoneMasks) { // Проверка на валидность телефона из phones.json
+                var cleanedPhone = phone.replace(/\D/g, '');
+
+                for (var i = 0; i < phoneMasks.length; i++) {
+                    var mask = phoneMasks[i].mask;
+                    var maskStart = mask.split('#')[0].replace(/\D/g, '');
+                    if (cleanedPhone.startsWith(maskStart)) {
+                        var maskDigits = validator.methods.countDigitsInMask(mask);
+                        var enteredDigits = validator.methods.countDigitsInString(phone);
+
+                        if (enteredDigits >= maskStart.length && enteredDigits === maskStart.length + maskDigits) {
+                            return true;
                         }
-                    })
+                    }
                 }
 
-                if (!countInvalid){
-                    status = true;
-                }
+                return false;
+            }
+        }
+    };
 
-                if (status && isValidForm){
-                    console.log('Validated!');
+    const forms = document.querySelectorAll('form');
+    if (forms[0]) {
+        forms.forEach((form) => {
+            form.addEventListener('submit', (e) => {
+                resetEvent(e);
 
+                Promise.all([phones, validator]).then((results)=>{
+                    // Количество ошибок
+                    let countInvalid = 0;
+                    // Увеличиваем число
+                    function setCountInvalid(){
+                        countInvalid = countInvalid + 1;
+                    }
+                    const lang = form.dataset.lang; // Получаем язык из атрибута формы
+                    const messages = validator.messages[lang]; // Получаем по языку сообщения из валидации
+                    const methods = validator.methods; // Методы валидации
+                    resetMessages(form); // Сбрасываем сообщения
 
-                    // Main Block
+                    // Проверяем что блок формы от родителя со классом main
                     const main = form.closest('.main');
-                    if (main){
-                        const mainForm = main.querySelector('.main__form');
-                        form.style.display = 'none';
-                        mainForm.insertAdjacentElement('afterbegin', thankYouOutput());
+                    if (main) {
+                        const name = form.querySelector('input[name="name"]'); // Проверяем имя на количество символов и проверка на буквы без лишних символов
+                        if (!methods.required(name.value)) {
+                            setCountInvalid();
+                            showMessageError(name, messages.required);
+                        } else if (!methods.letterSpacing(name.value)) {
+                            setCountInvalid();
+                            showMessageError(name, messages.letterSpacing);
+                        }
+
+                        const tel = form.querySelector('input[name="tel"]'); // От телефона всегда скрыто значение, и можно получить через tel.p_imask.value, чтобы убрать маску получаем через tel.p_imask.unmaskedValue. Сам скрипт IMask.js
+                        if (!methods.checkPhoneValidity(tel.value, results[0])){
+                            setCountInvalid();
+                            showMessageError(tel, messages.telShort);
+                        }
+
+                        const select = form.querySelector('.p-select__input'); // Скрытое поле hidden и обязательно в атрибут добавляем дефолтное значение. Например data-default="Услуга", где сейчас стоит по умолчанию
+                        if (!methods.customSelect(select)){
+                            setCountInvalid();
+                            showMessageError(select, messages.required);
+                        }
+
+                        const checked = form.querySelector('.p-form__check input[type="checkbox"]'); // Чекбокс согласия на обработку
+                        if (!methods.checked(checked)){
+                            setCountInvalid();
+                            showMessageError(checked, messages.required);
+                        }
+
+                        if (countInvalid === 0){
+                            const data = new FormData(form); // Получаем все данные из формы. Можно сделать пустым и добавить через функцию append() нужные данные. Документация https://learn.javascript.ru/formdata
+
+                            const mainForm = main.querySelector('.main__form');
+                            form.style.display = 'none';
+                            mainForm.insertAdjacentElement('afterbegin', thankYouOutput());
+
+                            lazyContent.update(); // Обновляем скрипт ленивой загрузки изображения как img
+                            lazyBackground.update(); // Обновляем скрипт ленивой загрузки изображения как background-image
+
+                            // Fetch api - https://learn.javascript.ru/fetch
+                            // fetch('test.php', {
+                            //     method: 'POST',
+                            //     body: data
+                            // })
+                            //     // Отлавливаем ошибки
+                            //     // .then((res) => {
+                            //     //     if (res.status >= 200 && res.status < 300) {
+                            //     //         return res;
+                            //     //     } else {
+                            //     //         let error = new Error(res.statusText);
+                            //     //         error.response = res;
+                            //     //         throw error
+                            //     //     }
+                            //     // })
+                            //     // .then((res) => {
+                            //     //     if (res.headers['content-type'] !== 'application/json') {
+                            //     //         let error = new Error('Некорректный ответ от сервера');
+                            //     //         error.response = res;
+                            //     //         throw error
+                            //     //     }
+                            //     //     return res;
+                            //     // })
+                            //     // .then(response => response.json()) // Возвращаем как json
+                            //     .then(response => response.text()) // Возвращаем как текст
+                            //     .then((data)=>{
+                            //         console.log(data); // Получаем ответ сервера
+                            //     })
+                            //     .catch(() => alert(messages.error));
+
+
+                        }
                     }
 
-                    // Modal
                     const modalWithThank = form.closest('.modal.modal_with-thank');
                     if (modalWithThank){
-                        const modalThankContent = modalWithThank.querySelector('.modal_with-thank__content');
-                        const modalContent = modalWithThank.querySelector('.modal__content');
-                        modalThankContent.style.display = 'block';
-                        modalContent.style.display = 'none';
-                        modalThankContent.insertAdjacentElement('afterbegin', thankYouOutput());
+                        console.log(modalWithThank);
+                        const name = form.querySelector('input[name="name"]'); // Проверяем имя на количество символов и проверка на буквы без лишних символов
+                        if (!methods.required(name.value)) {
+                            setCountInvalid();
+                            showMessageError(name, messages.required);
+                        } else if (!methods.letterSpacing(name.value)) {
+                            setCountInvalid();
+                            showMessageError(name, messages.letterSpacing);
+                        }
 
-                        const close = modalThankContent.querySelector('.thank__close');
-                        if (close){
-                            close.addEventListener('click', ()=>{
-                                removeModal(modalWithThank);
-                                document.body.style.overflow = '';
-                            })
+                        const tel = form.querySelector('input[name="tel"]'); // От телефона всегда скрыто значение, и можно получить через tel.p_imask.value, чтобы убрать маску получаем через tel.p_imask.unmaskedValue. Сам скрипт IMask.js
+                        if (!methods.checkPhoneValidity(tel.value, results[0])){
+                            setCountInvalid();
+                            showMessageError(tel, messages.telShort);
+                        }
+
+                        const checked = form.querySelector('.p-form__check input[type="checkbox"]'); // Чекбокс согласия на обработку
+                        if (!methods.checked(checked)){
+                            setCountInvalid();
+                            showMessageError(checked, messages.required);
+                        }
+
+                        if (countInvalid === 0){
+                            // Modal
+                            const modalThankContent = modalWithThank.querySelector('.modal_with-thank__content'); // Контент для уведомления
+                            const modalContent = modalWithThank.querySelector('.modal__content'); // Контент формы в модалке
+                            modalThankContent.style.display = 'block';
+                            modalContent.style.display = 'none';
+                            modalThankContent.insertAdjacentElement('afterbegin', thankYouOutput());
+
+                            const close = modalThankContent.querySelector('.thank__close');
+                            if (close) {
+                                close.addEventListener('click', () => {
+                                    removeModal(modalWithThank);
+                                    document.body.style.overflow = '';
+                                })
+                            }
+                            lazyContent.update(); // Обновляем скрипт ленивой загрузки изображения как img
+                            lazyBackground.update(); // Обновляем скрипт ленивой загрузки изображения как background-image
                         }
                     }
-
-                    lazyContent.update();
-                    lazyBackground.update();
-                }
+                })
             })
         })
     }
 
     // Шаблон верстка Cпасибо
-    function thankYouOutput(){
+    function thankYouOutput() {
         const element = document.createElement('div');
         element.className = 'thank';
         element.innerHTML = `
@@ -506,14 +658,17 @@ document.addEventListener("DOMContentLoaded", () => {
         e.preventDefault();
         e.stopPropagation();
     }
+
     // Показываем модальное окно по классу active, передаем элемент
     function addModal(element) {
         element.classList.add("active");
     }
+
     // Скрываем модальное окно по классу active, передаем элемент
     function removeModal(element) {
         element.classList.remove("active");
     }
+
     // Всплывающее окно
     class PovlyModal {
         constructor() {

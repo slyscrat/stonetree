@@ -21,6 +21,7 @@
     height: 57px
   &__input
     width: 100%
+    position: relative
     &.invalid
       :is(input[type="text"], .p-inter-tel__input, .p-select__btn, .p-form__check-square)
         border-color: var(--red)
@@ -58,3 +59,25 @@
       text-decoration: underline
       text-decoration-skip-ink: none
       text-decoration-thickness: 1px
+  &__error
+    position: absolute
+    color: red
+    background-color: #fff
+    padding: 8px 12px
+    line-height: 1
+    border-radius: 2px
+    z-index: 1
+    margin-top: 5px
+    left: 0
+    box-shadow: 0 1px 20px 0 rgba(0,0,0,.2)
+    top: 100%
+    font-size: 14px
+    &::after
+      content: ''
+      position: absolute
+      width: 0
+      height: 0
+      top: -12px
+      left: 15%
+      border: 6px solid transparent
+      border-bottom-color: #fff
