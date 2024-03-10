@@ -2,7 +2,7 @@
 .main
   padding-top: 10px
   &.fixed
-    padding-top: 90px
+    padding-top: 115px
   &__block
     padding: 52px 95px 90px
     height: 100%
@@ -21,9 +21,6 @@
         width: 100%
         height: 100%
         object-fit: cover
-      picture
-        &:nth-child(2)
-          display: block
   &__item
     z-index: 2
     max-width: 660px
@@ -96,6 +93,8 @@
   &__swiper
     padding: 52px 96px 55px
     position: relative
+    &_2
+      display: none
     .swiper
       width: 100%
       height: 100%
@@ -111,6 +110,8 @@
       align-items: center
       position: absolute
       color: var(--white)
+      &_2
+        display: none
       .swiper-pagination
         display: flex
         align-items: center

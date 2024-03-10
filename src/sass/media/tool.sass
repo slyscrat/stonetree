@@ -3,9 +3,7 @@
     padding-left: 20px
     padding-right: 20px
   .header
-    padding-top: 0
     &.fixed
-      top: -72px
       .header
         &__block
           border-radius: 0
@@ -22,12 +20,18 @@
     &__nav
       gap: 3.0208333333333335vw
   .footer
+    padding-top: 0
+    &__block
+      padding: 30px 38px 68px
     &__nav
       &-li
         width: calc(100% / 2 - 93px / 2)
 @media screen and (max-width: 1140px)
   .header
-    &_-block
+    padding-top: 17px
+    &.fixed
+      top: -71px
+    &__block
       position: relative
     &__nav
       display: none
@@ -44,9 +48,9 @@
     &__right
       order: 1
   .footer
+    padding-bottom: 0
     &__block
       flex-direction: column
-      padding: 30px 38px 68px
       gap: 36px
     &__left, &__right
       width: 100%
@@ -66,7 +70,7 @@
     font-size: 16px
   .header
     &__block
-      padding: 17px 20px
+      padding: 0 20px
     &__langs
       padding: 1px 3px
       gap: 4px

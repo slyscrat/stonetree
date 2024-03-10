@@ -1,5 +1,45 @@
 include ../mixins
 footer.footer
+    .contacts
+        .container
+            .contacts__block
+                .contacts__left
+                    a(href="#first").contacts__up
+                        .contacts__up-svg
+                            +picture('img/main/contacts/arrow.png', 'img/main/contacts/arrow', true, '', 21, 20, '', '', '')
+                        .contacts__up-title Наверх
+                    address.contacts__address
+                        .contacts__address-title.contacts__title Адрес:
+                        .contacts__address-text 304-Ibn Batuta Gate, Jebel Ali, Dubai, United Arab Emirates
+                    .contacts__socials
+                        .contacts__socials-title.contacts__title Соц. сети:
+                        .contacts__socials-block
+                            a(href="#!").contacts__socials-item
+                                +picture('img/main/contacts/instagram.png', 'img/main/contacts/instagram',
+                                    true, '', 17, 17, '', '', ''
+                                )
+                            a(href="#!").contacts__socials-item
+                                +picture('img/main/contacts/in.png', 'img/main/contacts/in',
+                                    true, '', 20, 20, '', '', ''
+                                )
+                            a(href="#!").contacts__socials-item
+                                +picture('img/main/contacts/youtube.png', 'img/main/contacts/youtube',
+                                    true, '', 22, 22, '', '', ''
+                                )
+                            a(href="#!").contacts__socials-item
+                                +picture('img/main/contacts/telegram.png', 'img/main/contacts/telegram',
+                                    true, '', 17, 17, '', '', ''
+                                )
+                            a(href="#!").contacts__socials-item
+                                +picture('img/main/contacts/tiktok.png', 'img/main/contacts/tiktok',
+                                    true, '', 19, 19, '', '', ''
+                                )
+                            a(href="#!").contacts__socials-item
+                                +picture('img/main/contacts/vc.png', 'img/main/contacts/vc',
+                                    true, '', 20, 18, '', '', ''
+                                )
+                .contacts__right
+                    <iframe class="lazy contacts__iframe" src="" data-src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3614.7390974376212!2d55.11513357595655!3d25.04292673793084!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e5f69d18c9c2c6f%3A0x85bce79f356eebfe!2sStonetree%20Vacation%20Homes%20LLC!5e0!3m2!1sru!2sby!4v1709889888970!5m2!1sru!2sby" width="600" height="450" style="border:0;" loading="lazy"></iframe>
     .container
         .footer__block
             .footer__left

@@ -10,13 +10,6 @@
     padding-right: 20px
   .main
     padding-top: 0
-    &__block
-      &-bg
-        picture
-          &:nth-child(1)
-            display: none
-          &:nth-child(2)
-            display: flex
     &__swiper
       padding-left: 20px
       padding-right: 20px
@@ -42,19 +35,24 @@
       &_reversed
         --width-img: 48.6%
   .contacts
+    padding-bottom: 30px
     &__right
       width: 47.083333333333336vw
     &__left
       width: calc(100% - 47.083333333333336vw - 82px)
-  .footer
-    padding: 0
 @media screen and (max-width: 1140px)
   .main
     --height-form: 545px
+    &.fixed
+      padding-top: 71px
     &__block
       padding-bottom: calc(83px + var(--height-form))
     &__swiper
       padding: 0
+      &_1
+        display: none
+      &_2
+        display: flex
       .swiper
         position: relative
         top: auto
@@ -64,6 +62,10 @@
         gap: 9px
         margin-bottom: 20px
         bottom: var(--height-form)
+        &_1
+          display: none
+        &_2
+          display: flex
         .swiper-pagination
           width: calc(100% - 43px - 9px)
     &__nums
@@ -132,6 +134,8 @@
       border-radius: 0
 @media screen and (max-width: 768px)
   .main
+    &.fixed
+      padding-top: 67px
     &__block
       padding-top: 25px
       padding-bottom: calc(63px + var(--height-form))

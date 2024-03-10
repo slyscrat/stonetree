@@ -9,6 +9,7 @@ export const modules = envBuildModules || [
   'pagination',
   'scrollbar',
   'autoplay',
+  'effect-fade',
 ];
 
 export default {

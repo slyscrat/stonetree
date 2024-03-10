@@ -105,44 +105,55 @@ document.addEventListener("DOMContentLoaded", () => {
     const mains = document.querySelectorAll('.main');
     if (mains[0]) {
         mains.forEach((main) => {
-            const _swiperElement = main.querySelector('.swiper');
-            const _swiperPagination = main.querySelector(".swiper-pagination");
+            const _swiperElement1 = main.querySelector('.main__swiper_1');
+            const _swiperElement2 = main.querySelector('.main__swiper_2');
+            const _swiperPagination1 = main.querySelector(".main__swiper-pagination_1 .swiper-pagination");
+            const _swiperPagination2 = main.querySelector(".main__swiper-pagination_2 .swiper-pagination");
 
-            // Следим за видимостью экрана, если видно запускаем автоплей слайдера иначе отключаем
-            new IntersectionObserver((entries, observer) => {
-                if (entries[0].isIntersecting) {
-                    _swiper.autoplay.resume()
-                } else {
-                    _swiper.autoplay.pause()
-                }
-            }).observe(_swiperElement)
-
-            const _swiper = new Swiper(_swiperElement, {
-                speed: _swiperElement.dataset.speed,
+            const _swiper1 = new Swiper(_swiperElement1, {
+                speed: _swiperElement1.dataset.speed,
                 spaceBetween: 10,
                 autoplay: {
-                    delay: _swiperElement.dataset.autoplay,
+                    delay: _swiperElement1.dataset.autoplay,
                     disableOnInteraction: false
                 },
                 pagination: {
-                    el: _swiperPagination,
+                    el: _swiperPagination1,
                     clickable: true,
                 },
+                allowTouchMove: false,
+                autoHeight: false,
+                effect: 'fade',
                 loop: true,
                 rewind: true,
-                breakpoints: {
-                    320: {
-                        allowTouchMove: true,
-                        autoHeight: 'auto',
-                    },
-                    1200: {
-                        allowTouchMove: false,
-                        autoHeight: false,
-                    }
-                },
                 on: {
                     afterInit: function (swiper) {
-                        _swiperPagination.style.setProperty('--count', swiper.pagination.bullets.length); // Передаем количество пагинаций
+                        _swiperPagination1.style.setProperty('--count', swiper.pagination.bullets.length); // Передаем количество пагинаций
+                        main.querySelector('.main__nums-end').textContent = swiper.pagination.bullets.length < 10 ? '0' + swiper.pagination.bullets.length : swiper.pagination.bullets.length; // Общее количество слайдов
+                    },
+                    slideChange: function (swiper) {
+                        main.querySelector('.main__nums-start').textContent = swiper.realIndex + 1 < 10 ? '0' + (swiper.realIndex + 1) : swiper.realIndex + 1;  // Показывает число нужного слайда
+                    }
+                }
+            });
+            const _swiper2 = new Swiper(_swiperElement2, {
+                speed: _swiperElement1.dataset.speed,
+                spaceBetween: 10,
+                autoplay: {
+                    delay: _swiperElement2.dataset.autoplay,
+                    disableOnInteraction: false
+                },
+                pagination: {
+                    el: _swiperPagination2,
+                    clickable: true,
+                },
+                allowTouchMove: true,
+                autoHeight: 'auto',
+                loop: true,
+                rewind: true,
+                on: {
+                    afterInit: function (swiper) {
+                        _swiperPagination2.style.setProperty('--count', swiper.pagination.bullets.length); // Передаем количество пагинаций
                         main.querySelector('.main__nums-end').textContent = swiper.pagination.bullets.length < 10 ? '0' + swiper.pagination.bullets.length : swiper.pagination.bullets.length; // Общее количество слайдов
                     },
                     slideChange: function (swiper) {
@@ -151,8 +162,26 @@ document.addEventListener("DOMContentLoaded", () => {
                 }
             });
 
+            // Следим за видимостью экрана, если видно запускаем автоплей слайдера иначе отключаем
+            new IntersectionObserver((entries, observer) => {
+                if (entries[0].isIntersecting) {
+                    _swiper1.autoplay.resume()
+                } else {
+                    _swiper1.autoplay.pause()
+                }
+            }).observe(_swiperElement1)
 
-            _swiper.autoplay.pause(); // Отключаем автоплей. Стоит слежение за видимостью экрана по необходимости запустит
+            new IntersectionObserver((entries, observer) => {
+                if (entries[0].isIntersecting) {
+                    _swiper2.autoplay.resume()
+                } else {
+                    _swiper2.autoplay.pause()
+                }
+            }).observe(_swiperElement2)
+
+
+            _swiper1.autoplay.pause(); // Отключаем автоплей. Стоит слежение за видимостью экрана по необходимости запустит
+            _swiper2.autoplay.pause(); // Отключаем автоплей. Стоит слежение за видимостью экрана по необходимости запустит
         })
     }
 
@@ -495,14 +524,15 @@ document.addEventListener("DOMContentLoaded", () => {
             form.addEventListener('submit', (e) => {
                 resetEvent(e);
 
-                Promise.all([phones, validator]).then((results)=>{
+                // Ожидаем полной загрузки списка телефонов и после него сработает скрипт
+                Promise.all([phones]).then((results)=>{
                     // Количество ошибок
                     let countInvalid = 0;
                     // Увеличиваем число
                     function setCountInvalid(){
                         countInvalid = countInvalid + 1;
                     }
-                    const lang = form.dataset.lang; // Получаем язык из атрибута формы
+                    const lang = form.dataset.lang; // Получаем язык из атрибута формы data-lang="ru"
                     const messages = validator.messages[lang]; // Получаем по языку сообщения из валидации
                     const methods = validator.methods; // Методы валидации
                     resetMessages(form); // Сбрасываем сообщения
