@@ -46,6 +46,7 @@
     &.fixed
       padding-top: 71px
     &__block
+      height: 100%
       padding-bottom: calc(83px + var(--height-form))
     &__swiper
       padding: 0
@@ -57,6 +58,8 @@
         position: relative
         top: auto
         left: auto
+        &-slide
+          height: auto
       &-pagination
         width: calc(100% - 40px)
         gap: 9px
@@ -231,8 +234,13 @@
     padding-top: 49px
     padding-bottom: 25px
     &__item
+      gap: 0
       &-left,&-right
-        border-radius: 13px
+        border-radius: 0
+      &-left
+        height: 59.52vw
+        @supports not (aspect-ratio: 1)
+        aspect-ratio: 380 / 250
       &-right
         padding: 25px 18px
       &-title

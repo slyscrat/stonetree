@@ -1465,6 +1465,19 @@ document.addEventListener("DOMContentLoaded", () => {
         {"mask": "+1(###)###-####", "cc": "CA", "cd": "Canada", "desc_en": "", "name_ru": "Канада", "desc_ru": "", "startsWith": "1"},
     ];
 
+    function isSorted(lang){
+        const sorted = phone_codes.sort((a, b) => {
+            if (a['name_' + lang].toLowerCase() < b['name_' + lang].toLowerCase()) {
+                return -1;
+            }
+            if (a['name_' + lang].toLowerCase() > b['name_' + lang].toLowerCase()) {
+                return 1;
+            }
+            return 0;
+        });
+        return sorted;
+    }
+
     // Добавляем все маски из phone_codes
     Inputmask.extendAliases({
         "phone": {
@@ -1508,7 +1521,6 @@ document.addEventListener("DOMContentLoaded", () => {
                     clickable: true,
                 },
                 allowTouchMove: false,
-                autoHeight: false,
                 effect: 'fade',
                 loop: true,
                 rewind: true,
@@ -1534,7 +1546,6 @@ document.addEventListener("DOMContentLoaded", () => {
                     clickable: true,
                 },
                 allowTouchMove: true,
-                autoHeight: 'auto',
                 loop: true,
                 rewind: true,
                 on: {
@@ -1676,7 +1687,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
             let _options = null; // Список опций
             const existsArrayPhoneCodes = [];
-            phone_codes.forEach((phone, index) => {
+            isSorted(lang).forEach((phone, index) => {
                 let optionClasses = ''; // Класс
                 if (slug.value === phone.cc.toLowerCase()) { // Проверяем совпадение кода страны и ставим по умолчанию
                     optionClasses = 'active';
@@ -1770,26 +1781,27 @@ document.addEventListener("DOMContentLoaded", () => {
         })
     }
 
+1
     // Promise. Ожидаем что загрузились местоположения через fetch
     // results[0] - ipapi
-    Promise.all([ipapi]).then((results) => {
-        const slug = results[0].country_code; // Получаем код страны по местоположению
-        console.log(slug);
-        interTels.forEach((interTel) => {
-            const statusIp = interTel.querySelector('input[name="ip_status"]'); // Статус, если true - то обновляем все функционалы международного телефона (custom select)
-            if (statusIp.value === 'true') {
-                const inputSlug = interTel.querySelector('input[name="tel_slug"]');
-                inputSlug.value = slug.toLowerCase(); // Обновляем код страны
-
-                const event = new Event('pInterTelChangeSlugByIp');
-                inputSlug.dispatchEvent(event);
-
-                const button = interTel.querySelector('.p-inter-tel__select-block'); // Кнопка
-                const buttonFlag = button.querySelector('.fi'); // Флаг
-                buttonFlag.className = `fi fi-${slug.toLowerCase()}`;
-            }
-        })
-    })
+    // Promise.all([ipapi]).then((results) => {
+    //     const slug = results[0].country_code; // Получаем код страны по местоположению
+    //     console.log(slug);
+    //     interTels.forEach((interTel) => {
+    //         const statusIp = interTel.querySelector('input[name="ip_status"]'); // Статус, если true - то обновляем все функционалы международного телефона (custom select)
+    //         if (statusIp.value === 'true') {
+    //             const inputSlug = interTel.querySelector('input[name="tel_slug"]');
+    //             inputSlug.value = slug.toLowerCase(); // Обновляем код страны
+    //
+    //             const event = new Event('pInterTelChangeSlugByIp');
+    //             inputSlug.dispatchEvent(event);
+    //
+    //             const button = interTel.querySelector('.p-inter-tel__select-block'); // Кнопка
+    //             const buttonFlag = button.querySelector('.fi'); // Флаг
+    //             buttonFlag.className = `fi fi-${slug.toLowerCase()}`;
+    //         }
+    //     })
+    // })
 
     // Кастомный select
     const pSelects = document.querySelectorAll('.p-select');
