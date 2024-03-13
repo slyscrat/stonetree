@@ -1,22 +1,19 @@
 <!DOCTYPE html>
 <html lang="ru-RU">
   <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <title>Главная</title>
     <script src="js/lazyload.min.js"></script>
     <script>var lazyContent="",lazyBackground="";window.addEventListener("DOMContentLoaded",(function(){lazyContent=new LazyLoad({use_native:!0}),lazyBackground=new LazyLoad({})}));</script>
-    <link rel="stylesheet" href="css/style.min.css?v=145">
+    <link rel="stylesheet" href="css/style.min.css?v=915">
   </head>
   <body>
     <header class="header">
       <div class="container">
-        <div class="header__block">
-          <div class="header__logo">
+        <div class="header__block"><a class="header__logo" href="/">
                 <picture>
                   <source type="image/webp" srcset="img/logo.webp"><img width="196" height="41" src="img/logo.png" alt="">
-                </picture>
-          </div>
+                </picture></a>
           <div class="header__center">
             <div class="header__menu modal__show" data-modal="menu">
                   <picture>
@@ -366,11 +363,13 @@
 <path d="M5 6L9.33013 0H0.669873L5 6Z" fill="#AEAEAE"/>
 </svg></span></button>
                       <ul class="p-select__options">
+                        <li class="p-select__option">Аренда квартир</li>
+                        <li class="p-select__option">Покупка и продажа недвижимости</li>
+                        <li class="p-select__option">Управление недвижимостью</li>
+                        <li class="p-select__option">Интерьер и дизайн</li>
                         <li class="p-select__option">Юридические услуги</li>
                         <li class="p-select__option">Партнерская программа</li>
-                        <li class="p-select__option">Продакшн Студия</li>
-                        <li class="p-select__option">Сайт основателя</li>
-                        <li class="p-select__option">Карьера</li>
+                        <li class="p-select__option">Продакшн студия</li>
                       </ul>
                     </div>
                   </div>
@@ -411,90 +410,83 @@
         <div class="container">
           <div class="cards__swiper">
             <div class="swiper" data-speed="1000">
-              <div class="swiper-wrapper">
-                <div class="swiper-slide">
-                      <div class="cards__item cards__item_white">
+              <div class="swiper-wrapper active">
+                <div class="swiper-slide"><a class="cards__item cards__item_white" href="#services1">
                         <div class="cards__item-bg">
                               <picture>
                                 <source type="image/webp" srcset="img/cards/1.webp"><img width="322" height="308" src="img/cards/1.jpg" alt="">
                               </picture>
                         </div>
                         <div class="cards__item-block">
-                          <h2 class="cards__item-title">Аренда квартиры</h2><a class="cards__item-btn" href="#services1">Подробнее</a>
-                        </div>
-                      </div>
+                          <h2 class="cards__item-title">Аренда квартиры</h2>
+                          <div class="cards__item-btn">Подробнее</div>
+                        </div></a>
                 </div>
-                <div class="swiper-slide">
-                      <div class="cards__item ">
+                <div class="swiper-slide"><a class="cards__item " href="#services2">
                         <div class="cards__item-bg">
                               <picture>
                                 <source type="image/webp" srcset="img/cards/2.webp"><img width="322" height="308" src="img/cards/2.jpg" alt="">
                               </picture>
                         </div>
                         <div class="cards__item-block">
-                          <h2 class="cards__item-title">Покупка и&nbsp;продажа</h2><a class="cards__item-btn" href="#services2">Подробнее</a>
-                        </div>
-                      </div>
+                          <h2 class="cards__item-title">Покупка и&nbsp;продажа</h2>
+                          <div class="cards__item-btn">Подробнее</div>
+                        </div></a>
                 </div>
-                <div class="swiper-slide">
-                      <div class="cards__item cards__item_white">
+                <div class="swiper-slide"><a class="cards__item cards__item_white" href="#services3">
                         <div class="cards__item-bg">
                               <picture>
                                 <source type="image/webp" srcset="img/cards/3.webp"><img width="322" height="308" src="img/cards/3.jpg" alt="">
                               </picture>
                         </div>
                         <div class="cards__item-block">
-                          <h2 class="cards__item-title">Отдать в&nbsp;управление</h2><a class="cards__item-btn" href="#services3">Подробнее</a>
-                        </div>
-                      </div>
+                          <h2 class="cards__item-title">Отдать в&nbsp;управление</h2>
+                          <div class="cards__item-btn">Подробнее</div>
+                        </div></a>
                 </div>
-                <div class="swiper-slide">
-                      <div class="cards__item ">
+                <div class="swiper-slide"><a class="cards__item " href="#services4">
                         <div class="cards__item-bg">
                               <picture>
                                 <source type="image/webp" srcset="img/cards/4.webp"><img width="322" height="308" src="img/cards/4.jpg" alt="">
                               </picture>
                         </div>
                         <div class="cards__item-block">
-                          <h2 class="cards__item-title">Интерьер Дизайн</h2><a class="cards__item-btn" href="#services4">Подробнее</a>
-                        </div>
-                      </div>
+                          <h2 class="cards__item-title">Интерьер Дизайн</h2>
+                          <div class="cards__item-btn">Подробнее</div>
+                        </div></a>
                 </div>
-                <div class="swiper-slide">
-                      <div class="cards__item cards__item_white">
+                <div class="swiper-slide"><a class="cards__item cards__item_white" href="#services5">
                         <div class="cards__item-bg">
                               <picture>
                                 <source type="image/webp" srcset="img/cards/5.webp"><img width="322" height="308" src="img/cards/5.jpg" alt="">
                               </picture>
                         </div>
                         <div class="cards__item-block">
-                          <h2 class="cards__item-title">Юридические услуги</h2><a class="cards__item-btn" href="#services5">Подробнее</a>
-                        </div>
-                      </div>
+                          <h2 class="cards__item-title">Юридические услуги</h2>
+                          <div class="cards__item-btn">Подробнее</div>
+                        </div></a>
                 </div>
-                <div class="swiper-slide">
-                      <div class="cards__item ">
+                <div class="swiper-slide"><a class="cards__item " href="#services6">
                         <div class="cards__item-bg">
                               <picture>
                                 <source type="image/webp" srcset="img/cards/6.webp"><img width="322" height="308" src="img/cards/6.jpg" alt="">
                               </picture>
                         </div>
                         <div class="cards__item-block">
-                          <h2 class="cards__item-title">Партнерская программа</h2><a class="cards__item-btn" href="#services6">Подробнее</a>
-                        </div>
-                      </div>
+                          <h2 class="cards__item-title">Партнерская программа</h2>
+                          <div class="cards__item-btn">Подробнее</div>
+                        </div></a>
                 </div>
-                <div class="swiper-slide">
-                      <div class="cards__item cards__item_white">
+                <div class="swiper-slide"><a class="cards__item cards__item_white" href="#services7">
                         <div class="cards__item-bg">
                               <picture>
                                 <source type="image/webp" srcset="img/cards/7.webp"><img width="322" height="308" src="img/cards/7.jpg" alt="">
                               </picture>
                         </div>
                         <div class="cards__item-block">
-                          <h2 class="cards__item-title">Продакшн студия</h2><a class="cards__item-btn" href="#services7">Подробнее</a>
-                        </div>
-                      </div>
+                          <h2 class="cards__item-title">Продакшн студия</h2>
+                          <div class="cards__item-btn">Подробнее</div>
+                        </div></a>
                 </div>
               </div>
             </div>
@@ -589,7 +581,10 @@
                       <div class="services__list-text">Круглосуточный консьерж-сервис с возможностью заселения и&nbsp;выселения арендатора</div>
                     </li>
                   </ul>
-                </div><a class="p-btn services__item-btn" href="#!">Найти жилье</a>
+                </div>
+                <div class="services__item-btns"><a class="p-btn services__item-btn" href="#!">Найти жилье</a>
+                      <button class="p-btn p-btn_transparent services__item-btn services__item-btn_2 modal__show" type="button" data-modal="cons4">Бесплатный подбор</button>
+                </div>
               </div>
             </div>
             <div class="services__item services__item_reversed services__item_2" id="services2">
@@ -639,7 +634,9 @@
                       <div class="services__list-text">Гарантия юридической чистоты сделки</div>
                     </li>
                   </ul>
-                </div><a class="p-btn services__item-btn" href="#!">Перейти на сайт</a>
+                </div>
+                <div class="services__item-btns"><a class="p-btn services__item-btn" href="#!">Перейти на сайт</a>
+                </div>
               </div>
             </div>
             <div class="services__item services__item_3" id="services3">
@@ -689,7 +686,9 @@
                       <div class="services__list-text">Комплексная работа с арендаторами</div>
                     </li>
                   </ul>
-                </div><a class="p-btn services__item-btn" href="#!">Перейти на сайт</a>
+                </div>
+                <div class="services__item-btns"><a class="p-btn services__item-btn" href="#!">Перейти на сайт</a>
+                </div>
               </div>
             </div>
             <div class="services__item services__item_reversed services__item_4" id="services4">
@@ -739,7 +738,9 @@
                       <div class="services__list-text">Гарантийная поддержка – 1 год</div>
                     </li>
                   </ul>
-                </div><a class="p-btn services__item-btn" href="#!">Перейти на сайт</a>
+                </div>
+                <div class="services__item-btns"><a class="p-btn services__item-btn" href="#!">Перейти на сайт</a>
+                </div>
               </div>
             </div>
             <div class="services__item services__item_5" id="services5">
@@ -790,7 +791,9 @@
                     </li>
                   </ul>
                 </div>
-                    <button class="p-btn p-btn_transparent services__item-btn services__item-btn_2 modal__show" type="button" data-modal="cons1">Бесплатная консультация</button>
+                <div class="services__item-btns">
+                      <button class="p-btn p-btn_transparent services__item-btn services__item-btn_2 modal__show" type="button" data-modal="cons1">Бесплатная консультация</button>
+                </div>
               </div>
             </div>
             <div class="services__item services__item_reversed services__item_6" id="services6">
@@ -841,7 +844,9 @@
                     </li>
                   </ul>
                 </div>
-                    <button class="p-btn p-btn_transparent services__item-btn services__item-btn_2 modal__show" type="button" data-modal="cons2">Бесплатная консультация</button>
+                <div class="services__item-btns">
+                      <button class="p-btn p-btn_transparent services__item-btn services__item-btn_2 modal__show" type="button" data-modal="cons2">Бесплатная консультация</button>
+                </div>
               </div>
             </div>
             <div class="services__item services__item_7" id="services7">
@@ -892,7 +897,9 @@
                     </li>
                   </ul>
                 </div>
-                    <button class="p-btn p-btn_transparent services__item-btn services__item-btn_2 modal__show" type="button" data-modal="cons3">Бесплатная консультация</button>
+                <div class="services__item-btns">
+                      <button class="p-btn p-btn_transparent services__item-btn services__item-btn_2 modal__show" type="button" data-modal="cons3">Бесплатная консультация</button>
+                </div>
               </div>
             </div>
           </div>
@@ -937,7 +944,7 @@
                         </picture></a></div>
               </div>
             </div>
-            <div class="contacts__right"><iframe class="lazy contacts__iframe" src="" data-src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3614.7390974376212!2d55.11513357595655!3d25.04292673793084!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e5f69d18c9c2c6f%3A0x85bce79f356eebfe!2sStonetree%20Vacation%20Homes%20LLC!5e0!3m2!1sru!2sby!4v1709889888970!5m2!1sru!2sby" width="600" height="450" style="border:0;" loading="lazy"></iframe></div>
+            <div class="contacts__right"><iframe class="lazy contacts__iframe" src="#" data-src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3614.7390974376212!2d55.11513357595655!3d25.04292673793084!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e5f69d18c9c2c6f%3A0x85bce79f356eebfe!2sStonetree%20Vacation%20Homes%20LLC!5e0!3m2!1sru!2sby!4v1709889888970!5m2!1sru!2sby" width="600" height="450" style="border:0;" loading="lazy"></iframe></div>
           </div>
         </div>
       </div>
@@ -961,7 +968,7 @@
                 <li class="footer__nav-li footer__nav-li_1"><a class="footer__nav-link" href="#!">Юридические услуги в&nbsp;ОАЭ</a></li>
                 <li class="footer__nav-li footer__nav-li_2"><a class="footer__nav-link" href="#!">Партнерская программа</a></li>
                 <li class="footer__nav-li footer__nav-li_3"><a class="footer__nav-link" href="#!">Продакшн и&nbsp;студия</a></li>
-                <li class="footer__nav-li footer__nav-li_4"><a class="footer__nav-link" href="#!">Карьера в&nbsp;STONETREE</a></li>
+                <li class="footer__nav-li footer__nav-li_4"><a class="footer__nav-link" href="#!">Карьера <br>в&nbsp;STONETREE</a></li>
               </ul>
             </nav>
             <div class="footer__links"><a class="footer__link" href="#!">Политика конфиденциальности</a><a class="footer__link" href="#!">Условия пользования</a></div>
@@ -977,7 +984,7 @@
                 <source type="image/webp" srcset="#" data-srcset="img/modal/close.webp"><img class="lazy " width="29" height="29" src="#" data-src="img/modal/close.png" alt="" loading="lazy">
               </picture>
         </button>
-        <form class="p-form modal__form" data-lang="ru">
+        <form class="p-form modal__form modal__form_service" data-lang="ru">
           <input type="hidden" name="type" value="Юридические услуги">
           <div class="modal__form-title">Получите бесплатную консультацию</div>
           <div class="modal__form-subtitle">Оставьте свои контакты, чтобы получить бесплатную консультацию и расчет доходности ваших апартаментов</div>
@@ -1029,7 +1036,7 @@
                 <source type="image/webp" srcset="#" data-srcset="img/modal/close.webp"><img class="lazy " width="29" height="29" src="#" data-src="img/modal/close.png" alt="" loading="lazy">
               </picture>
         </button>
-        <form class="p-form modal__form" data-lang="ru">
+        <form class="p-form modal__form modal__form_partner" data-lang="ru">
           <input type="hidden" name="type" value="Партнерская программа">
           <div class="modal__form-title">Получите бесплатную консультацию</div>
           <div class="modal__form-subtitle">Оставьте свои контакты, чтобы получить бесплатную консультацию и расчет доходности ваших апартаментов</div>
@@ -1081,7 +1088,7 @@
                 <source type="image/webp" srcset="#" data-srcset="img/modal/close.webp"><img class="lazy " width="29" height="29" src="#" data-src="img/modal/close.png" alt="" loading="lazy">
               </picture>
         </button>
-        <form class="p-form modal__form" data-lang="ru">
+        <form class="p-form modal__form modal__form_cons" data-lang="ru">
           <input type="hidden" name="type" value="Продакшн и студия">
           <div class="modal__form-title">Получите бесплатную консультацию</div>
           <div class="modal__form-subtitle">Оставьте свои контакты, чтобы получить бесплатную консультацию и расчет доходности ваших апартаментов</div>
@@ -1162,9 +1169,9 @@
                 </picture></a></div>
       </div>
     </div>
+    <script src="js/swiper-bundle.js"></script>
     <script src="js/inputmask.min.js"></script>
     <script src="js/inputmask.phone.extensions.js"></script>
-    <script src="js/swiper-bundle.js"></script>
-    <script src="js/script.min.js?v=145"></script>
+    <script src="js/script.min.js?v=915"></script>
   </body>
 </html>

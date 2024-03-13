@@ -39,7 +39,7 @@ footer.footer
                                     true, '', 20, 18, '', '', ''
                                 )
                 .contacts__right
-                    <iframe class="lazy contacts__iframe" src="" data-src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3614.7390974376212!2d55.11513357595655!3d25.04292673793084!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e5f69d18c9c2c6f%3A0x85bce79f356eebfe!2sStonetree%20Vacation%20Homes%20LLC!5e0!3m2!1sru!2sby!4v1709889888970!5m2!1sru!2sby" width="600" height="450" style="border:0;" loading="lazy"></iframe>
+                    <iframe class="lazy contacts__iframe" src="#" data-src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3614.7390974376212!2d55.11513357595655!3d25.04292673793084!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e5f69d18c9c2c6f%3A0x85bce79f356eebfe!2sStonetree%20Vacation%20Homes%20LLC!5e0!3m2!1sru!2sby!4v1709889888970!5m2!1sru!2sby" width="600" height="450" style="border:0;" loading="lazy"></iframe>
     .container
         .footer__block
             .footer__left
@@ -66,7 +66,7 @@ footer.footer
                         li.footer__nav-li.footer__nav-li_3
                             a(href="#!").footer__nav-link Продакшн и&nbsp;студия
                         li.footer__nav-li.footer__nav-li_4
-                            a(href="#!").footer__nav-link Карьера в&nbsp;STONETREE
+                            a(href="#!").footer__nav-link Карьера <br>в&nbsp;STONETREE
                 .footer__links
                     a(href="#!").footer__link Политика конфиденциальности
                     a(href="#!").footer__link Условия пользования
@@ -75,7 +75,7 @@ footer.footer
     .modal__content
         button(type="button").modal__close
             +picture('img/modal/close.png', 'img/modal/close', true, '', 29, 29, '', '', '')
-        form.p-form.modal__form(data-lang="ru")
+        form.p-form.modal__form.modal__form_service(data-lang="ru")
             input(type="hidden" name="type" value="Юридические услуги")
             .modal__form-title Получите бесплатную консультацию
             .modal__form-subtitle Оставьте свои контакты, чтобы получить бесплатную консультацию и расчет доходности ваших апартаментов
@@ -113,7 +113,7 @@ footer.footer
     .modal__content
         button(type="button").modal__close
             +picture('img/modal/close.png', 'img/modal/close', true, '', 29, 29, '', '', '')
-        form.p-form.modal__form(data-lang="ru")
+        form.p-form.modal__form.modal__form_partner(data-lang="ru")
             input(type="hidden" name="type" value="Партнерская программа")
             .modal__form-title Получите бесплатную консультацию
             .modal__form-subtitle Оставьте свои контакты, чтобы получить бесплатную консультацию и расчет доходности ваших апартаментов
@@ -151,7 +151,7 @@ footer.footer
     .modal__content
         button(type="button").modal__close
             +picture('img/modal/close.png', 'img/modal/close', true, '', 29, 29, '', '', '')
-        form.p-form.modal__form(data-lang="ru")
+        form.p-form.modal__form.modal__form_cons(data-lang="ru")
             input(type="hidden" name="type" value="Продакшн и студия")
             .modal__form-title Получите бесплатную консультацию
             .modal__form-subtitle Оставьте свои контакты, чтобы получить бесплатную консультацию и расчет доходности ваших апартаментов

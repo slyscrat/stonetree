@@ -18,7 +18,7 @@ document.addEventListener("DOMContentLoaded", () => {
             return data;
         });
 
-    // Получаем список телефонов phone-codes.json - страна, код и маска
+    // Список телефонов phone-codes.json - страна, код и маска
     const phone_codes = [
         {
             "mask": "+247-####",
@@ -994,7 +994,6 @@ document.addEventListener("DOMContentLoaded", () => {
             "desc_ru": "",
             "startsWith": "672"
         },
-        {"mask": "+234(###)###-####", "cc": "NG", "cd": "Nigeria", "desc_en": "", "name_ru": "Нигерия", "desc_ru": "", "startsWith": "234"},
         {"mask": "+234-##-###-###", "cc": "NG", "cd": "Nigeria", "desc_en": "", "name_ru": "Нигерия", "desc_ru": "", "startsWith": "234"},
         {"mask": "+234-##-###-##", "cc": "NG", "cd": "Nigeria", "desc_en": "", "name_ru": "Нигерия", "desc_ru": "", "startsWith": "234"},
         {
@@ -1006,6 +1005,7 @@ document.addEventListener("DOMContentLoaded", () => {
             "desc_ru": "мобильные",
             "startsWith": "234"
         },
+        {"mask": "+234(###)###-####", "cc": "NG", "cd": "Nigeria", "desc_en": "", "name_ru": "Нигерия", "desc_ru": "", "startsWith": "234"},
         {"mask": "+505-####-####", "cc": "NI", "cd": "Nicaragua", "desc_en": "", "name_ru": "Никарагуа", "desc_ru": "", "startsWith": "505"},
         {
             "mask": "+31-##-###-####",
@@ -1486,6 +1486,79 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 
+    Inputmask.prototype.aliases.abstractphone.mask = function(opts) {
+        opts.definitions = {
+            "#": Inputmask.prototype.definitions["9"]
+        };
+
+        // getting clean phone codes and converting mask strings to objects
+        var result = opts.phoneCodes.map(function (a) {
+            if (typeof a === 'string') {
+                a = { mask: a };
+            }
+            a._cleanCode = a.mask.replace(/[^0-9]/g, '');
+            return a;
+        });
+
+        // sorting codes by alphabet order, because we need to generate missing masks in the next code block
+        result = result.sort(function(a, b) {
+            return a._cleanCode.localeCompare(b._cleanCode);
+        });
+
+        // generating missing masks
+        var newCodes = {};
+        result.forEach((a) => {
+            for (var i = 1; i < a._cleanCode.length; i++) {
+                var key = a._cleanCode.substr(0, i);
+
+                // if we don't have such code then making it
+                if (!newCodes[key]) {
+                    var newMask = a.mask;
+
+                    var rg = /[0-9]/g;
+                    var count = 0;
+                    var match;
+                    while ((match = rg.exec(a.mask))) {
+                        count++;
+                        if (count > key.length) {
+                            newMask = newMask.substr(0, match.index) + '#' + newMask.substr(match.index + 1);
+                        }
+                    }
+
+                    // adding new code
+                    newCodes[key] = {
+                        mask: newMask,
+                        cc: a.cc,
+                        cd: a.cd,
+                        desc_en: a.desc_en,
+                        name_ru: a.name_ru,
+                        desc_ru: a.desc_ru,
+                        _cleanCode: key,
+                    };
+                }
+            }
+
+            // marking current code as processed
+            newCodes[a._cleanCode] = true;
+        });
+
+        // pushing generated codes to result
+        for (var key in newCodes) {
+            if (newCodes.hasOwnProperty(key)) {
+                if (typeof newCodes[key] === 'object') { // if it's not just marked as processed
+                    result.push(newCodes[key]);
+                }
+            }
+        }
+
+        // sorting result by code length
+        result = result.sort(function (a, b) {
+            return a._cleanCode.length <= b._cleanCode.length ? -1 : 1;
+        });
+
+        return result;
+    };
+
     // Слежение за скролл страницы
     window.addEventListener('scroll', () => {
 
@@ -1561,7 +1634,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
             // Следим за видимостью экрана, если видно запускаем автоплей слайдера иначе отключаем
             new IntersectionObserver((entries, observer) => {
-                if (entries[0].isIntersecting) {
+                if (entries[0].isIntersecting) { // Если в поле видимости, запускам. Иначе отключаем
                     _swiper1.autoplay.resume()
                 } else {
                     _swiper1.autoplay.pause()
@@ -1569,7 +1642,7 @@ document.addEventListener("DOMContentLoaded", () => {
             }).observe(_swiperElement1)
 
             new IntersectionObserver((entries, observer) => {
-                if (entries[0].isIntersecting) {
+                if (entries[0].isIntersecting) { // Если в поле видимости, запускам. Иначе отключаем
                     _swiper2.autoplay.resume()
                 } else {
                     _swiper2.autoplay.pause()
@@ -1581,12 +1654,12 @@ document.addEventListener("DOMContentLoaded", () => {
             _swiper2.autoplay.pause(); // Отключаем автоплей. Стоит слежение за видимостью экрана по необходимости запустит
 
 
+
+            // На телефоне фиксируем высоту формы
             const form = main.querySelector('.main__form');
             if (window.innerWidth < 1140) {
                 form.style.minHeight = form.scrollHeight + 'px';
-                main.style.setProperty('--height-form', `${form.scrollHeight}px`);
             } else {
-                main.style.removeProperty('--height-form');
                 form.style.minHeight = '';
             }
         })
@@ -1598,7 +1671,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (interTels[0]) {
         interTels.forEach((interTel) => {
 
-            function getValueOfPhones(slug){
+            function getValueOfPhones(slug){ // Получить обьект по коду страны
                 return phone_codes.find((phone) => phone.cc.toLowerCase() === slug);
             }
 
@@ -1617,7 +1690,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 },
                 showMaskOnHover: false,
                 autoUnmask: true,
-                clearMaskOnLostFocus: true
+                clearMaskOnLostFocus: true,
             }).mask(input); // https://robinherbots.github.io/Inputmask/#/documentation
 
             function checkLengthAndSet(slug, input){
@@ -1625,25 +1698,27 @@ document.addEventListener("DOMContentLoaded", () => {
                 const startWith = object.startsWith; // Код телефона
 
                 // Проверяем длинну кода телефона и маску
-                if (startWith.length >= input.inputmask.unmaskedvalue().replace(/[+_]/g, '').length) {
-                    input.inputmask.setValue(startWith);
-                }
-
-                if (input.inputmask.maskset.maskLength < input.value){
-                    input.value = input.value;
-                }
+                // if (startWith.length > input.inputmask.unmaskedvalue().replace(/[+_]/g, '').length) {
+                //     input.inputmask.setValue(startWith);
+                // }
+                //
+                // if (input.inputmask.maskset.maskLength < input.value){
+                //     input.value = input.value;
+                // }
             }
 
 
-            // Следим за полем, чтобы автоматически добавить номер телефона в начало через
+            // // Следим за полем, чтобы автоматически добавить номер телефона в начало через
             input.addEventListener('input', ()=>{
                 checkLengthAndSet(slug, input);
+
+                console.table(input.inputmask);
             })
             input.inputmask.setValue(getValueOfPhones(slug.value).startsWith); // Устанавливаем начальное значение по умолчанию
 
             // Событие выбора опций международного телефона
             slug.addEventListener('pInterTelChangeSlug', ()=>{
-                input.inputmask.setValue(getValueOfPhones(slug.value).startsWith);
+                input.inputmask.setValue(getValueOfPhones(slug.value).startsWith); // Устанавливаем значение при смене кода страны
             })
 
             // Событие установки кода страны по местоположению
@@ -1720,7 +1795,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     interTel.classList.remove('active');
                     resetQuery();
 
-                    const event = new Event('pInterTelChangeSlug');
+                    const event = new Event('pInterTelChangeSlug'); // Запускаем событие смены кода страны, и можем отследить
                     slug.dispatchEvent(event);
                 })
             })
@@ -1741,8 +1816,10 @@ document.addEventListener("DOMContentLoaded", () => {
     if (cards[0]) {
         cards.forEach((card) => {
             const _swiperElement = card.querySelector('.swiper');
+            const _swiperWrapper = _swiperElement.querySelector('.swiper-wrapper');
             const _swiperPagination = card.querySelector(".swiper-pagination");
             const _swiperScrollbar = card.querySelector(".swiper-scrollbar");
+            _swiperWrapper.classList.remove('active'); // По умолчанию стоит класс чтобы зафиксировать карточки, чтобы не было дерганий. Потом удаляем и инициализируем Слайдер
             const _swiper = new Swiper(_swiperElement, {
                 speed: _swiperElement.dataset.speed,
                 slidesPerView: 'auto',
@@ -1784,24 +1861,24 @@ document.addEventListener("DOMContentLoaded", () => {
 1
     // Promise. Ожидаем что загрузились местоположения через fetch
     // results[0] - ipapi
-    // Promise.all([ipapi]).then((results) => {
-    //     const slug = results[0].country_code; // Получаем код страны по местоположению
-    //     console.log(slug);
-    //     interTels.forEach((interTel) => {
-    //         const statusIp = interTel.querySelector('input[name="ip_status"]'); // Статус, если true - то обновляем все функционалы международного телефона (custom select)
-    //         if (statusIp.value === 'true') {
-    //             const inputSlug = interTel.querySelector('input[name="tel_slug"]');
-    //             inputSlug.value = slug.toLowerCase(); // Обновляем код страны
-    //
-    //             const event = new Event('pInterTelChangeSlugByIp');
-    //             inputSlug.dispatchEvent(event);
-    //
-    //             const button = interTel.querySelector('.p-inter-tel__select-block'); // Кнопка
-    //             const buttonFlag = button.querySelector('.fi'); // Флаг
-    //             buttonFlag.className = `fi fi-${slug.toLowerCase()}`;
-    //         }
-    //     })
-    // })
+    Promise.all([ipapi]).then((results) => {
+        const slug = results[0].country_code; // Получаем код страны по местоположению
+        console.log(slug);
+        interTels.forEach((interTel) => {
+            const statusIp = interTel.querySelector('input[name="ip_status"]'); // Статус, если true - то обновляем все функционалы международного телефона (custom select)
+            if (statusIp.value === 'true') {
+                const inputSlug = interTel.querySelector('input[name="tel_slug"]');
+                inputSlug.value = slug.toLowerCase(); // Обновляем код страны
+
+                const event = new Event('pInterTelChangeSlugByIp'); // Создаем событие и вызываем при смене кода страны по айпи
+                inputSlug.dispatchEvent(event);
+
+                const button = interTel.querySelector('.p-inter-tel__select-block'); // Кнопка
+                const buttonFlag = button.querySelector('.fi'); // Флаг
+                buttonFlag.className = `fi fi-${slug.toLowerCase()}`;
+            }
+        })
+    })
 
     // Кастомный select
     const pSelects = document.querySelectorAll('.p-select');
@@ -1842,14 +1919,15 @@ document.addEventListener("DOMContentLoaded", () => {
             const headerHeight = header.scrollHeight;
             const block = document.getElementById(blockID);
             if (block){
-                const offsetPosition = document.getElementById(blockID).getBoundingClientRect().top - headerHeight;
+                const offsetPosition = document.getElementById(blockID).getBoundingClientRect().top - (window.innerHeight - document.getElementById(blockID).offsetHeight + headerHeight) / 2 ;
                 window.scrollBy({
                     top: offsetPosition,
-                    behavior: "smooth"
+                    behavior: "smooth",
                 });
             }
         })
     }
+
 
     // Шаблон уведомления ошибки под полем
     function showMessageError(element, message, time = 5) {
@@ -2046,9 +2124,91 @@ document.addEventListener("DOMContentLoaded", () => {
                         }
                     }
 
-                    const modalWithThank = form.closest('.modal.modal_with-thank');
-                    if (modalWithThank) {
-                        console.log(modalWithThank);
+                    if (form.classList.contains('modal__form_service')) {
+                        const name = form.querySelector('input[name="name"]'); // Проверяем имя на количество символов и проверка на буквы без лишних символов
+                        if (!methods.required(name.value)) {
+                            setCountInvalid();
+                            showMessageError(name, messages.required);
+                        } else if (!methods.letterSpacing(name.value)) {
+                            setCountInvalid();
+                            showMessageError(name, messages.letterSpacing);
+                        }
+
+                        const tel = form.querySelector('input[name="tel"]'); // От телефона всегда скрыто значение, и можно получить через tel.p_imask.value, чтобы убрать маску получаем через tel.p_imask.unmaskedValue. Сам скрипт IMask.js
+                        if (!methods.checkPhoneValidity(tel.value, results[0])) {
+                            setCountInvalid();
+                            showMessageError(tel, messages.telShort);
+                        }
+
+                        const checked = form.querySelector('.p-form__check input[type="checkbox"]'); // Чекбокс согласия на обработку
+                        if (!methods.checked(checked)) {
+                            setCountInvalid();
+                            showMessageError(checked, messages.required);
+                        }
+
+                        if (countInvalid === 0) {
+                            // Modal
+                            const modalThankContent = modalWithThank.querySelector('.modal_with-thank__content'); // Контент для уведомления
+                            const modalContent = modalWithThank.querySelector('.modal__content'); // Контент формы в модалке
+                            modalThankContent.style.display = 'block';
+                            modalContent.style.display = 'none';
+                            modalThankContent.insertAdjacentElement('afterbegin', thankYouOutput());
+
+                            const close = modalThankContent.querySelector('.thank__close');
+                            if (close) {
+                                close.addEventListener('click', () => {
+                                    removeModal(modalWithThank);
+                                    document.body.style.overflow = '';
+                                })
+                            }
+                            lazyContent.update(); // Обновляем скрипт ленивой загрузки изображения как img
+                            lazyBackground.update(); // Обновляем скрипт ленивой загрузки изображения как background-image
+                        }
+                    }
+
+                    if (form.classList.contains('modal__form_partner')) {
+                        const name = form.querySelector('input[name="name"]'); // Проверяем имя на количество символов и проверка на буквы без лишних символов
+                        if (!methods.required(name.value)) {
+                            setCountInvalid();
+                            showMessageError(name, messages.required);
+                        } else if (!methods.letterSpacing(name.value)) {
+                            setCountInvalid();
+                            showMessageError(name, messages.letterSpacing);
+                        }
+
+                        const tel = form.querySelector('input[name="tel"]'); // От телефона всегда скрыто значение, и можно получить через tel.p_imask.value, чтобы убрать маску получаем через tel.p_imask.unmaskedValue. Сам скрипт IMask.js
+                        if (!methods.checkPhoneValidity(tel.value, results[0])) {
+                            setCountInvalid();
+                            showMessageError(tel, messages.telShort);
+                        }
+
+                        const checked = form.querySelector('.p-form__check input[type="checkbox"]'); // Чекбокс согласия на обработку
+                        if (!methods.checked(checked)) {
+                            setCountInvalid();
+                            showMessageError(checked, messages.required);
+                        }
+
+                        if (countInvalid === 0) {
+                            // Modal
+                            const modalThankContent = modalWithThank.querySelector('.modal_with-thank__content'); // Контент для уведомления
+                            const modalContent = modalWithThank.querySelector('.modal__content'); // Контент формы в модалке
+                            modalThankContent.style.display = 'block';
+                            modalContent.style.display = 'none';
+                            modalThankContent.insertAdjacentElement('afterbegin', thankYouOutput());
+
+                            const close = modalThankContent.querySelector('.thank__close');
+                            if (close) {
+                                close.addEventListener('click', () => {
+                                    removeModal(modalWithThank);
+                                    document.body.style.overflow = '';
+                                })
+                            }
+                            lazyContent.update(); // Обновляем скрипт ленивой загрузки изображения как img
+                            lazyBackground.update(); // Обновляем скрипт ленивой загрузки изображения как background-image
+                        }
+                    }
+
+                    if (form.classList.contains('modal__form_cons')) {
                         const name = form.querySelector('input[name="name"]'); // Проверяем имя на количество символов и проверка на буквы без лишних символов
                         if (!methods.required(name.value)) {
                             setCountInvalid();

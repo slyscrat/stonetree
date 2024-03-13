@@ -40,14 +40,13 @@
       width: 47.083333333333336vw
     &__left
       width: calc(100% - 47.083333333333336vw - 82px)
+      padding: 32px 38px 30px
 @media screen and (max-width: 1140px)
   .main
-    --height-form: 545px
     &.fixed
       padding-top: 71px
     &__block
       height: 100%
-      padding-bottom: calc(83px + var(--height-form))
     &__swiper
       padding: 0
       &_1
@@ -64,7 +63,7 @@
         width: calc(100% - 40px)
         gap: 9px
         margin-bottom: 20px
-        bottom: var(--height-form)
+        bottom: 490px
         &_1
           display: none
         &_2
@@ -75,13 +74,15 @@
       flex-shrink: 0
       width: 43px
     &__form
-      position: absolute
-      bottom: 0
-      left: 0
+      position: relative
+      bottom: auto
+      left: auto
       width: 100%
       border-bottom-left-radius: 0
       border-bottom-right-radius: 0
       min-height: auto
+      background: rgba(17,17,17,1)
+      margin-top: -15px
   .cards
     &__list
       max-width: 378px
@@ -128,20 +129,20 @@
     &__block
       flex-direction: column
       padding: 0
-    &__left
-      padding: 32px 38px 30px
     &__right
       width: 100%
     &__iframe
       height: 228px
       border-radius: 0
 @media screen and (max-width: 768px)
+  html, body
+    overflow-x: hidden
   .main
     &.fixed
       padding-top: 67px
     &__block
       padding-top: 25px
-      padding-bottom: calc(63px + var(--height-form))
+      padding-bottom: 75px
     &__title
       font-size: 25px
       margin-bottom: 15px
@@ -193,6 +194,10 @@
               max-width: 322px
     &__list
       max-width: 370px
+    &__swiper
+      &-pagination
+        &_2
+          bottom: 400px
   .thank
     &__title
       font-size: 25px
@@ -223,6 +228,9 @@
     &__list
       padding-top: 35px
     .swiper
+      &-wrapper
+        &.active
+          gap: 5px
       &-slide
         width: 169px
       &-pagination
@@ -235,9 +243,11 @@
     padding-bottom: 25px
     &__item
       gap: 0
-      &-left,&-right
+      &-right
         border-radius: 0
       &-left
+        border-bottom-left-radius: 0
+        border-bottom-right-radius: 0
         height: 59.52vw
         @supports not (aspect-ratio: 1)
         aspect-ratio: 380 / 250
@@ -249,8 +259,11 @@
       &-text
         font-size: 16px
         margin-bottom: 25px
-      &-btn
+      &-btns
         margin-top: 25px
+        flex-direction: column
+        gap: 10px
+      &-btn
         width: 100%
         height: 46px
         border-radius: 7px
@@ -320,7 +333,7 @@
     padding-bottom: 0
     &__left
       width: 100%
-      padding-bottom: 40px
+      padding-bottom: 50px
     &__right
       width: 100%
     &__up
@@ -349,6 +362,24 @@
       &-item
         width: 42px
         height: 42px
+@media screen and (max-width: 570px)
+  .main
+    &__swiper
+      &-pagination
+        &_2
+          bottom: 400px
+@media screen and (max-width: 536px)
+  .main
+    &__swiper
+      &-pagination
+        &_2
+          bottom: 430px
+@media screen and (max-width: 414px)
+  .main
+    &__swiper
+      &-pagination
+        &_2
+          bottom: 450px
 @media screen and (max-width: 390px)
   .cards
     &__list
@@ -367,3 +398,9 @@
           padding-left: 20px
           &::after
             opacity: 0
+@media screen and (max-width: 390px)
+  .main
+    &__swiper
+      &-pagination
+        &_2
+          bottom: 480px

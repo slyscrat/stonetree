@@ -1,11 +1,11 @@
 mixin mainCard(img, title, id, classes="")
-    div(class="cards__item"+ classes)
+    a(href=id class="cards__item"+ classes)
         .cards__item-bg
             +picture('img/cards/'+img+'.jpg', 'img/cards/'+img, false, '', 322, 308, '', '', '')
         .cards__item-block
             h2.cards__item-title
                 | !{title}
-            a(href=id).cards__item-btn Подробнее
+            .cards__item-btn Подробнее
 mixin cardsListItem(num, content, classes='')
     div(class="cards__list-item"+ classes)
         .cards__list-num=num

@@ -2,7 +2,7 @@ include ../mixins
 header.header
     .container
         .header__block
-            .header__logo
+            a(href="/").header__logo
                 +picture('img/logo.png', 'img/logo', false, '', 196, 41, '', '', '')
             .header__center
                 .header__menu.modal__show(data-modal="menu")

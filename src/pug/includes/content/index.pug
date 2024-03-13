@@ -237,11 +237,13 @@ main
                                             <path d="M5 6L9.33013 0H0.669873L5 6Z" fill="#AEAEAE"/>
                                             </svg>
                                     ul.p-select__options
+                                        li.p-select__option Аренда квартир
+                                        li.p-select__option Покупка и продажа недвижимости
+                                        li.p-select__option Управление недвижимостью
+                                        li.p-select__option Интерьер и дизайн
                                         li.p-select__option Юридические услуги
                                         li.p-select__option Партнерская программа
-                                        li.p-select__option Продакшн Студия
-                                        li.p-select__option Сайт основателя
-                                        li.p-select__option Карьера
+                                        li.p-select__option Продакшн студия
                             .p-form__input
                                 label.p-form__check
                                     input(type="checkbox" name="check")
@@ -266,7 +268,7 @@ main
         .container
             .cards__swiper
                 .swiper(data-speed="1000")
-                    .swiper-wrapper
+                    .swiper-wrapper.active
                         .swiper-slide
                             +mainCard(1, 'Аренда квартиры', '#services1', ' cards__item_white')
                         .swiper-slide
@@ -327,7 +329,9 @@ main
                                     .services__list-icon
                                         include ../../components/serviceListIcon
                                     .services__list-text Круглосуточный консьерж-сервис с возможностью заселения и&nbsp;выселения арендатора
-                        +btn('Найти жилье', ' services__item-btn')
+                        .services__item-btns
+                            +btn('Найти жилье', ' services__item-btn')
+                            +btnTransparentButton('Бесплатный подбор', ' services__item-btn services__item-btn_2 modal__show')(data-modal="cons4")
                 #services2.services__item.services__item_reversed.services__item_2
                     .services__item-left
                         +picture('img/main/services/2.jpg', 'img/main/services/2', true, '', 703, 645, '', '', '')
@@ -356,7 +360,8 @@ main
                                     .services__list-icon
                                         include ../../components/serviceListIcon
                                     .services__list-text Гарантия юридической чистоты сделки
-                        +btn('Перейти на сайт', ' services__item-btn')
+                        .services__item-btns
+                            +btn('Перейти на сайт', ' services__item-btn')
                 #services3.services__item.services__item_3
                     .services__item-left
                         +picture('img/main/services/3.jpg', 'img/main/services/3', true, '', 660, 594, '', '', '')
@@ -385,10 +390,8 @@ main
                                     .services__list-icon
                                         include ../../components/serviceListIcon
                                     .services__list-text Комплексная работа с арендаторами
-                        +btn('Перейти на сайт', ' services__item-btn')
-
-
-
+                        .services__item-btns
+                            +btn('Перейти на сайт', ' services__item-btn')
                 #services4.services__item.services__item_reversed.services__item_4
                     .services__item-left
                         +picture('img/main/services/4.jpg', 'img/main/services/4', true, '', 703, 592, '', '', '')
@@ -417,7 +420,8 @@ main
                                     .services__list-icon
                                         include ../../components/serviceListIcon
                                     .services__list-text Гарантийная поддержка – 1 год
-                        +btn('Перейти на сайт', ' services__item-btn')
+                        .services__item-btns
+                            +btn('Перейти на сайт', ' services__item-btn')
                 #services5.services__item.services__item_5
                     .services__item-left
                         +picture('img/main/services/5.jpg', 'img/main/services/5', true, '', 660, 594, '', '', '')
@@ -446,7 +450,8 @@ main
                                     .services__list-icon
                                         include ../../components/serviceListIcon
                                     .services__list-text PRO-услуги
-                        +btnTransparentButton('Бесплатная консультация', ' services__item-btn services__item-btn_2 modal__show')(data-modal="cons1")
+                        .services__item-btns
+                            +btnTransparentButton('Бесплатная консультация', ' services__item-btn services__item-btn_2 modal__show')(data-modal="cons1")
                 #services6.services__item.services__item_reversed.services__item_6
                     .services__item-left
                         +picture('img/main/services/6.jpg', 'img/main/services/6', true, '', 704, 541, '', '', '')
@@ -475,7 +480,8 @@ main
                                     .services__list-icon
                                         include ../../components/serviceListIcon
                                     .services__list-text Гарантия выплат
-                        +btnTransparentButton('Бесплатная консультация', ' services__item-btn services__item-btn_2 modal__show')(data-modal="cons2")
+                        .services__item-btns
+                            +btnTransparentButton('Бесплатная консультация', ' services__item-btn services__item-btn_2 modal__show')(data-modal="cons2")
                 #services7.services__item.services__item_7
                     .services__item-left
                         +picture('img/main/services/7.jpg', 'img/main/services/7', true, '', 660, 571, '', '', '')
@@ -504,4 +510,5 @@ main
                                     .services__list-icon
                                         include ../../components/serviceListIcon
                                     .services__list-text Полноценная подготовка ролика «от» и «до»
-                        +btnTransparentButton('Бесплатная консультация', ' services__item-btn services__item-btn_2 modal__show')(data-modal="cons3")
+                        .services__item-btns
+                            +btnTransparentButton('Бесплатная консультация', ' services__item-btn services__item-btn_2 modal__show')(data-modal="cons3")
