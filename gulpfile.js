@@ -92,7 +92,7 @@ function browsersync() {
 function scripts() {
     return src([
         'node_modules/vanilla-lazyload/dist/lazyload.min.js',
-        // 'node_modules/imask/dist/imask.min.js',
+        'node_modules/intl-tel-input/build/js/intlTelInput.js',
         'modules/robinherbots-inputmask/inputmask.min.js',
         'modules/swiper-master/dist/swiper-bundle.js',
         // 'node_modules/imask/dist/imask.js',
