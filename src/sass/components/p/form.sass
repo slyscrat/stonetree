@@ -23,7 +23,7 @@
     width: 100%
     position: relative
     &.invalid
-      :is(input[type="text"], .p-inter-tel__input, .p-select__btn, .p-form__check-square)
+      :is(input, .p-inter-tel__input, .p-select__btn, .p-form__check-square)
         border-color: var(--red)
     &.valid
       :is(input[type="text"], .p-inter-tel__input, .p-select__btn, .p-form__check-square)
@@ -90,3 +90,5 @@
     padding-left: 22px
   .iti--allow-dropdown input.iti__tel-input, .iti--allow-dropdown input.iti__tel-input[type=tel]
     padding-left: 65px
+  .iti--inline-dropdown .iti__dropdown-content
+    z-index: 3

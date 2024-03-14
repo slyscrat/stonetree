@@ -22,7 +22,7 @@
         height: 100%
         object-fit: cover
   &__item
-    z-index: 2
+    z-index: 5
     max-width: 660px
     color: var(--white)
     position: relative
@@ -82,6 +82,8 @@
       border-top-color: var(--white)
     .iti__search-input
       color: var(--black) !important
+    .iti--show-selected-dial-code.iti--show-flags .iti__selected-dial-code
+      color: var(--white)
     .thank
       --width-img: 74px
       &__close
@@ -97,6 +99,8 @@
   &__swiper
     padding: 52px 0 55px
     position: relative
+    > .container
+      z-index: auto
     &_2
       display: none
     .swiper

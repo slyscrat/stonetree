@@ -702,45 +702,30 @@ document.addEventListener("DOMContentLoaded", () => {
                 },
                 i18n: _i18n[tel.closest('form').dataset.lang],
             });
-            tel.dataset.status = 'false';
 
 
             const handleChange = () => {
-                const form = tel.closest('form');
-                resetMessages(form);
-                const messages = validator.messages[form.dataset.lang];
                 const countrycode = intl.getSelectedCountryData().iso2 ? intl.getSelectedCountryData().iso2.toUpperCase() : null;
-                tel.dataset.status = 'false';
+                if (countrycode){
+                    tel.dataset.dialCode = countrycode;
+                }
+                intl.setCountry(tel.dataset.dialCode.toLowerCase());
                 if (countrycode){
                     let val_old = tel.value;
                     let newString = new libphonenumber.AsYouType(intl.getSelectedCountryData().iso2.toUpperCase()).input(val_old);
                     tel.value = newString;
-
-                    const asYouType = new libphonenumber.AsYouType(countrycode);
-                    asYouType.input(val_old);
-
-                    try {
-                        const phoneNumber = new libphonenumber.parsePhoneNumber(val_old, {
-                            defaultCountry: intl.getSelectedCountryData().iso2.toUpperCase()
-                        });
-                        if (phoneNumber) {
-                            if (!phoneNumber.isValid()){
-                                showMessageError(tel, messages.NUMBER_IS_NOT_VALID)
-                            } else {
-                                tel.dataset.status = 'true';
-                            }
-                        }
-                    } catch (error) {
-                        showMessageError(tel, messages[error.message])
-                    }
-                } else {
-                    showMessageError(tel, messages.INVALID_COUNTRY);
                 }
             };
 
+            tel.addEventListener('countrychange', handleChange);
             tel.addEventListener('input', handleChange);
             tel.addEventListener('change', handleChange);
             tel.addEventListener('keyup', handleChange);
+            tel.addEventListener('blur', function (e){
+                if (tel.value === ''){
+                    tel.value = '+' +intl.getSelectedCountryData().dialCode;
+                }
+            });
         })
     }
 
@@ -937,15 +922,38 @@ document.addEventListener("DOMContentLoaded", () => {
                             showMessageError(name, messages.letterSpacing);
                         }
 
-                        const tel = form.querySelector('input[name="tel"]'); // От телефона всегда скрыто значение, и можно получить через tel.p_imask.value, чтобы убрать маску получаем через tel.p_imask.unmaskedValue. Сам скрипт IMask.js
-                        if (tel.dataset.status === 'false'){
-                            setCountInvalid();
-                            showMessageError(tel, messages.NUMBER_IS_NOT_VALID);
-                        } else {
-                            if (!methods.checkPhoneValidity(tel.value, results[0])) {
+                        const tel = form.querySelector('input[name="tel"]');
+                        const intl = window.intlTelInputGlobals.getInstance(tel);
+                        const countrycode = intl.getSelectedCountryData().iso2 ? intl.getSelectedCountryData().iso2.toUpperCase() : null;
+                        if (tel.value === ''){
+                            tel.value = '+' +intl.getSelectedCountryData().dialCode;
+                        }
+                        if (countrycode){
+                            let val_old = tel.value;
+                            const asYouType = new libphonenumber.AsYouType(countrycode);
+                            asYouType.input(val_old);
+                            try {
+                                const phoneNumber = new libphonenumber.parsePhoneNumber(val_old, {
+                                    defaultCountry: intl.getSelectedCountryData().iso2.toUpperCase()
+                                });
+                                if (phoneNumber) {
+                                    if (!phoneNumber.isValid()){
+                                        setCountInvalid();
+                                        showMessageError(tel, messages.NUMBER_IS_NOT_VALID)
+                                    } else {
+                                        if (!methods.checkPhoneValidity(tel.value, results[0])) {
+                                            setCountInvalid();
+                                            showMessageError(tel, messages.TOO_SHORT);
+                                        }
+                                    }
+                                }
+                            } catch (error) {
                                 setCountInvalid();
-                                showMessageError(tel, messages.telShort);
+                                showMessageError(tel, messages[error.message])
                             }
+                        } else {
+                            setCountInvalid();
+                            showMessageError(tel, messages.INVALID_COUNTRY);
                         }
 
                         const select = form.querySelector('.p-select__input'); // Скрытое поле hidden и обязательно в атрибут добавляем дефолтное значение. Например data-default="Услуга", где сейчас стоит по умолчанию
@@ -1014,15 +1022,38 @@ document.addEventListener("DOMContentLoaded", () => {
                             showMessageError(name, messages.letterSpacing);
                         }
 
-                        const tel = form.querySelector('input[name="tel"]'); // От телефона всегда скрыто значение, и можно получить через tel.p_imask.value, чтобы убрать маску получаем через tel.p_imask.unmaskedValue. Сам скрипт IMask.js
-                        if (tel.dataset.status === 'false'){
-                            setCountInvalid();
-                            showMessageError(tel, messages.NUMBER_IS_NOT_VALID);
-                        } else {
-                            if (!methods.checkPhoneValidity(tel.value, results[0])) {
+                        const tel = form.querySelector('input[name="tel"]');
+                        const intl = window.intlTelInputGlobals.getInstance(tel);
+                        const countrycode = intl.getSelectedCountryData().iso2 ? intl.getSelectedCountryData().iso2.toUpperCase() : null;
+                        if (tel.value === ''){
+                            tel.value = '+' +intl.getSelectedCountryData().dialCode;
+                        }
+                        if (countrycode){
+                            let val_old = tel.value;
+                            const asYouType = new libphonenumber.AsYouType(countrycode);
+                            asYouType.input(val_old);
+                            try {
+                                const phoneNumber = new libphonenumber.parsePhoneNumber(val_old, {
+                                    defaultCountry: intl.getSelectedCountryData().iso2.toUpperCase()
+                                });
+                                if (phoneNumber) {
+                                    if (!phoneNumber.isValid()){
+                                        setCountInvalid();
+                                        showMessageError(tel, messages.NUMBER_IS_NOT_VALID)
+                                    } else {
+                                        if (!methods.checkPhoneValidity(tel.value, results[0])) {
+                                            setCountInvalid();
+                                            showMessageError(tel, messages.TOO_SHORT);
+                                        }
+                                    }
+                                }
+                            } catch (error) {
                                 setCountInvalid();
-                                showMessageError(tel, messages.telShort);
+                                showMessageError(tel, messages[error.message])
                             }
+                        } else {
+                            setCountInvalid();
+                            showMessageError(tel, messages.INVALID_COUNTRY);
                         }
 
                         const checked = form.querySelector('.p-form__check input[type="checkbox"]'); // Чекбокс согласия на обработку
@@ -1033,6 +1064,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
                         if (countInvalid === 0) {
                             // Modal
+                            const modalWithThank = form.closest('.modal_with-thank');
                             const modalThankContent = modalWithThank.querySelector('.modal_with-thank__content'); // Контент для уведомления
                             const modalContent = modalWithThank.querySelector('.modal__content'); // Контент формы в модалке
                             modalThankContent.style.display = 'block';
@@ -1061,15 +1093,38 @@ document.addEventListener("DOMContentLoaded", () => {
                             showMessageError(name, messages.letterSpacing);
                         }
 
-                        const tel = form.querySelector('input[name="tel"]'); // От телефона всегда скрыто значение, и можно получить через tel.p_imask.value, чтобы убрать маску получаем через tel.p_imask.unmaskedValue. Сам скрипт IMask.js
-                        if (tel.dataset.status === 'false'){
-                            setCountInvalid();
-                            showMessageError(tel, messages.NUMBER_IS_NOT_VALID);
-                        } else {
-                            if (!methods.checkPhoneValidity(tel.value, results[0])) {
+                        const tel = form.querySelector('input[name="tel"]');
+                        const intl = window.intlTelInputGlobals.getInstance(tel);
+                        const countrycode = intl.getSelectedCountryData().iso2 ? intl.getSelectedCountryData().iso2.toUpperCase() : null;
+                        if (tel.value === ''){
+                            tel.value = '+' +intl.getSelectedCountryData().dialCode;
+                        }
+                        if (countrycode){
+                            let val_old = tel.value;
+                            const asYouType = new libphonenumber.AsYouType(countrycode);
+                            asYouType.input(val_old);
+                            try {
+                                const phoneNumber = new libphonenumber.parsePhoneNumber(val_old, {
+                                    defaultCountry: intl.getSelectedCountryData().iso2.toUpperCase()
+                                });
+                                if (phoneNumber) {
+                                    if (!phoneNumber.isValid()){
+                                        setCountInvalid();
+                                        showMessageError(tel, messages.NUMBER_IS_NOT_VALID)
+                                    } else {
+                                        if (!methods.checkPhoneValidity(tel.value, results[0])) {
+                                            setCountInvalid();
+                                            showMessageError(tel, messages.TOO_SHORT);
+                                        }
+                                    }
+                                }
+                            } catch (error) {
                                 setCountInvalid();
-                                showMessageError(tel, messages.telShort);
+                                showMessageError(tel, messages[error.message])
                             }
+                        } else {
+                            setCountInvalid();
+                            showMessageError(tel, messages.INVALID_COUNTRY);
                         }
 
                         const checked = form.querySelector('.p-form__check input[type="checkbox"]'); // Чекбокс согласия на обработку
@@ -1080,6 +1135,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
                         if (countInvalid === 0) {
                             // Modal
+                            const modalWithThank = form.closest('.modal_with-thank');
                             const modalThankContent = modalWithThank.querySelector('.modal_with-thank__content'); // Контент для уведомления
                             const modalContent = modalWithThank.querySelector('.modal__content'); // Контент формы в модалке
                             modalThankContent.style.display = 'block';
@@ -1108,15 +1164,38 @@ document.addEventListener("DOMContentLoaded", () => {
                             showMessageError(name, messages.letterSpacing);
                         }
 
-                        const tel = form.querySelector('input[name="tel"]'); // От телефона всегда скрыто значение, и можно получить через tel.p_imask.value, чтобы убрать маску получаем через tel.p_imask.unmaskedValue. Сам скрипт IMask.js
-                        if (tel.dataset.status === 'false'){
-                            setCountInvalid();
-                            showMessageError(tel, messages.NUMBER_IS_NOT_VALID);
-                        } else {
-                            if (!methods.checkPhoneValidity(tel.value, results[0])) {
+                        const tel = form.querySelector('input[name="tel"]');
+                        const intl = window.intlTelInputGlobals.getInstance(tel);
+                        const countrycode = intl.getSelectedCountryData().iso2 ? intl.getSelectedCountryData().iso2.toUpperCase() : null;
+                        if (tel.value === ''){
+                            tel.value = '+' +intl.getSelectedCountryData().dialCode;
+                        }
+                        if (countrycode){
+                            let val_old = tel.value;
+                            const asYouType = new libphonenumber.AsYouType(countrycode);
+                            asYouType.input(val_old);
+                            try {
+                                const phoneNumber = new libphonenumber.parsePhoneNumber(val_old, {
+                                    defaultCountry: intl.getSelectedCountryData().iso2.toUpperCase()
+                                });
+                                if (phoneNumber) {
+                                    if (!phoneNumber.isValid()){
+                                        setCountInvalid();
+                                        showMessageError(tel, messages.NUMBER_IS_NOT_VALID)
+                                    } else {
+                                        if (!methods.checkPhoneValidity(tel.value, results[0])) {
+                                            setCountInvalid();
+                                            showMessageError(tel, messages.TOO_SHORT);
+                                        }
+                                    }
+                                }
+                            } catch (error) {
                                 setCountInvalid();
-                                showMessageError(tel, messages.telShort);
+                                showMessageError(tel, messages[error.message])
                             }
+                        } else {
+                            setCountInvalid();
+                            showMessageError(tel, messages.INVALID_COUNTRY);
                         }
 
                         const checked = form.querySelector('.p-form__check input[type="checkbox"]'); // Чекбокс согласия на обработку
@@ -1127,6 +1206,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
                         if (countInvalid === 0) {
                             // Modal
+                            const modalWithThank = form.closest('.modal_with-thank');
                             const modalThankContent = modalWithThank.querySelector('.modal_with-thank__content'); // Контент для уведомления
                             const modalContent = modalWithThank.querySelector('.modal__content'); // Контент формы в модалке
                             modalThankContent.style.display = 'block';
