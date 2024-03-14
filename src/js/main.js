@@ -718,9 +718,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
                     const asYouType = new libphonenumber.AsYouType(countrycode);
                     asYouType.input(val_old);
-                    if (asYouType.formatter.template){
-                        tel.setAttribute('maxlength', asYouType.formatter.template.length.toString());
-                    }
 
                     try {
                         const phoneNumber = new libphonenumber.parsePhoneNumber(val_old, {
