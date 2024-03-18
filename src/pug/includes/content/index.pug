@@ -11,9 +11,9 @@ main
                                 +picture('img/main/bg1.jpg', 'img/main/bg1', false, '', 1380, 636, '', '', '')
                             .container.relative
                                 .main__item.main__item_1
-                                    h1.main__title Полный цикл услуг по работе с&nbsp;недвижимостью в Дубае
-                                    h2.main__subtitle Увеличение дохода за счет грамотного управления и сдачи вашего объекта
-                                    ul.main__list
+                                    h1.main__title.fadeInUp.p-animation Полный цикл услуг по работе с&nbsp;недвижимостью в Дубае
+                                    h2.main__subtitle.fadeInUp.p-animation Увеличение дохода за счет грамотного управления и сдачи вашего объекта
+                                    ul.main__list.fadeInUp.p-animation
                                         li.main__list-item
                                             .main__list-svg
                                                 <svg width="21" height="21" viewBox="0 0 21 21" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -205,8 +205,8 @@ main
             .container
                 .main__form
                     form.p-form.main__form-item(data-lang="ru")
-                        .main__form-title Оставьте заявку, чтобы получить бесплатную консультацию и оценку доходности вашего объекта
-                        .p-form__inputs
+                        .main__form-title.fadeInUp.p-animation Оставьте заявку, чтобы получить бесплатную консультацию и оценку доходности вашего объекта
+                        .p-form__inputs.fadeInUp.p-animation
                             .p-form__input
                                 input(type="text" name="name" placeholder="Ваше имя")
                             .p-form__input
@@ -254,19 +254,19 @@ main
                 .swiper(data-speed="1000")
                     .swiper-wrapper.active
                         .swiper-slide
-                            +mainCard(1, 'Аренда квартиры', '#services1', ' cards__item_white')
+                            +mainCard(1, 'Аренда квартиры', '#services1', ' cards__item_white fadeInUp p-animation')
                         .swiper-slide
-                            +mainCard(2, 'Покупка и&nbsp;продажа', '#services2', ' ')
+                            +mainCard(2, 'Покупка и&nbsp;продажа', '#services2', '  fadeInUp p-animation')
                         .swiper-slide
-                            +mainCard(3, 'Отдать в&nbsp;управление','#services3', ' cards__item_white')
+                            +mainCard(3, 'Отдать в&nbsp;управление','#services3', ' cards__item_white fadeInUp p-animation')
                         .swiper-slide
-                            +mainCard(4, 'Интерьер Дизайн', '#services4', ' ')
+                            +mainCard(4, 'Интерьер Дизайн', '#services4', '  fadeInUp p-animation')
                         .swiper-slide
-                            +mainCard(5, 'Юридические услуги', '#services5', ' cards__item_white')
+                            +mainCard(5, 'Юридические услуги', '#services5', ' cards__item_white fadeInUp p-animation')
                         .swiper-slide
-                            +mainCard(6, 'Партнерская программа', '#services6', ' ')
+                            +mainCard(6, 'Партнерская программа', '#services6', '  fadeInUp p-animation')
                         .swiper-slide
-                            +mainCard(7, 'Продакшн студия', '#services7', ' cards__item_white')
+                            +mainCard(7, 'Продакшн студия', '#services7', ' cards__item_white fadeInUp p-animation')
             .cards__bottom
                 .swiper-scrollbar
                 .swiper-pagination
@@ -276,19 +276,19 @@ main
                     .swiper-button-next.swiper-button
                         +picture('img/cards/right.png', 'img/cards/right', true, '', 31, 30, '', '', '')
             .cards__list
-                +cardsListItem('7+', 'лет опыта на&nbsp;рынке ОАЭ', ' cards__list-item_1')
-                +cardsListItem('450+', 'объектов в&nbsp;управлении', ' cards__list-item_2')
-                +cardsListItem('220+', 'инвесторов в&nbsp;пуле', ' cards__list-item_3')
-                +cardsListItem('250+', 'млн долларов стоимость объектов', ' cards__list-item_4')
-                +cardsListItem('150+', 'сотрудников в&nbsp;штате', ' cards__list-item_5')
+                +cardsListItem('7+', 'лет опыта на&nbsp;рынке ОАЭ', ' cards__list-item_1 fadeInUp p-animation')
+                +cardsListItem('450+', 'объектов в&nbsp;управлении', ' cards__list-item_2 fadeInUp p-animation')
+                +cardsListItem('220+', 'инвесторов в&nbsp;пуле', ' cards__list-item_3 fadeInUp p-animation')
+                +cardsListItem('250+', 'млн долларов стоимость объектов', ' cards__list-item_4 fadeInUp p-animation')
+                +cardsListItem('150+', 'сотрудников в&nbsp;штате', ' cards__list-item_5 fadeInUp p-animation')
 
     .services
         .container
             .services__block
                 #services1.services__item.services__item_1
-                    .services__item-left
+                    .services__item-left.fadeInUp.p-animation
                         +picture('img/main/services/1.jpg', 'img/main/services/1', true, '', 660, 594, '', '', '')
-                    .services__item-right
+                    .services__item-right.fadeInUp.p-animation
                         .services__item-block
                             h2.services__item-title Аренда квартиры
                             p.services__item-text Аренда объектов в самых привлекательных районах Дубая. Команда профессионалов оказывает всестороннюю поддержку гостям, делая их&nbsp;пребывание максимально комфортным.
@@ -317,9 +317,9 @@ main
                             +btn('Найти жилье', ' services__item-btn')
                             +btnTransparentButton('Бесплатный подбор', ' services__item-btn services__item-btn_2 modal__show')(data-modal="cons4")
                 #services2.services__item.services__item_reversed.services__item_2
-                    .services__item-left
+                    .services__item-left.fadeInUp.p-animation
                         +picture('img/main/services/2.jpg', 'img/main/services/2', true, '', 703, 645, '', '', '')
-                    .services__item-right
+                    .services__item-right.fadeInUp.p-animation
                         .services__item-block
                             h2.services__item-title Покупка и продажа недвижимости
                             p.services__item-text Формирование безопасных инвестиционных стратегий с высоким ROI и ликвидностью, а&nbsp;также стабильным доходом от аренды.
@@ -347,9 +347,9 @@ main
                         .services__item-btns
                             +btn('Перейти на сайт', ' services__item-btn')
                 #services3.services__item.services__item_3
-                    .services__item-left
+                    .services__item-left.fadeInUp.p-animation
                         +picture('img/main/services/3.jpg', 'img/main/services/3', true, '', 660, 594, '', '', '')
-                    .services__item-right
+                    .services__item-right.fadeInUp.p-animation
                         .services__item-block
                             h2.services__item-title Управление недвижимостью
                             p.services__item-text Индивидуальная разработка стратегии управления для каждого инвестора, подготовка и управление объектом под ключ, прозрачная система контроля отчетности для собственников через приложение.
@@ -377,9 +377,9 @@ main
                         .services__item-btns
                             +btn('Перейти на сайт', ' services__item-btn')
                 #services4.services__item.services__item_reversed.services__item_4
-                    .services__item-left
+                    .services__item-left.fadeInUp.p-animation
                         +picture('img/main/services/4.jpg', 'img/main/services/4', true, '', 703, 592, '', '', '')
-                    .services__item-right
+                    .services__item-right.fadeInUp.p-animation
                         .services__item-block
                             h2.services__item-title Интерьер и дизайн
                             p.services__item-text Команда специалистов занимается комплексной подготовкой недвижимости к сдаче в аренду или&nbsp;продаже для максимальной доходности.
@@ -407,9 +407,9 @@ main
                         .services__item-btns
                             +btn('Перейти на сайт', ' services__item-btn')
                 #services5.services__item.services__item_5
-                    .services__item-left
+                    .services__item-left.fadeInUp.p-animation
                         +picture('img/main/services/5.jpg', 'img/main/services/5', true, '', 660, 594, '', '', '')
-                    .services__item-right
+                    .services__item-right.fadeInUp.p-animation
                         .services__item-block
                             h2.services__item-title Юридические услуги
                             p.services__item-text Предоставление юридической и бухгалтерской поддержки, помощь с релокацией, организация поддержки в продвижении и поиске новых возможностей развития бизнеса.
@@ -437,9 +437,9 @@ main
                         .services__item-btns
                             +btnTransparentButton('Бесплатная консультация', ' services__item-btn services__item-btn_2 modal__show')(data-modal="cons1")
                 #services6.services__item.services__item_reversed.services__item_6
-                    .services__item-left
+                    .services__item-left.fadeInUp.p-animation
                         +picture('img/main/services/6.jpg', 'img/main/services/6', true, '', 704, 541, '', '', '')
-                    .services__item-right
+                    .services__item-right.fadeInUp.p-animation
                         .services__item-block
                             h2.services__item-title Партнерская программа
                             p.services__item-text Множество вариантов партнерской программы по&nbsp;каждому направлению деятельности холдинга.
@@ -467,9 +467,9 @@ main
                         .services__item-btns
                             +btnTransparentButton('Бесплатная консультация', ' services__item-btn services__item-btn_2 modal__show')(data-modal="cons2")
                 #services7.services__item.services__item_7
-                    .services__item-left
+                    .services__item-left.fadeInUp.p-animation
                         +picture('img/main/services/7.jpg', 'img/main/services/7', true, '', 660, 571, '', '', '')
-                    .services__item-right
+                    .services__item-right.fadeInUp.p-animation
                         .services__item-block
                             h2.services__item-title Продакшн и студия
                             p.services__item-text Продюсирование проектов под ключ, создание креатива, подготовка и проведение съемки, полный цикл пост продакшна & студия подкастов в Дубае.

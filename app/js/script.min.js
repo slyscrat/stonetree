@@ -1,4 +1,24 @@
 document.addEventListener("DOMContentLoaded", () => {
+
+    // Анимация. Если попадает в область видимость, добавляем класс active который запускает анимацию
+    const pAnimations = document.querySelectorAll('.p-animation');
+    const pAnimationsCallback = (entries, observer) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("active")
+          observer.unobserve(entry.target) // Отключаем слежку
+        }
+      })
+    }
+    const pAnimationsOptions = {
+      threshold: 0.5,
+    }
+    pAnimations.forEach((pAnimation) => {
+      const pAnimationObserver = new IntersectionObserver(pAnimationsCallback, pAnimationsOptions);
+      pAnimationObserver.observe(pAnimation); // Отслеживаем
+    })
+
+
     const header = document.querySelector('.header');
     const main = document.querySelector('.main');
 
@@ -8,20 +28,6 @@ document.addEventListener("DOMContentLoaded", () => {
         .then((data) => {
             return data;
         });
-
-
-    function isSorted(lang){
-        const sorted = phone_codes.sort((a, b) => {
-            if (a['name_' + lang].toLowerCase() < b['name_' + lang].toLowerCase()) {
-                return -1;
-            }
-            if (a['name_' + lang].toLowerCase() > b['name_' + lang].toLowerCase()) {
-                return 1;
-            }
-            return 0;
-        });
-        return sorted;
-    }
 
     // Слежение за скролл страницы
     window.addEventListener('scroll', () => {
@@ -425,6 +431,7 @@ document.addEventListener("DOMContentLoaded", () => {
         ZW: "712345678"
     };
 
+    // Перевод
     const _i18n= {
         ru: {
             selectedCountryAriaLabel: 'Выбранная страна',
@@ -685,9 +692,11 @@ document.addEventListener("DOMContentLoaded", () => {
         en: {}
     }
 
+    // Перебираем все поля телефона
     const tels = document.querySelectorAll('input[type="tel"]');
     if (tels[0]){
         tels.forEach((tel)=>{
+           // https://intl-tel-input.com/
             const intl = intlTelInput(tel, {
                 // utilsScript: "https://cdn.jsdelivr.net/npm/intl-tel-input@19.5.7/build/js/utils.js",
                 autoInsertDialCode: true,
@@ -701,10 +710,17 @@ document.addEventListener("DOMContentLoaded", () => {
                         .catch(function() { callback(); });
                 },
                 i18n: _i18n[tel.closest('form').dataset.lang],
+                hiddenInput: function(telInputName) {
+                  return {
+                    phone: "phone_full",
+                  };
+                }
             });
 
 
             const handleChange = () => {
+
+                // Получаем код страны и инициализируем
                 const countrycode = intl.getSelectedCountryData().iso2 ? intl.getSelectedCountryData().iso2.toUpperCase() : null;
                 if (countrycode){
                     tel.dataset.dialCode = countrycode;
@@ -712,7 +728,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 intl.setCountry(tel.dataset.dialCode.toLowerCase());
                 if (countrycode){
                     let val_old = tel.value;
-                    let newString = new libphonenumber.AsYouType(intl.getSelectedCountryData().iso2.toUpperCase()).input(val_old);
+                    let newString = new libphonenumber.AsYouType(intl.getSelectedCountryData().iso2.toUpperCase()).input(val_old); // Генерация и проверки телефона
                     tel.value = newString;
                 }
             };
