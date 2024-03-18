@@ -92,8 +92,8 @@ function browsersync() {
 function scripts() {
     return src([
         'node_modules/vanilla-lazyload/dist/lazyload.min.js',
-        'node_modules/intl-tel-input/build/js/intlTelInput.js',
-        'modules/robinherbots-inputmask/inputmask.min.js',
+        'modules/jquery/plugins/jquery-3.4.1.min.js',
+        'modules/jquery/plugins/plugins.min.js',
         'modules/swiper-master/dist/swiper-bundle.js',
         // 'node_modules/imask/dist/imask.js',
         // 'node_modules/split-type/dist/index.js',
