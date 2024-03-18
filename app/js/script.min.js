@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
 
-    // Анимация. Если попадает в область видимость, добавляем класс active который запускает анимацию
+    // Анимация. Если попадает в область видимость, добавляем класс active который запускает анимацию. При скроллинге тоже проверяет
     const pAnimations = document.querySelectorAll('.p-animation');
     const pAnimationsCallback = (entries, observer) => {
       entries.forEach((entry) => {
