@@ -730,6 +730,13 @@ document.addEventListener("DOMContentLoaded", () => {
                     let val_old = tel.value;
                     let newString = new libphonenumber.AsYouType(intl.getSelectedCountryData().iso2.toUpperCase()).input(val_old); // Генерация и проверки телефона
                     tel.value = newString;
+
+                    // Ограничитель максимальной длины - не точный
+                    // const asYouType = new libphonenumber.AsYouType(countrycode);
+                    // asYouType.input(val_old);
+                    // if (asYouType.formatter.template){
+                    //     tel.setAttribute('maxlength', asYouType.formatter.template.length.toString());
+                    // }
                 }
             };
 
